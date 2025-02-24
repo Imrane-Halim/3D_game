@@ -1,5 +1,6 @@
-# vscode
+# other
 .vscode/
+cub3d
 
 # Prerequisites
 *.d
