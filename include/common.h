@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef COMMON_H
+# define COMMON_H
 
 # include <stdio.h>
 # include <errno.h>
