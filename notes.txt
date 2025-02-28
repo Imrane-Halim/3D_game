@@ -1,0 +1,89 @@
+resource: https://github.com/Saxsori/ray-cast/blob/main/README.md
+
+>>>>>>>>>>>>> concepts first: SOHCAHTOA, VECTORS
+
+// ---------------- first: SOHCAHTOA --------------------
+
+sohcahtoa is an easy way to remamber how SIN, COS and TAN work:
+>> NOTE: sin,cos,tan can be called trigonometric ratios.
+
+                   /|
+                  /_|
+                 / o|
+                /   |
+    hypotenuse /    | adjacent
+              /     |
+             /      |
+            /______+|
+            opposite
+
+
+..soh..: sin = opposite / hypotenuse
+..cah..: cos = adjacent / hypotenuse
+..toa..: tan = opposite / adjacent
+
+e.g: adjacent = 7, opposite = 8, hypotenuse ~= 11.31
+
+sin = 8/11
+cos = 7/11
+tan = 7/7
+
+// ---------------- second: VECTORS --------------------
+
+
+in a 2D coordinate system, vector can be represented as follow:
+
+    ->
+    V  = (Vx, vy)
+
+    example of 2D representation:
+
+        y
+        ^     ^       V
+        |     |     /
+        |     |    /
+        |  Vy |   /
+        |     |  /
+        |     | /
+        |     +------>
+        |           Vx
+    <---+----------------------> x
+      o |
+        
+the vector and it's components can form a right angled triangle:
+            
+
+             /|
+            /-|
+         V / o| Vy
+          /   |
+         /    |
+        +------
+           Vx
+
+for the triangle above:
+    - opposite: Vx
+    - adjacent: Vy
+    - hypotenuse: V
+cos(o) = Vy/V
+sin(o) = Vx/V
+tan(o) = Vx/Vy
+
+
+using Pythagorean Theorem we can get the lenght (or magnitude)
+of V using the following formula (|| used for length, not ABS):
+
+    | V | = sqrt(Vx^2 + Vy^2)
+
+    e.g: Vx = 2, Vy = 2
+    | V | = sqrt(4 + 4) = sqrt(8) ~= 2.83
+
+to find the direction of a vector we sove tan(o) for o,
+in other words, calculate tan(o).
+
+
+>>>>>>>>>>>>> ray tracing stuff:
+
+some considerations:
+    - a ray is the distance between the player coordinates and a wall.
+    - depending on FOV (field of view) controls the number of rays.
