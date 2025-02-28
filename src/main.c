@@ -45,8 +45,8 @@ void	init_player(void)
 	data.player.dir_y = 0;
 	data.player.fov = 60;
 	data.player.height = 32;
-	data.player.pos_x = 64;
-	data.player.pos_y = 64;
+	data.player.pos_x = 0;
+	data.player.pos_y = 0;
 }
 
 void	init_game_data(void)
@@ -70,6 +70,26 @@ int	clean_exit(int code)
 	return (0);
 }
 
+// --------------------- movement stuff
+void	move_player(int x, int y)
+{
+	int	new_x;
+	int	new_y;
+
+	new_x = data.player.pos_x + x;
+	new_y = data.player.pos_y + y;
+	
+	if (new_x < 0 || new_x >= WIDTH)
+		return ;
+	if (new_y < 0 || new_y >= HEIGHT)
+		return ;
+	
+	data.player.pos_x += x;
+	data.player.pos_y += y;
+
+	// printf("x: %d, y: %d\n", new_x, new_y);
+}
+
 // --------------------- events handling stuff
 int	keyboard_event_handler(int key, void *data)
 {
@@ -77,6 +97,14 @@ int	keyboard_event_handler(int key, void *data)
 	// printf("key: %d\n", key);
 	if (key == KEY_ESC)
 		clean_exit(0);
+	else if (key == KEY_UP)
+		move_player(0, -SPEED);
+	else if (key == KEY_DOWN)
+		move_player(0, SPEED);
+	else if (key == KEY_LEFT)
+		move_player(-SPEED, 0);
+	else if (key == KEY_RIGHT)
+		move_player(SPEED, 0);
 	return (0);
 }
 
@@ -103,20 +131,19 @@ void	put_pixel(int x, int y, int color)
 
 void	draw_square(int x, int y, int width, int height, int color)
 {
-	int	save_x;
-	int	save_y;
+	int	i;
+	int	j;
 
-	save_x = x;
-	save_y = y;
-	while (y < height + save_y)
+	i = y;
+	while (i < height + y)
 	{
-		x = save_x;
-		while (x < width + save_y)
+		j = x;
+		while (j < width + x)
 		{
-			put_pixel(x, y, color);
-			x++;
+			put_pixel(j, i, color);
+			j++;
 		}
-		y++;
+		i++;
 	}
 }
 
@@ -127,7 +154,7 @@ void	draw_background(void)
 
 void	draw_player(void)
 {
-	draw_square(data.player.pos_y, data.player.pos_y, 32, 32, 0x00ff00);
+	draw_square(data.player.pos_x, data.player.pos_y, 32, 32, 0x00ff00);
 }
 
 int	draw_frame(void)
