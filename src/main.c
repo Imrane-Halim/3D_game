@@ -79,10 +79,17 @@ void	move_player(int x, int y)
 	new_x = data.player.pos_x + x;
 	new_y = data.player.pos_y + y;
 	
-	if (new_x < 0 || new_x >= WIDTH)
-		return ;
-	if (new_y < 0 || new_y >= HEIGHT)
-		return ;
+	// if (new_x < 0 || new_x >= WIDTH)
+	// 	return ;
+	// if (new_y < 0 || new_y >= HEIGHT)
+	// 	return ;
+	if (DEBUG)
+	{
+		if (new_y < 0 || new_y + 16 >= HEIGHT)
+			return ;
+		if (new_x < 0 || new_x + 16 >= WIDTH)
+			return ;
+	}
 	
 	data.player.pos_x += x;
 	data.player.pos_y += y;
@@ -154,7 +161,7 @@ void	draw_background(void)
 
 void	draw_player(void)
 {
-	draw_square(data.player.pos_x, data.player.pos_y, 32, 32, 0x00ff00);
+	draw_square(data.player.pos_x, data.player.pos_y, 32, 32, 0xffb700);
 }
 
 int	draw_frame(void)

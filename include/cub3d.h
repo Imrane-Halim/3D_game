@@ -29,6 +29,7 @@
 # define WIDTH	1536
 # define HEIGHT	864
 # define PI		3.141592653589793238462643383
+# define DEBUG	1
 
 // maped keyboard keys
 enum e_keys
