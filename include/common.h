@@ -5,6 +5,7 @@
 # include <errno.h>
 # include <math.h>
 # include <mlx.h>
+# include <stdbool.h>
 # include "libft.h"
 
 char *map[] = {
@@ -15,5 +16,6 @@ char *map[] = {
 	"111111"
 };
 // player possition: p[1][1];
+int	clean_exit(int code);
 
 #endif

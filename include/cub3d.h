@@ -25,6 +25,7 @@
 # include "common.h"
 
 // window dimentions
+# define SPEED	16
 # define WIDTH	1536
 # define HEIGHT	864
 # define PI		3.141592653589793238462643383
@@ -45,11 +46,20 @@ enum e_keys
 
 //	*mlx and *win are used to control the X11 window
 //	default res is going to be 1920x1080
+typedef struct s_frame_data
+{
+	void	*img;
+	void	*adr;
+	int		bpp;
+	int		line_lenght;
+	int		endian;
+}	t_frame_data;
+
 typedef struct s_window
 {
-	void	*mlx;
-	void	*win;
-	void	*frame; // image to display
+	void			*mlx;
+	void			*win;
+	t_frame_data	frame; // frame to display
 }	t_window;
 
 typedef struct s_player
