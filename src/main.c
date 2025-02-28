@@ -45,8 +45,8 @@ void	init_player(void)
 	data.player.dir_y = 0;
 	data.player.fov = 60;
 	data.player.height = 32;
-	data.player.pos_x = 0;
-	data.player.pos_y = 0;
+	data.player.pos_x = 64;
+	data.player.pos_y = 64;
 }
 
 void	init_game_data(void)
@@ -71,10 +71,10 @@ int	clean_exit(int code)
 }
 
 // --------------------- movement stuff
-void	move_player(int x, int y)
+void	move_player(float x, float y)
 {
-	int	new_x;
-	int	new_y;
+	float	new_x;
+	float	new_y;
 
 	new_x = data.player.pos_x + x;
 	new_y = data.player.pos_y + y;
@@ -164,9 +164,22 @@ void	draw_player(void)
 	draw_square(data.player.pos_x, data.player.pos_y, 32, 32, 0xffb700);
 }
 
+void	draw_map()
+{
+	for (int y = 0; map[y]; y++)
+	{
+		for (int x = 0; map[y][x]; x++)
+		{
+			if (map[y][x] == '1')
+				draw_square(x * 64, y * 64, 64, 64, 0xffffff);
+		}
+	}
+}
+
 int	draw_frame(void)
 {
 	draw_background();
+	draw_map();
 	draw_player();
 	mlx_put_image_to_window(data.window.mlx, data.window.win,
 		data.window.frame.img, 0, 0);

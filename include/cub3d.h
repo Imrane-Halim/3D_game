@@ -27,7 +27,7 @@
 // window dimentions
 # define SPEED	16
 # define WIDTH	1536
-# define HEIGHT	864
+# define HEIGHT	832
 # define PI		3.141592653589793238462643383
 # define DEBUG	1
 
