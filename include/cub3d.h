@@ -68,6 +68,10 @@ typedef struct s_player
 	unsigned int	fov;	// field of view [1, 135]. default is 60
 	unsigned int	height;	// default: 32
 
+	// mose coordinates
+	int		mouse_x;
+	int		mouse_y;
+	
 	// position in the map/maze
 	double	pos_x;
 	double	pos_y;

@@ -121,6 +121,8 @@ int	Mouse_event_handler(void)
 {
 	int x, y;
 	mlx_mouse_get_pos(data.window.mlx, data.window.win, &x, &y);
+	data.player.mouse_x = x;
+	data.player.mouse_y = y;
 	// mlx_pixel_put(data.window.mlx, data.window.win, x, y, 255);
 	// printf("x: %d, y: %d\n", x, y);
 	return (0);
@@ -176,11 +178,17 @@ void	draw_map()
 	}
 }
 
+void	draw_mouse()
+{
+	draw_square(data.player.mouse_x, data.player.mouse_y, 8, 8, 0xff0000);
+}
+
 int	draw_frame(void)
 {
 	draw_background();
 	draw_map();
 	draw_player();
+	draw_mouse();
 	mlx_put_image_to_window(data.window.mlx, data.window.win,
 		data.window.frame.img, 0, 0);
 	return (0);
@@ -190,8 +198,7 @@ void	start_game(void)
 {
 	mlx_hook(data.window.win, KeyPress, KeyPressMask, keyboard_event_handler, NULL);
 	mlx_hook(data.window.win, DestroyNotify, StructureNotifyMask, clean_exit, NULL);
-	// mlx_hook(data.window.win, MotionNotify, PointerMotionMask,
-	// Mouse_event_handler, NULL);
+	mlx_hook(data.window.win, MotionNotify, PointerMotionMask, Mouse_event_handler, NULL);
 	mlx_loop_hook(data.window.mlx, draw_frame, NULL);
 	mlx_loop(data.window.mlx);
 }
