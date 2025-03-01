@@ -71,7 +71,7 @@ typedef struct s_player
 	// mose coordinates
 	int		mouse_x;
 	int		mouse_y;
-	
+
 	// position in the map/maze
 	double	pos_x;
 	double	pos_y;
@@ -121,8 +121,33 @@ extern t_data data;
 
 */
 
+//	-- game struct initialaztion stuff
+void	init_window(void);
+void	init_plane(void);
+void	init_player(void);
+void	init_game_data(void);
 
-void	init_window();
-void	init_data();
+//	-- free all memory and exit
+int		clean_exit(int code);
+
+//	-- the name said it all
+void	move_player(float x, float y);
+
+//	-- event handling stuff
+int		keyboard_event_handler(int key, void *data);
+int		Mouse_event_handler(void);
+
+//	-- frame rendering stuff
+void	put_pixel(int x, int y, int color);
+void	draw_square(int x, int y, int width, int height, int color);
+void	draw_background(void);
+void	draw_player(void);
+void	draw_map();
+void	draw_mouse();
+void	draw_line();
+int		draw_frame(void);
+
+//	-- run game
+void	start_game(void);
 
 #endif

@@ -47,6 +47,8 @@ void	init_player(void)
 	data.player.height = 32;
 	data.player.pos_x = 64;
 	data.player.pos_y = 64;
+	data.player.mouse_x = 0;
+	data.player.mouse_y = 0;
 }
 
 void	init_game_data(void)
@@ -133,6 +135,8 @@ void	put_pixel(int x, int y, int color)
 {
 	char	*dst;
 
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return ;
 	dst = data.window.frame.adr + (y * data.window.frame.line_lenght + x
 			* (data.window.frame.bpp / 8));
 	*(unsigned int *)dst = color;
@@ -180,7 +184,22 @@ void	draw_map()
 
 void	draw_mouse()
 {
-	draw_square(data.player.mouse_x, data.player.mouse_y, 8, 8, 0xff0000);
+	int	x;
+	int	y;
+
+	x = data.player.mouse_x - 4;
+	y = data.player.mouse_y - 4;
+	if (x < 0 || y < 0 || y >= HEIGHT || x >= WIDTH)
+		draw_square(x + 4, y + 4, 8, 8, 0xff0000);
+	else
+		draw_square(x, y, 8, 8, 0xff0000);
+}
+
+// this functin draws a line between the player 
+// positin and the mouse position
+void	draw_line()
+{
+	// todo;
 }
 
 int	draw_frame(void)
@@ -189,6 +208,7 @@ int	draw_frame(void)
 	draw_map();
 	draw_player();
 	draw_mouse();
+	draw_line();
 	mlx_put_image_to_window(data.window.mlx, data.window.win,
 		data.window.frame.img, 0, 0);
 	return (0);
