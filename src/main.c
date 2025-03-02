@@ -87,9 +87,13 @@ void	move_player(float x, float y)
 	// 	return ;
 	if (DEBUG)
 	{
-		if (new_y < 0 || new_y + 16 >= HEIGHT)
+		if (new_y < 0 || new_y + 8 >= HEIGHT)
 			return ;
-		if (new_x < 0 || new_x + 16 >= WIDTH)
+		if (new_x < 0 || new_x + 8 >= WIDTH)
+			return ;
+		if (has_obj_at(new_x, new_y + 8, '1'))
+			return ;
+		if (has_obj_at(new_x + 8, new_y, '1'))
 			return ;
 	}
 	
@@ -167,7 +171,7 @@ void	draw_background(void)
 
 void	draw_player(void)
 {
-	draw_square(data.player.pos_x, data.player.pos_y, 32, 32, 0xffb700);
+	draw_square(data.player.pos_x, data.player.pos_y, 16, 16, 0xffb700);
 }
 
 void	draw_map()
@@ -201,9 +205,36 @@ void	draw_mouse()
 
 // this functin draws a line between the player 
 // positin and the mouse position
-void	draw_line()
+void draw_line(int x0, int y0, int x1, int y1)
 {
-	// todo;
+    int dx, dy, p;
+    int stepx, stepy;
+    
+    dx = abs(x1 - x0);
+    dy = abs(y1 - y0);
+    stepx = (x0 < x1) ? 1 : -1;
+    stepy = (y0 < y1) ? 1 : -1;
+    int steep = 0;
+    if (dy > dx) {
+        int temp = dx;
+        dx = dy;
+        dy = temp;
+        steep = 1;
+    }
+    p = 2 * dy - dx;
+    for (int i = 0; i <= dx; i++)
+    {
+        put_pixel(x0, y0, 0xff0000);
+        if (p >= 0)
+        {
+            if (steep) x0 += stepx;
+            else y0 += stepy;
+            p = p - 2 * dx;
+        }
+        if (steep) y0 += stepy;
+        else x0 += stepx;
+        p = p + 2 * dy;
+    }
 }
 
 int	draw_frame(void)
@@ -212,7 +243,8 @@ int	draw_frame(void)
 	draw_map();
 	draw_player();
 	draw_mouse();
-	draw_line();
+	draw_line(data.player.pos_x + 8, data.player.pos_y + 8,
+		data.player.mouse_x, data.player.mouse_y);
 	mlx_put_image_to_window(data.window.mlx, data.window.win,
 		data.window.frame.img, 0, 0);
 	return (0);

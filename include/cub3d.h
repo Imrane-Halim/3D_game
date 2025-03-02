@@ -158,10 +158,14 @@ void	draw_background(void);
 void	draw_player(void);
 void	draw_map();
 void	draw_mouse();
-void	draw_line();
+void 	draw_line(int x0, int y0, int x1, int y1);
 int		draw_frame(void);
 
 //	-- run game
 void	start_game(void);
+
+
+//  -- game logic
+bool	has_obj_at(int x, int y, char obj);
 
 #endif
