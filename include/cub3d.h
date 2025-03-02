@@ -93,8 +93,8 @@ typedef struct s_player
 	double	pos_y;
 
 	// point of viow (the direction the player is facing)
-	double	dir_x;
-	double	dir_y; // this will be use with the mouse later
+	double	angle_x;
+	double	angle_y; // this will be use with the mouse later
 
 	// other stuff like speed will be added later
 }	t_player;

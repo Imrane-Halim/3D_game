@@ -41,8 +41,8 @@ void	init_plane(void)
 void	init_player(void)
 {
 	// this will chage when parsing part is done;
-	data.player.dir_x = 0;
-	data.player.dir_y = 0;
+	data.player.angle_x = 0;
+	data.player.angle_y = 0;
 	data.player.fov = 60 * (PI / 180);
 	data.player.height = 32;
 	data.player.pos_x = 64;
