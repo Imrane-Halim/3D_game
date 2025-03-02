@@ -43,7 +43,7 @@ void	init_player(void)
 	// this will chage when parsing part is done;
 	data.player.dir_x = 0;
 	data.player.dir_y = 0;
-	data.player.fov = 60;
+	data.player.fov = 60 * (PI / 180);
 	data.player.height = 32;
 	data.player.pos_x = 64;
 	data.player.pos_y = 64;
@@ -177,7 +177,11 @@ void	draw_map()
 		for (int x = 0; map[y][x]; x++)
 		{
 			if (map[y][x] == '1')
-				draw_square(x * 64, y * 64, 64, 64, 0xffffff);
+				draw_square(x * TILESIZE, y * TILESIZE,
+				TILESIZE - 1, TILESIZE - 1, 0x403f3e);
+			if (map[y][x] == '0')
+				draw_square(x * TILESIZE, y * TILESIZE,
+				TILESIZE - 1, TILESIZE - 1, 0xffffff);
 		}
 	}
 }
@@ -213,12 +217,13 @@ int	draw_frame(void)
 		data.window.frame.img, 0, 0);
 	return (0);
 }
-
+// -------------- run game --
 void	start_game(void)
 {
 	mlx_hook(data.window.win, KeyPress, KeyPressMask, keyboard_event_handler, NULL);
 	mlx_hook(data.window.win, DestroyNotify, StructureNotifyMask, clean_exit, NULL);
 	mlx_hook(data.window.win, MotionNotify, PointerMotionMask, Mouse_event_handler, NULL);
+	mlx_mouse_hide(data.window.mlx, data.window.win);
 	mlx_loop_hook(data.window.mlx, draw_frame, NULL);
 	mlx_loop(data.window.mlx);
 }

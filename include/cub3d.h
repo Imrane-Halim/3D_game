@@ -22,14 +22,30 @@
 
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <math.h>
+# include <mlx.h>
 # include "common.h"
 
+# define PI			3.141592653589793238462643383
+
 // window dimentions
-# define SPEED	16
-# define WIDTH	1536
-# define HEIGHT	832
-# define PI		3.141592653589793238462643383
-# define DEBUG	1
+# define SPEED		16
+
+// used in 2D map
+# define TILESIZE	64
+
+// screen res
+# define WIDTH		1536
+# define HEIGHT		832
+
+// to switch between 2D and 3D view
+# define DEBUG		1
+
+// the size of the rectangle
+# define RES		2
+
+// the number of rays the palyer will case
+# define NRAYS		WIDTH / RES
 
 // maped keyboard keys
 enum e_keys
@@ -65,7 +81,7 @@ typedef struct s_window
 
 typedef struct s_player
 {
-	unsigned int	fov;	// field of view [1, 135]. default is 60
+	double	fov;	// field of view [1, 135]. default is 60
 	unsigned int	height;	// default: 32
 
 	// mose coordinates
@@ -78,7 +94,7 @@ typedef struct s_player
 
 	// point of viow (the direction the player is facing)
 	double	dir_x;
-	double	dir_y;
+	double	dir_y; // this will be use with the mouse later
 
 	// other stuff like speed will be added later
 }	t_player;
@@ -103,8 +119,6 @@ typedef struct e_data
 	t_projection_plane	plane;
 	char				**map;
 }	t_data;
-
-extern t_data data;
 
 /*
 	what we can get so far:
