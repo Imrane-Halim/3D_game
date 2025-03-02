@@ -217,6 +217,16 @@ int	draw_frame(void)
 		data.window.frame.img, 0, 0);
 	return (0);
 }
+
+// -------------- some game logic stuff
+// this function takes the pixel coordinates
+bool	has_obj_at(int x, int y, char obj)
+{
+	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
+		return (false);
+	return (map[y / TILESIZE][x / TILESIZE] == obj);
+}
+
 // -------------- run game --
 void	start_game(void)
 {
