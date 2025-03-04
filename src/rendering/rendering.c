@@ -17,6 +17,8 @@ void	put_pixel(t_coordinates coord, int color)
 	*(unsigned int*)dst = color;
 }
 
+//--------------------
+
 void	draw_square(t_coordinates coord, int height, int width ,int color)
 {
 	int	save_x;
@@ -64,12 +66,17 @@ void	draw_player()
 	draw_square(g_game.player.pos, 16, 16, 0xf2a200);
 }
 
+//--------------------------
+
 void	draw_2D_view()
 {
 	draw_square((t_coordinates){0, 0}, HEIGHT, WIDTH, 0x2e2d2d);
 	draw_map();
 	draw_player();
 }
+// void	draw_3D_view(){}
+
+//-----------------------
 
 int		render_frame()
 {
