@@ -2,10 +2,10 @@
 
 // if dir = 1: move forward
 // if dir = -1: move backward
-void	move_player(int dir)
+void	ch_player_pos(int dir)
 {
-	int	new_x;
-	int	new_y;
+	float	new_x;
+	float	new_y;
 
 	new_x = g_game.player.pos.x + cos(g_game.player.angle.x) * dir * 16;
 	new_y = g_game.player.pos.y + sin(g_game.player.angle.x) * dir * 16;
@@ -19,17 +19,27 @@ void	move_player(int dir)
 	g_game.player.pos.y = new_y;
 }
 
+void	ch_player_xangle(float angle)
+{
+	float new_angle;
+	
+	new_angle = g_game.player.angle.x + angle;
+	if (fabs(new_angle) > 6.24)
+		new_angle = 0;
+	g_game.player.angle.x = new_angle;
+}
+
 int		Keyboard_input(int keynum)
 {
 	if (keynum == ESC_KEY)
 		close_game(0);
 	if (keynum == UP_KEY)
-		move_player(1);
+		ch_player_pos(1);
 	if (keynum == DOWN_KEY)
-		move_player(-1);
+		ch_player_pos(-1);
 	if (keynum == RIGHT_KEY)
-		g_game.player.angle.x = 0.1;
+		ch_player_xangle(0.1);
 	if (keynum == LEFT_KEY)
-		g_game.player.angle.x -= 0.1;
+		ch_player_xangle(-0.1);
 	return (0);
 }

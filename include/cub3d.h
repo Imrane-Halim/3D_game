@@ -103,8 +103,15 @@ void	init_game();
 int		Keyboard_input(int keynum);
 
 
+int		Mouse_input(void);
+
 // inits all events stuff and starts game
 void	start_game();
+
+//------------------------------------------- player movements
+void	ch_player_pos(int dir);
+void	ch_player_xangle(float angle);
+
 
 //------------------------------------------- rendring
 
