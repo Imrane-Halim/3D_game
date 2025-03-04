@@ -67,8 +67,8 @@ void	draw_player()
 void	draw_2D_view()
 {
 	draw_square((t_coordinates){0, 0}, HEIGHT, WIDTH, 0x2e2d2d);
-	draw_player();
 	draw_map();
+	draw_player();
 }
 
 int		render_frame()
