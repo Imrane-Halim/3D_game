@@ -4,7 +4,7 @@ INC			= include
 
 CFLAGS 		= -Wall -Wextra -Werror -g3 #-fsanitize=address
 CFLAGS		+= -I$(INC) -I$(LIBFT)
-CFLAGS		+= -lmlx_Linux -lX11 -lXext #-lm -lz
+CFLAGS		+= -lmlx_Linux -lX11 -lXext -lm #-lz
 CFLAGS		+= -O0 # no optimazation to make debuging easier, change it to -03 before push
 
 RENDERING	= $(wildcard src/rendering/*.c)
@@ -13,7 +13,7 @@ UTILS 		= $(wildcard src/utils/*.c)
 
 MAIN		= src/main.c
 
-SRC = 	$(RENDERING) $(PARSING) $(MAIN)
+SRC = 	$(UTILS) $(RENDERING) $(PARSING) $(MAIN)
 
 OBJ = $(SRC:.c=.o)
 
