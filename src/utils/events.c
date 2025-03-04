@@ -28,8 +28,8 @@ int		Keyboard_input(int keynum)
 	if (keynum == DOWN_KEY)
 		move_player(-1);
 	if (keynum == RIGHT_KEY)
-		g_game.player.angle.x -= 0.1;
+		g_game.player.angle.x = 0.1;
 	if (keynum == LEFT_KEY)
-		g_game.player.angle.x += 0.1;
+		g_game.player.angle.x -= 0.1;
 	return (0);
 }
