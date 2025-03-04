@@ -12,6 +12,9 @@
 # define TILESIZE	64
 # define TITLE		"Cub3D"
 
+# define POS_STEP 16
+# define AGL_STEP 0.1
+
 /*
 	possible implementation of s_scene;
 		typedef struct s_scene
@@ -102,7 +105,7 @@ void	init_game();
 */
 int		Keyboard_input(int keynum);
 
-
+// todo
 int		Mouse_input(void);
 
 // inits all events stuff and starts game

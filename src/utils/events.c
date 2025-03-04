@@ -7,8 +7,8 @@ void	ch_player_pos(int dir)
 	float	new_x;
 	float	new_y;
 
-	new_x = g_game.player.pos.x + cos(g_game.player.angle.x) * dir * 16;
-	new_y = g_game.player.pos.y + sin(g_game.player.angle.x) * dir * 16;
+	new_x = g_game.player.pos.x + cos(g_game.player.angle.x) * dir * POS_STEP;
+	new_y = g_game.player.pos.y + sin(g_game.player.angle.x) * dir * POS_STEP;
 
 	if (new_x < 0 || new_x >= WIDTH)
 		return ;
@@ -38,8 +38,8 @@ int		Keyboard_input(int keynum)
 	if (keynum == DOWN_KEY)
 		ch_player_pos(-1);
 	if (keynum == RIGHT_KEY)
-		ch_player_xangle(0.1);
+		ch_player_xangle(AGL_STEP);
 	if (keynum == LEFT_KEY)
-		ch_player_xangle(-0.1);
+		ch_player_xangle(-AGL_STEP);
 	return (0);
 }
