@@ -3,6 +3,7 @@
 
 # include <errno.h>
 # include <stdio.h>
+# include <stdbool.h>
 # include "libft.h"
 
 typedef struct s_scene
