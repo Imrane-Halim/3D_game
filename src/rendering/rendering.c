@@ -87,15 +87,25 @@ void	draw_player(void)
 {
 	int	endx;
 	int	endy;
+
+	int startx;
+	int starty;
+
 	int	line_lenght;
 
 	line_lenght = 100;
+	
 	// draw player square
 	draw_square(g_game.player.pos, 16, 16, 0xf2a200);
+	
 	// draw player looking direction
-	endx = (int)g_game.player.pos.x + cos(g_game.player.angle) * line_lenght;
-	endy = (int)g_game.player.pos.y + sin(g_game.player.angle) * line_lenght;
-	draw_line(g_game.player.pos, (t_coordinates){endx, endy}, 0xff0000);
+
+	startx = (int)g_game.player.pos.x + 8;
+	starty = (int)g_game.player.pos.y + 8;
+
+	endx = startx + cos(g_game.player.angle) * line_lenght;
+	endy = starty + sin(g_game.player.angle) * line_lenght;
+	draw_line((t_coordinates){startx, starty}, (t_coordinates){endx, endy}, 0xff0000);
 }
 
 //--------------------------
