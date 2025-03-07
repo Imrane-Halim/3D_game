@@ -13,7 +13,7 @@
 # define TITLE		"Cub3D"
 
 # define POS_STEP 8
-# define AGL_STEP 0.1
+# define AGL_STEP 0.08
 
 /*
 	possible implementation of s_scene;
