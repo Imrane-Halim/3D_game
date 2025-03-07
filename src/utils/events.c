@@ -7,8 +7,8 @@ void	ch_player_pos(int dir)
 	float	new_x;
 	float	new_y;
 
-	new_x = g_game.player.pos.x + cos(g_game.player.angle.x) * dir * POS_STEP;
-	new_y = g_game.player.pos.y + sin(g_game.player.angle.x) * dir * POS_STEP;
+	new_x = g_game.player.pos.x + cos(g_game.player.angle) * dir * POS_STEP;
+	new_y = g_game.player.pos.y + sin(g_game.player.angle) * dir * POS_STEP;
 
 	if (new_x < 0 || new_x >= WIDTH)
 		return ;
@@ -23,10 +23,10 @@ void	ch_player_xangle(float angle)
 {
 	float new_angle;
 	
-	new_angle = g_game.player.angle.x + angle;
+	new_angle = g_game.player.angle + angle;
 	if (fabs(new_angle) > 6.24)
 		new_angle = 0;
-	g_game.player.angle.x = new_angle;
+	g_game.player.angle = new_angle;
 }
 
 int		Keyboard_input(int keynum)

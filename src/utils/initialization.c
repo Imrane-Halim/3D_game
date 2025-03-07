@@ -13,11 +13,10 @@ void	init_player()
 {
 	// convert degree to radian
 	g_game.player.fov = 60 * (PI / 180);
+
+	// this will change after parsing is done
 	g_game.player.pos.x = 64;
 	g_game.player.pos.y = 64;
-	g_game.player.angle.x = 0;
-	// angle.y will be used to control pov with mouse
-	g_game.player.angle.y = 0;
 }
 
 void	init_game()

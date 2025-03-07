@@ -12,7 +12,7 @@
 # define TILESIZE	64
 # define TITLE		"Cub3D"
 
-# define POS_STEP 16
+# define POS_STEP 8
 # define AGL_STEP 0.1
 
 /*
@@ -68,7 +68,7 @@ typedef struct s_player
 {
 	float			fov;
 	t_coordinates	pos;
-	t_coordinates	angle;
+	float			angle;
 }	t_player;
 
 typedef struct s_game
