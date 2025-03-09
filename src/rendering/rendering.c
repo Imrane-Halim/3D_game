@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	put_pixel(t_coordinates coord, int color)
+void	put_pixel(t_xy coord, int color)
 {
 	char	*dst;
 	int		x;
@@ -17,7 +17,7 @@ void	put_pixel(t_coordinates coord, int color)
 
 //-------------------------- some core stuff
 
-void	draw_square(t_coordinates coord, int height, int width, int color)
+void	draw_square(t_xy coord, int height, int width, int color)
 {
 	int	save_x;
 	int	save_y;
@@ -36,13 +36,13 @@ void	draw_square(t_coordinates coord, int height, int width, int color)
 	}
 }
 
-void	draw_line(t_coordinates start, t_coordinates end, int color)
+void	draw_line(t_xy start, t_xy end, int color)
 {
 	int				dx;
 	int				dy;
 	int				step;
-	t_coordinates	incr;
-	t_coordinates	cord;
+	t_xy	incr;
+	t_xy	cord;
 
 	dx = (int)end.x - (int)start.x;
 	dy = (int)end.y - (int)start.y;
@@ -75,7 +75,7 @@ void	draw_map(void)
 		while (x < g_game.scene.m_width)
 		{
 			if (map[y][x] == '1')
-				draw_square((t_coordinates){x * TILESIZE, y * TILESIZE},
+				draw_square((t_xy){x * TILESIZE, y * TILESIZE},
 					TILESIZE, TILESIZE, 0xffffff);
 			x++;
 		}
@@ -105,14 +105,14 @@ void	draw_player(void)
 
 	endx = startx + cos(g_game.player.angle) * line_lenght;
 	endy = starty + sin(g_game.player.angle) * line_lenght;
-	draw_line((t_coordinates){startx, starty}, (t_coordinates){endx, endy}, 0xff0000);
+	draw_line((t_xy){startx, starty}, (t_xy){endx, endy}, 0xff0000);
 }
 
 //--------------------------
 
 void	draw_2D_view(void)
 {
-	draw_square((t_coordinates){0, 0}, HEIGHT, WIDTH, 0x2e2d2d);
+	draw_square((t_xy){0, 0}, HEIGHT, WIDTH, 0x2e2d2d);
 	draw_map();
 	draw_player();
 }

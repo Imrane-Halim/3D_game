@@ -40,11 +40,11 @@ enum e_keys
 	D_KEY = 100
 };
 
-typedef struct s_coordinates
+typedef struct s_xy
 {
 	float	x;
 	float	y;
-}	t_coordinates;
+}	t_xy;
 
 typedef struct s_frame
 {
@@ -67,7 +67,7 @@ typedef struct s_window
 typedef struct s_player
 {
 	float			fov;
-	t_coordinates	pos;
+	t_xy	pos;
 	float			angle;
 }	t_player;
 
@@ -127,7 +127,7 @@ int		render_frame();
 	@param y coordinate
 	@param color color
 */
-void	put_pixel(t_coordinates coord, int color);
+void	put_pixel(t_xy coord, int color);
 
 
 
