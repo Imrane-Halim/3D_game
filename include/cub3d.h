@@ -12,9 +12,10 @@
 # define TILESIZE	64
 # define TITLE		"Cub3D"
 
-# define POS_STEP 8
-# define AGL_STEP 0.08
-
+# define POS_STEP 	8
+# define AGL_STEP	0.08
+# define FORWARD	1
+# define BACKWARD  -1
 /*
 	possible implementation of s_scene;
 		typedef struct s_scene
@@ -62,25 +63,35 @@ typedef struct s_window
 	t_frame	frame;
 }	t_window;
 
-// fov: field of view
-// angle: point of view
-typedef struct s_player
+typedef struct s_pressed_key
 {
-	float	fov;
-	t_xy	pos;
-	float	angle;
 	bool	left;
 	bool	right;
 	bool	up;
 	bool	down;
+
+	bool	w;
+	bool	s;
+	bool	a;
+	bool	d;
+}	t_pressed_key;
+
+// fov: field of view
+// angle: point of view
+typedef struct s_player
+{
+	float			fov;
+	t_xy			pos;
+	float			angle;
 }	t_player;
 
 typedef struct s_game
 {
-	t_player	player;
-	t_window	window;
-	t_scene		scene;
-	int			timer;
+	t_player		player;
+	t_window		window;
+	t_scene			scene;
+	t_pressed_key	key;
+	int				timer;
 }	t_game;
 
 extern t_game	g_game;
@@ -106,8 +117,8 @@ int		Mouse_input(void); // todo
 
 //---------------- player movements
 
-void	ch_player_pos(int dir);
-void	ch_player_xangle(float angle);
+// void	ch_player_pos(int dir);
+// void	ch_player_xangle(float angle);
 
 
 //---------------- rendring
