@@ -71,9 +71,9 @@ int		Keyboard_input()
 	if (g_game.timer < 6)
 		return 0;
 	g_game.timer = 0;
-	if (g_game.key.w)
+	if (g_game.key.w || g_game.key.up)
 		ch_player_pos(FORWARD, false);
-	if (g_game.key.s)
+	if (g_game.key.s || g_game.key.down)
 		ch_player_pos(BACKWARD, false);
 	if (g_game.key.d)
 		ch_player_pos(FORWARD, true);
