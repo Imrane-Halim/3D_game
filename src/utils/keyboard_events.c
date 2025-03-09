@@ -4,12 +4,13 @@ void ch_player_pos(int dir, bool is_strafe)
 {
 	float new_x;
 	float new_y;
+	float strafe_angle;
 	
 	new_x = g_game.player.pos.x + cos(g_game.player.angle) * dir * POS_STEP;
 	new_y = g_game.player.pos.y + sin(g_game.player.angle) * dir * POS_STEP;
 	if (is_strafe)
 	{
-		float strafe_angle = g_game.player.angle + (dir * PI / 2);
+		strafe_angle = g_game.player.angle + (dir * PI / 2);
 		new_x = g_game.player.pos.x + cos(strafe_angle) * POS_STEP;
 		new_y = g_game.player.pos.y + sin(strafe_angle) * POS_STEP;
 	}
