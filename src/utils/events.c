@@ -29,17 +29,43 @@ void	ch_player_xangle(float angle)
 	g_game.player.angle = new_angle;
 }
 
-int		Keyboard_input(int keynum)
+int 	handle_key(int keynum, bool is_pressed)
 {
-	if (keynum == ESC_KEY)
+	if (keynum == ESC_KEY && is_pressed)
 		close_game(0);
-	if (keynum == UP_KEY)
+	else if (keynum == UP_KEY)
+		g_game.player.up = is_pressed;
+	else if (keynum == DOWN_KEY)
+		g_game.player.down = is_pressed;
+	else if (keynum == RIGHT_KEY)
+		g_game.player.right = is_pressed;
+	else if (keynum == LEFT_KEY)
+		g_game.player.left = is_pressed;
+	return 0;
+}
+
+int 	handle_press(int keynum)
+{
+	return handle_key(keynum, true);
+}
+
+int 	handle_release(int keynum)
+{
+	return handle_key(keynum, false);
+}
+
+int		Keyboard_input()
+{
+	if (g_game.timer < 6)
+		return 0;
+	g_game.timer = 0;
+	if (g_game.player.up)
 		ch_player_pos(1);
-	if (keynum == DOWN_KEY)
+	if (g_game.player.down)
 		ch_player_pos(-1);
-	if (keynum == RIGHT_KEY)
+	if (g_game.player.right)
 		ch_player_xangle(AGL_STEP);
-	if (keynum == LEFT_KEY)
+	if (g_game.player.left)
 		ch_player_xangle(-AGL_STEP);
 	return (0);
 }

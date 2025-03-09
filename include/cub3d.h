@@ -66,69 +66,57 @@ typedef struct s_window
 // angle: point of view
 typedef struct s_player
 {
-	float			fov;
+	float	fov;
 	t_xy	pos;
-	float			angle;
+	float	angle;
+	bool	left;
+	bool	right;
+	bool	up;
+	bool	down;
 }	t_player;
 
 typedef struct s_game
 {
-	t_player player;
-	t_window window;
-	t_scene scene;
+	t_player	player;
+	t_window	window;
+	t_scene		scene;
+	int			timer;
 }	t_game;
 
 extern t_game	g_game;
 
-/*
-	frees all allocated memroy by mlx
-	before exiting
-	@param code: exit code
-	@return always returns 0
-*/
+//---------------- memory managment
+
 int		close_game(int code);
 
+//---------------- initialazation
 
-// initilazes the window struct
 void	init_window();
-
-// initializes the player struct
 void	init_player();
-
-// initializes the game struct
 void	init_game();
 
-/*
-	handles keyboars KeyPress events
-	@param keynum: the pressed key number
-	@return always returns 0
-*/
-int		Keyboard_input(int keynum);
+//---------------- events handling stuff
 
-// todo
-int		Mouse_input(void);
+int 	handle_release(int keynum);
+int 	handle_press(int keynum);
+int		handle_key(int keynum, bool is_pressed);
 
-// inits all events stuff and starts game
-void	start_game();
+int		Keyboard_input();
+int		Mouse_input(void); // todo
 
-//------------------------------------------- player movements
+//---------------- player movements
+
 void	ch_player_pos(int dir);
 void	ch_player_xangle(float angle);
 
 
-//------------------------------------------- rendring
+//---------------- rendring
 
-// frame rendring function
 int		render_frame();
-
-/*
-	@brief puts pixel in the frame.img
-	@param x coordinate
-	@param y coordinate
-	@param color color
-*/
 void	put_pixel(t_xy coord, int color);
 
+//---------------- this where everything stars
 
+void	start_game();
 
 #endif
