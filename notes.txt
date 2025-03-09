@@ -70,6 +70,7 @@ sin(o) = Vx/V
 tan(o) = Vx/Vy
 
 
+note: Pythagorean Theorem: c = sqrt((Dx)^2 + (Dy)^2)
 using Pythagorean Theorem we can get the lenght (or magnitude)
 of V using the following formula (|| used for length, not ABS):
 
