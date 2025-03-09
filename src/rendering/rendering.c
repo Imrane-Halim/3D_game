@@ -10,8 +10,9 @@ void	put_pixel(t_xy coord, int color)
 	y = (int)coord.y;
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
 		return ;
-	dst = g_game.window.frame.adr + (y * g_game.window.frame.line_length + x
-			* (g_game.window.frame.bbp / 8));
+	dst = g_game.window.frame.adr
+			+ (y * g_game.window.frame.line_length
+			+ x * (g_game.window.frame.bbp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -61,6 +62,7 @@ void	draw_line(t_xy start, t_xy end, int color)
 	}
 }
 // ------------------------- 2D helpers
+
 void	draw_map(void)
 {
 	char	**map;
@@ -112,8 +114,13 @@ void	draw_player(void)
 
 void	draw_2D_view(void)
 {
+	// gray background
 	draw_square((t_xy){0, 0}, HEIGHT, WIDTH, 0x2e2d2d);
+
+	// draw map walls
 	draw_map();
+
+	// draw curr pos of player in map + looking direction
 	draw_player();
 }
 // void	draw_3D_view(void)
