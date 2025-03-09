@@ -7,13 +7,14 @@ CFLAGS		+= -I$(INC) -I$(LIBFT)
 CFLAGS		+= -lmlx_Linux -lX11 -lXext -lm #-lz
 CFLAGS		+= -O0 # no optimazation to make debuging easier, change it to -03 before push
 
+RAY_CAST	= $(wildcard src/ray_casting/*.c)
 RENDERING	= $(wildcard src/rendering/*.c)
 PARSING 	= $(wildcard src/parsing/*.c)
 UTILS 		= $(wildcard src/utils/*.c)
 
 MAIN		= src/main.c
 
-SRC = 	$(UTILS) $(RENDERING) $(PARSING) $(MAIN)
+SRC = 	$(UTILS) $(RENDERING) $(PARSING) $(RAY_CAST) $(MAIN)
 
 OBJ = $(SRC:.c=.o)
 
