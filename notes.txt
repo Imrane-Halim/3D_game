@@ -121,4 +121,26 @@ conclution:
     - if we move 1unit in the x direction, the length of the ray can be calculate as:
         Sx = sqrt(1^2 + (dy / dx)^2)
     - if we moved the same thing in y direction:
-        Sx = sqrt(1^2 + (dx / dy)^2) 
+        Sy = sqrt(1^2 + (dx / dy)^2) 
+
+example:
+    
+        y
+        ^     ^       (V)
+        |     |     /
+        |     |    /
+        |  dy |   /
+        |     |  /
+        |     | /
+        |     +------>
+        |         dx
+    <---+----------------------> x
+      o |
+
+to get the lenght of (V) we can use:
+
+    lenght = dx * Sx
+    or 
+    lenght = dy * Sy
+
+    Sx and Sy being the scaling factors
