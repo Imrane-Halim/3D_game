@@ -144,3 +144,6 @@ to get the lenght of (V) we can use:
     lenght = dy * Sy
 
     Sx and Sy being the scaling factors
+
+--> some other resources that might be helpful:
+    https://permadi.com/1996/05/ray-casting-tutorial-5/
