@@ -26,12 +26,12 @@ void ch_player_pos(int dir, bool is_strafe)
 
 void	ch_player_xangle(float angle)
 {
-	// float new_angle;
+	float new_angle;
 	
-	// new_angle = g_game.player.angle + angle;
-	// if (fabs(new_angle) > 6.24)
-	// 	new_angle = 0;
-	g_game.player.angle += angle;
+	new_angle = g_game.player.angle + angle;
+	if (fabs(new_angle) > PI * 2)
+		new_angle = 0;
+	g_game.player.angle = new_angle;
 }
 
 int 	handle_key(int keynum, bool is_pressed)
