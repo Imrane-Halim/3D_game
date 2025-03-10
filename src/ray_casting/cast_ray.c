@@ -19,64 +19,14 @@ float	distance(t_xy a, t_xy b)
 
 t_xy find_vertical_hit(t_xy p, float angle)
 {
-    t_xy A;
-    t_xy Offset;
-    
-    if (angle > PI/2 && angle < 3*PI/2)
-	{
-        A.x = ((int)p.x / TILESIZE) * TILESIZE - 1;
-        Offset.x = -TILESIZE;
-    }
-	else
-	{
-        A.x = ((int)p.x / TILESIZE) * TILESIZE + TILESIZE;
-        Offset.x = TILESIZE;
-    }
-    A.y = p.y + (p.x - A.x) * tan(angle);
-    Offset.y = Offset.x * tan(angle);
-    while (true)
-	{
-        if (A.x < 0 || A.x >= WIDTH || A.y < 0 || A.y >= HEIGHT)
-            break;
-            
-        if (obj_hit(A) == '1')
-            break;
-            
-        A.x += Offset.x;
-        A.y += Offset.y;
-    }
-    return A;
+    (void)p; (void)angle;
+    return (t_xy){0, 0};
 }
 
 t_xy find_horizontal_hit(t_xy p, float angle)
 {
-    t_xy A;
-    t_xy Offset;
-    
-    if (angle > PI && angle < 2*PI)
-	{
-        A.y = ((int)p.y / TILESIZE) * TILESIZE - 1;
-        Offset.y = -TILESIZE;
-    }
-	else
-	{
-        A.y = ((int)p.y / TILESIZE) * TILESIZE + TILESIZE;
-        Offset.y = TILESIZE;
-    }
-    A.x = p.x + (p.y - A.y) / tan(angle);
-    Offset.x = TILESIZE / tan(angle);
-    while (true)
-	{
-        if (A.x < 0 || A.x >= WIDTH || A.y < 0 || A.y >= HEIGHT)
-            break;
-            
-        if (obj_hit(A) == '1')
-            break;
-            
-        A.x += Offset.x;
-        A.y += Offset.y;
-    }
-    return A;
+    (void)p; (void)angle;
+    return (t_xy){0, 0};
 }
 
 // note: angle is in radian
