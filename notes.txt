@@ -85,6 +85,40 @@ in other words, calculate tan(o).
 
 >>>>>>>>>>>>> ray tracing stuff:
 
-some considerations:
-    - a ray is the distance between the player coordinates and a wall.
-    - depending on FOV (field of view) controls the number of rays.
+giving the following 2 points, START and END:
+
+                        END
+                        |
+                        .
+                       /|
+                      / |
+                     /  |
+                    /   |
+                   /    |
+                  /     |
+                 /      |
+            c   /       | dy
+               /        |
+              /         |
+             /          |
+            /           |
+           /            |
+          /____________+|
+          ^     dx
+          |
+        START
+
+from this shape we know:
+    c = sqrt(dx^2 + dy^2)
+    m = dy / dx (gradiant or slope m = (y1 - y0)/(x1 - x0))
+
+- if we moved 1 dx along then we moved 1 dy upwords
+- if dx is set to 1, then dy is devided by dx (dy/dx)
+- therefore:
+    - dy / dx = sqrt(1^2 + (dy / dx)^2)
+
+conclution:
+    - if we move 1unit in the x direction, the length of the ray can be calculate as:
+        Sx = sqrt(1^2 + (dy / dx)^2)
+    - if we moved the same thing in y direction:
+        Sx = sqrt(1^2 + (dx / dy)^2) 
