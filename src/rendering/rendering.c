@@ -87,7 +87,11 @@ void	draw_map(void)
 
 void	draw_fov()
 {
-	// todo
+	t_xy st;
+	st.x = g_game.player.pos.x + 8;
+	st.y = g_game.player.pos.y + 8;
+	t_xy ray = cast_ray(g_game.player.angle);
+	draw_line(st, ray, 0x00ff00);
 }
 
 void	draw_player(void)
