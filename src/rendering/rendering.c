@@ -85,6 +85,11 @@ void	draw_map(void)
 	}
 }
 
+void	draw_fov()
+{
+	// todo
+}
+
 void	draw_player(void)
 {
 	int	endx;
@@ -100,6 +105,9 @@ void	draw_player(void)
 	// draw player square
 	draw_square(g_game.player.pos, 16, 16, 0xf2a200);
 	
+	// draw fov
+	draw_fov();
+
 	// draw player looking direction
 
 	startx = (int)g_game.player.pos.x + 8;
@@ -107,6 +115,7 @@ void	draw_player(void)
 
 	endx = startx + cos(g_game.player.angle) * line_lenght;
 	endy = starty + sin(g_game.player.angle) * line_lenght;
+
 	draw_line((t_xy){startx, starty}, (t_xy){endx, endy}, 0xff0000);
 }
 
@@ -122,6 +131,7 @@ void	draw_2D_view(void)
 
 	// draw curr pos of player in map + looking direction
 	draw_player();
+
 }
 // void	draw_3D_view(void)
 //{}

@@ -131,4 +131,8 @@ void	put_pixel(t_xy coord, int color);
 
 void	start_game();
 
+//---------------- ray casting logic
+t_xy	cast_ray(float angle);
+
+
 #endif
