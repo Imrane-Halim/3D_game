@@ -12,7 +12,7 @@ void	init_window()
 void	init_player()
 {
 	// convert degree to radian
-	g_game.player.fov = 60 * (PI / 180);
+	g_game.player.fov = FOV * (PI / 180);
 
 	// this will change after parsing is done
 	g_game.player.pos.x = 64;

@@ -12,6 +12,7 @@
 # define TILESIZE	64
 # define TITLE		"Cub3D"
 
+# define FOV		60
 # define POS_STEP 	8
 # define AGL_STEP	0.08
 # define FORWARD	1

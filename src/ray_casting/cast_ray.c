@@ -1,36 +1,23 @@
 #include "cub3d.h"
 
-/*
+float	calcMagnitude(t_xy cord)
+{
+	return (sqrt(cord.x * cord.x + cord.y * cord.y));
+}
 
-	int floor(px / 64);
-	check cos >< 0
-	< 0 
-	px += 64
-	> 0
-	px -= 1;
-	r = px / cos;
-	py_x = sin * r;
+t_xy	normlVector(t_xy vector)
+{
+	float	m;
+	t_xy	new_v;
 
-(px,py_x)
+	m = calcMagnitude(vector);
+	new_v.x = vector.x / m;
+	new_v.y = vector.y / m;
+	return (new_v);
+}
 
-	int floor(py/64);
-	check sin >< 0
-	< 0
-	py += 64;
-	>0
-	py --;
-	r = py / sin;
-	px_y = r * cos
-
-(px_y,py)
-
-*/
-
-// this function returns the xy where the ray stops
-// (aka hit an obsticle)
 t_xy	cast_ray(float angle)
 {
 	(void)angle;
-
 	return (t_xy){0, 0};
 }
