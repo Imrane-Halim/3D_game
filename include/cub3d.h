@@ -132,6 +132,12 @@ t_xy	cast_ray(float angle);
 //---------------- rendring
 
 void	put_pixel(t_xy coord, int color);
+void	draw_square(t_xy coord, int height, int width, int color);
+void	draw_line(t_xy start, t_xy end, int color);
+
+void	draw_2D_view(void);
+void	draw_3D_view(void);
+
 int		render_frame();
 
 #endif
