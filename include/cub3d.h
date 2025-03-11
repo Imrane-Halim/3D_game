@@ -122,12 +122,6 @@ int		Mouse_input(void); // todo
 // void	ch_player_pos(int dir);
 // void	ch_player_xangle(float angle);
 
-
-//---------------- rendring
-
-int		render_frame();
-void	put_pixel(t_xy coord, int color);
-
 //---------------- this where everything stars
 
 void	start_game();
@@ -135,5 +129,9 @@ void	start_game();
 //---------------- ray casting logic
 t_xy	cast_ray(float angle);
 
+//---------------- rendring
+
+void	put_pixel(t_xy coord, int color);
+int		render_frame();
 
 #endif
