@@ -17,6 +17,7 @@ float	distance(t_xy a, t_xy b)
 	return (sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)));
 }
 
+// todo: fix
 t_xy find_vertical_hit(t_xy p, float angle)
 {
 	t_xy	A;
