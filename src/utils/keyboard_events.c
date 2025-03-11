@@ -1,5 +1,6 @@
 #include "cub3d.h"
 
+// note: angle is an radina
 void ch_player_pos(int dir, bool is_strafe)
 {
 	t_xy	new_pos;
