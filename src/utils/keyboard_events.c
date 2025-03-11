@@ -2,26 +2,23 @@
 
 void ch_player_pos(int dir, bool is_strafe)
 {
-	float new_x;
-	float new_y;
+	t_xy	new_pos;
 	float strafe_angle;
 	
-	new_x = g_game.player.pos.x + cos(g_game.player.angle) * dir * POS_STEP;
-	new_y = g_game.player.pos.y + sin(g_game.player.angle) * dir * POS_STEP;
+	new_pos.x = g_game.player.pos.x + cos(g_game.player.angle) * dir * POS_STEP;
+	new_pos.y = g_game.player.pos.y + sin(g_game.player.angle) * dir * POS_STEP;
 	if (is_strafe)
 	{
 		strafe_angle = g_game.player.angle + (dir * PI / 2);
-		new_x = g_game.player.pos.x + cos(strafe_angle) * POS_STEP;
-		new_y = g_game.player.pos.y + sin(strafe_angle) * POS_STEP;
+		new_pos.x = g_game.player.pos.x + cos(strafe_angle) * POS_STEP;
+		new_pos.y = g_game.player.pos.y + sin(strafe_angle) * POS_STEP;
 	}
 
-	if (new_x < 0 || new_x >= WIDTH)
+	if (new_pos.x < 0 || new_pos.x >= WIDTH)
 		return;
-	if (new_y < 0 || new_y >= HEIGHT)
+	if (new_pos.y < 0 || new_pos.y >= HEIGHT)
 		return;
-	
-	g_game.player.pos.x = new_x;
-	g_game.player.pos.y = new_y;
+	g_game.player.pos = new_pos;
 }
 
 void	ch_player_xangle(float angle)

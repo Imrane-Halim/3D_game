@@ -129,6 +129,9 @@ void	start_game();
 //---------------- ray casting logic
 t_xy	cast_ray(float angle);
 
+//---------------- math
+float	distance(t_xy a, t_xy b);
+
 //---------------- rendring
 
 void	put_pixel(t_xy coord, int color);
