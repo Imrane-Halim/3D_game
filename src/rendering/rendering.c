@@ -37,28 +37,23 @@ void	draw_square(t_xy coord, int height, int width, int color)
 	}
 }
 
-void	draw_line(t_xy start, t_xy end, int color)
+void draw_line(t_xy start, t_xy end, int color)
 {
-	int				dx;
-	int				dy;
-	int				step;
-	t_xy	incr;
-	t_xy	cord;
-
-	dx = (int)end.x - (int)start.x;
-	dy = (int)end.y - (int)start.y;
-	step = abs(dy);
-	if (abs(dx) > abs(dy))
-		step = abs(dx);
-	incr.x = (float)dx / step;
-	incr.y = (float)dy / step;
-	cord.x = start.x;
-	cord.y = start.y;
-	for (int i = 0; i < step; i++)
+	float dx = end.x - start.x;
+	float dy = end.y - start.y;
+	float step = fmax(fabs(dx), fabs(dy));
+	
+	dx /= step;
+	dy /= step;
+	
+	float x = start.x;
+	float y = start.y;
+	
+	for (int i = 0; i <= step; i++)
 	{
-		put_pixel(cord, color);
-		cord.x += incr.x;
-		cord.y += incr.y;
+		put_pixel((t_xy){x, y}, color);
+		x += dx;
+		y += dy;
 	}
 }
 // ------------------------- 2D helpers
@@ -85,13 +80,23 @@ void	draw_map(void)
 	}
 }
 
-void	draw_fov()
+// note: player angle is radian
+// FOV in degrees
+void draw_fov()
 {
-	t_xy st;
-	st.x = g_game.player.pos.x + 8;
-	st.y = g_game.player.pos.y + 8;
-	t_xy ray = cast_ray(g_game.player.angle);
-	draw_line(st, ray, 0x00ff00);
+	t_xy	ray;
+	
+	float	half = (FOV * PI / 180) / 2;
+	float	s_angle = g_game.player.angle - half;
+	float	e_angle = g_game.player.angle + half;
+	
+	float	step = (e_angle - s_angle) / g_game.n_rays;
+	while (s_angle < e_angle)
+	{
+		ray = cast_ray(s_angle);
+		draw_line(g_game.player.pos, ray, 0x00ff00);
+		s_angle += step;
+	}
 }
 
 void	draw_player(void)
@@ -106,16 +111,16 @@ void	draw_player(void)
 
 	line_lenght = 100;
 	
+	startx = (int)g_game.player.pos.x;
+	starty = (int)g_game.player.pos.y;
+
 	// draw player square
-	draw_square(g_game.player.pos, 16, 16, 0xf2a200);
+	draw_square((t_xy){startx - 8, starty - 8}, 16, 16, 0xf2a200);
 	
 	// draw fov
 	draw_fov();
 
 	// draw player looking direction
-
-	startx = (int)g_game.player.pos.x + 8;
-	starty = (int)g_game.player.pos.y + 8;
 
 	endx = startx + cos(g_game.player.angle) * line_lenght;
 	endy = starty + sin(g_game.player.angle) * line_lenght;

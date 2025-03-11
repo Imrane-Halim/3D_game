@@ -25,6 +25,7 @@ void	init_game()
 	init_player();
 	// todo:
 	// g_game.scene = parse_map(av[1]);
+	g_game.n_rays = 1000;
 	static char *map[] = 
 	{
 		"111111111111111111111111",

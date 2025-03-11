@@ -92,6 +92,7 @@ typedef struct s_game
 	t_window		window;
 	t_scene			scene;
 	t_pressed_key	key;
+	int				n_rays;
 	int				timer;
 }	t_game;
 
