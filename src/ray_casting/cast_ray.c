@@ -17,7 +17,22 @@ float	distance(t_xy a, t_xy b)
 	return (sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)));
 }
 
-// todo: fix
+t_xy    get_hit(t_xy A, t_xy step)
+{
+    while (true)
+	{
+		if (A.x < 0 || A.x >= WIDTH || A.y < 0 || A.y >= HEIGHT)
+			break;
+			
+		if (obj_hit(A) != '0')
+			break;
+			
+		A.x += step.x;
+		A.y += step.y;
+	}
+    return (A);
+}
+
 t_xy find_vertical_hit(t_xy p, float angle)
 {
 	t_xy	A;
@@ -30,23 +45,12 @@ t_xy find_vertical_hit(t_xy p, float angle)
 	}
 	else
 	{
-		A.x = floor(p.x / TILESIZE) * TILESIZE - 0.00001;
+		A.x = floor(p.x / TILESIZE) * TILESIZE - 0.0001;
 		step.x = -TILESIZE;
 	}
 	A.y = p.y + (A.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
-	while (true)
-	{
-		if (A.x < 0 || A.x >= WIDTH || A.y < 0 || A.y >= HEIGHT)
-			break;
-			
-		if (obj_hit(A) != '0')
-			break;
-			
-		A.x += step.x;
-		A.y += step.y;
-	}
-	return (A);
+	return (get_hit(A, step));
 }
 
 t_xy find_horizontal_hit(t_xy p, float angle)
@@ -61,23 +65,12 @@ t_xy find_horizontal_hit(t_xy p, float angle)
 	}
 	else
 	{
-		A.y = floor(p.y / TILESIZE) * TILESIZE - 0.00001;
+		A.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
 		step.y = -TILESIZE;
 	}
 	A.x = p.x + (A.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
-	while (true)
-	{
-		if (A.x < 0 || A.x >= WIDTH || A.y < 0 || A.y >= HEIGHT)
-			break;
-			
-		if (obj_hit(A) != '0')
-			break;
-			
-		A.x += step.x;
-		A.y += step.y;
-	}
-	return (A);
+	return (get_hit(A, step));
 }
 
 // note: angle is in radian
