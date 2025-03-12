@@ -1,6 +1,21 @@
 #include "cub3d.h"
 
 // note: angle is an radina
+
+t_xy	check_collison(t_xy new_pos)
+{
+	t_xy tmp_pos = new_pos;
+
+	tmp_pos.x = g_game.player.pos.x;
+	if (obj_hit(tmp_pos) == '0')
+		return (tmp_pos);
+	tmp_pos = new_pos;
+	tmp_pos.y = g_game.player.pos.y;
+	if (obj_hit(tmp_pos) == '0')
+		return (tmp_pos);
+	return (g_game.player.pos);
+}
+
 void ch_player_pos(int dir, bool is_strafe)
 {
 	t_xy	new_pos;
@@ -14,16 +29,12 @@ void ch_player_pos(int dir, bool is_strafe)
 		new_pos.x = g_game.player.pos.x + cos(strafe_angle) * POS_STEP;
 		new_pos.y = g_game.player.pos.y + sin(strafe_angle) * POS_STEP;
 	}
-
 	if (new_pos.x < 0 || new_pos.x >= WIDTH)
 		return ;
 	if (new_pos.y < 0 || new_pos.y >= HEIGHT)
 		return ;
 	if (obj_hit(new_pos) != '0')
-	{
-		// todo: sliding collision
-		return ;
-	}
+		new_pos	= check_collison(new_pos);
 	g_game.player.pos = new_pos;
 }
 
