@@ -130,6 +130,7 @@ void	start_game();
 t_xy	cast_ray(float angle);
 
 //---------------- math
+char	obj_hit(t_xy cord);
 float	distance(t_xy a, t_xy b);
 
 //---------------- rendring

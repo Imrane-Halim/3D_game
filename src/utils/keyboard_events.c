@@ -4,7 +4,7 @@
 void ch_player_pos(int dir, bool is_strafe)
 {
 	t_xy	new_pos;
-	float strafe_angle;
+	float	strafe_angle;
 	
 	new_pos.x = g_game.player.pos.x + cos(g_game.player.angle) * dir * POS_STEP;
 	new_pos.y = g_game.player.pos.y + sin(g_game.player.angle) * dir * POS_STEP;
@@ -16,9 +16,14 @@ void ch_player_pos(int dir, bool is_strafe)
 	}
 
 	if (new_pos.x < 0 || new_pos.x >= WIDTH)
-		return;
+		return ;
 	if (new_pos.y < 0 || new_pos.y >= HEIGHT)
-		return;
+		return ;
+	if (obj_hit(new_pos) != '0')
+	{
+		// todo: sliding collision
+		return ;
+	}
 	g_game.player.pos = new_pos;
 }
 
