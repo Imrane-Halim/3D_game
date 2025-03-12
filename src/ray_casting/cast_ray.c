@@ -21,12 +21,8 @@ t_xy    get_hit(t_xy A, t_xy step)
 {
     while (true)
 	{
-		if (A.x < 0 || A.x >= WIDTH || A.y < 0 || A.y >= HEIGHT)
-			break;
-			
 		if (obj_hit(A) != '0')
 			break;
-			
 		A.x += step.x;
 		A.y += step.y;
 	}
