@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-char obj_hit(t_xy cord)
+inline char obj_hit(t_xy cord)
 {
 	int map_x = (int)(cord.x / TILESIZE);
 	int map_y = (int)(cord.y / TILESIZE);
@@ -12,12 +12,12 @@ char obj_hit(t_xy cord)
 	return (g_game.scene.map[map_y][map_x]);
 }
 
-float	distance(t_xy a, t_xy b)
+inline float	distance(t_xy a, t_xy b)
 {
 	return (sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)));
 }
 
-t_xy    get_hit(t_xy A, t_xy step)
+inline t_xy    get_hit(t_xy A, t_xy step)
 {
     while (true)
 	{
@@ -29,7 +29,7 @@ t_xy    get_hit(t_xy A, t_xy step)
     return (A);
 }
 
-t_xy find_vertical_hit(t_xy p, float angle)
+inline t_xy find_vertical_hit(t_xy p, float angle)
 {
 	t_xy	A;
 	t_xy	step;
@@ -49,7 +49,7 @@ t_xy find_vertical_hit(t_xy p, float angle)
 	return (get_hit(A, step));
 }
 
-t_xy find_horizontal_hit(t_xy p, float angle)
+inline t_xy find_horizontal_hit(t_xy p, float angle)
 {
 	t_xy	A;
 	t_xy	step;
@@ -70,7 +70,7 @@ t_xy find_horizontal_hit(t_xy p, float angle)
 }
 
 // note: angle is in radian
-t_xy	cast_ray(float angle)
+inline t_xy	cast_ray(float angle)
 {
 	t_xy player = g_game.player.pos;
 

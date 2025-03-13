@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	put_pixel(t_xy coord, int color)
+inline void	put_pixel(t_xy coord, int color)
 {
 	char	*dst;
 	int		x;
@@ -18,7 +18,7 @@ void	put_pixel(t_xy coord, int color)
 
 //-------------------------- some core stuff
 
-void	draw_square(t_xy coord, int height, int width, int color)
+inline void	draw_square(t_xy coord, int height, int width, int color)
 {
 	int	save_x;
 	int	save_y;
@@ -37,7 +37,7 @@ void	draw_square(t_xy coord, int height, int width, int color)
 	}
 }
 
-void draw_line(t_xy start, t_xy end, int color)
+inline void draw_line(t_xy start, t_xy end, int color)
 {
 	float dx = end.x - start.x;
 	float dy = end.y - start.y;
@@ -63,7 +63,7 @@ void draw_line(t_xy start, t_xy end, int color)
 
 //-----------------------
 
-int	render_frame(void)
+inline int	render_frame(void)
 {
 	draw_2D_view();
 	// draw_3D_view();

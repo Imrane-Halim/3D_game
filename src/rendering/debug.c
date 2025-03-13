@@ -2,7 +2,7 @@
 
 // ------------------------- 2D helpers
 
-void	draw_map(void)
+inline void	draw_map(void)
 {
 	char	**map;
 	int		x;
@@ -26,7 +26,7 @@ void	draw_map(void)
 
 // note: player angle is radian
 // FOV in degrees
-void draw_fov()
+inline void draw_fov()
 {
 	t_xy	ray;
 	
@@ -43,7 +43,7 @@ void draw_fov()
 	}
 }
 
-void	draw_player(void)
+inline void	draw_player(void)
 {
 	int	endx;
 	int	endy;
@@ -74,7 +74,7 @@ void	draw_player(void)
 
 //--------------------------
 
-void	draw_2D_view(void)
+inline void	draw_2D_view(void)
 {
 	// gray background
 	draw_square((t_xy){0, 0}, HEIGHT, WIDTH, 0x2e2d2d);
