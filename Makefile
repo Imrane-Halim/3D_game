@@ -2,10 +2,11 @@ NAME 		= cub3d
 LIBFT		= libft
 INC			= include
 
-CFLAGS 		= -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS 		= -Wall -Wextra -Werror
 CFLAGS		+= -I$(INC) -I$(LIBFT)
 CFLAGS		+= -lmlx_Linux -lX11 -lXext -lm #-lz
-CFLAGS		+= -O0 # no optimazation to make debuging easier, change it to -03 before push
+CFLAGS		+= -g3 #-fsanitize=address
+CFLAGS		+= -O3 # optimazation
 
 RAY_CAST	= $(wildcard src/ray_casting/*.c)
 RENDERING	= $(wildcard src/rendering/*.c)
