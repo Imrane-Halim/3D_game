@@ -81,7 +81,7 @@ int 	handle_release(int keynum)
 
 int		Keyboard_input()
 {
-	if (g_game.timer < 6)
+	if (g_game.timer < 13)
 		return 0;
 	g_game.timer = 0;
 	if (g_game.key.w || g_game.key.up)
