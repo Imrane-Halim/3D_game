@@ -19,16 +19,18 @@ t_xy	check_collison(t_xy new_pos)
 void ch_player_pos(int dir, bool is_strafe)
 {
 	t_xy	new_pos;
-	float	strafe_angle;
-	
-	new_pos.x = g_game.player.pos.x + cos(g_game.player.angle) * dir * POS_STEP;
-	new_pos.y = g_game.player.pos.y + sin(g_game.player.angle) * dir * POS_STEP;
+	float	move_angle;
+
 	if (is_strafe)
+		move_angle = g_game.player.angle + (dir * PI / 2);
+	else
 	{
-		strafe_angle = g_game.player.angle + (dir * PI / 2);
-		new_pos.x = g_game.player.pos.x + cos(strafe_angle) * POS_STEP;
-		new_pos.y = g_game.player.pos.y + sin(strafe_angle) * POS_STEP;
+		move_angle = g_game.player.angle;
+		if (dir == BACKWARD)
+			move_angle += PI;
 	}
+	new_pos.x = g_game.player.pos.x + cos(move_angle) * POS_STEP;
+	new_pos.y = g_game.player.pos.y + sin(move_angle) * POS_STEP;
 	if (obj_hit(new_pos) != '0')
 		new_pos	= check_collison(new_pos);
 	g_game.player.pos = new_pos;
