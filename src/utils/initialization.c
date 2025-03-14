@@ -43,6 +43,8 @@ void	init_game()
 		"11111111111111111111111111111"
 	};
 	g_game.scene.map = map;
-	g_game.scene.m_width = 24;
+	// note: width var holds the len of the logest line
+	// height is obvious
+	g_game.scene.m_width = 30;
 	g_game.scene.m_height = 13;
 }
