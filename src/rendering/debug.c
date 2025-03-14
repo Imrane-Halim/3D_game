@@ -10,10 +10,10 @@ inline void	draw_map(void)
 
 	map = g_game.scene.map;
 	y = 0;
-	while (y < g_game.scene.m_height)
+	while (map[y])
 	{
 		x = 0;
-		while (x < g_game.scene.m_width)
+		while (map[y][x])
 		{
 			if (map[y][x] == '1')
 				draw_square((t_xy){x * TILESIZE, y * TILESIZE},
