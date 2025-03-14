@@ -1,34 +1,51 @@
 #include "cub3d.h"
 
-// note: angle is an radina
+bool	player_collision(t_xy new_pos)
+{
+	float	radius = TILESIZE * 0.1;
+	float	angle = 0;
+	t_xy	tmp;
+
+	while (angle < PI * 2)
+	{
+		tmp.x = new_pos.x + cos(angle) * radius; 
+		tmp.y = new_pos.y + sin(angle) * radius;
+		if (obj_hit(tmp) != '0')
+			return (true);
+		angle += PI / 4;
+	}
+	return (false);
+}
 
 t_xy	check_collison(t_xy new_pos)
 {
 	t_xy tmp_pos = new_pos;
 
 	tmp_pos.x = g_game.player.pos.x;
-	if (obj_hit(tmp_pos) == '0')
+	if (!player_collision(tmp_pos))
 		return (tmp_pos);
 	tmp_pos = new_pos;
 	tmp_pos.y = g_game.player.pos.y;
-	if (obj_hit(tmp_pos) == '0')
+	if (!player_collision(tmp_pos))
 		return (tmp_pos);
 	return (g_game.player.pos);
 }
 
-bool	player_collision(t_xy new_pos)
+t_xy unstick_player(t_xy pos)
 {
-	float	radius = TILESIZE * 0.1;
-	t_xy	tmp;
-
-	for (float angle = 0; angle < PI * 2; angle += PI / 4)
+	t_xy	test_pos;
+	float	angle = 0;
+	float	radius = TILESIZE * 0.15;
+	
+	while (angle < PI * 2)
 	{
-		tmp.x = new_pos.x + cos(angle) * radius; 
-		tmp.y = new_pos.y + sin(angle) * radius;
-		if (obj_hit(tmp) != '0')
-			return (true);
+		test_pos.x = pos.x + cos(angle) * radius;
+		test_pos.y = pos.y + sin(angle) * radius;
+		if (!player_collision(test_pos))
+			return (test_pos);
+		angle += PI / 4;
 	}
-	return (false);
+	return (pos);
 }
 
 void ch_player_pos(int dir, bool is_strafe)
@@ -36,6 +53,8 @@ void ch_player_pos(int dir, bool is_strafe)
 	t_xy	new_pos;
 	float	move_angle;
 
+	if (player_collision(g_game.player.pos))
+		g_game.player.pos = unstick_player(g_game.player.pos);
 	if (is_strafe)
 		move_angle = g_game.player.angle + (dir * PI / 2);
 	else
@@ -45,7 +64,11 @@ void ch_player_pos(int dir, bool is_strafe)
 	new_pos.x = g_game.player.pos.x + cos(move_angle) * POS_STEP;
 	new_pos.y = g_game.player.pos.y + sin(move_angle) * POS_STEP;
 	if (player_collision(new_pos))
+	{
 		new_pos	= check_collison(new_pos);
+		if (player_collision(new_pos))
+			return ;
+	}
 	g_game.player.pos = new_pos;
 }
 
