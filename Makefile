@@ -4,9 +4,10 @@ INC			= include
 
 CFLAGS 		= -Wall -Wextra -Werror
 CFLAGS		+= -I$(INC) -I$(LIBFT)
-CFLAGS		+= -lmlx_Linux -lX11 -lXext -lm #-lz
 CFLAGS		+= -g3 #-fsanitize=address
 CFLAGS		+= -O3 # optimazation
+
+LDFLAGS		= -lmlx_Linux -lX11 -lXext -lm #-lz
 
 RAY_CAST	= $(wildcard src/ray_casting/*.c)
 RENDERING	= $(wildcard src/rendering/*.c)
@@ -23,7 +24,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(MAKE) bonus -C $(LIBFT) --silent
-	$(CC) $(OBJ) $(LIBFT)/libft.a $(CFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT)/libft.a $(CFLAGS) $(LDFLAGS) -o $(NAME)
 
 clean:
 	$(MAKE) clean -C $(LIBFT) --silent
