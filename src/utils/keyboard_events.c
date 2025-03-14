@@ -16,6 +16,21 @@ t_xy	check_collison(t_xy new_pos)
 	return (g_game.player.pos);
 }
 
+bool	player_collision(t_xy new_pos)
+{
+	float	radius = TILESIZE * 0.1;
+	t_xy	tmp;
+
+	for (float angle = 0; angle < PI * 2; angle += PI / 4)
+	{
+		tmp.x = new_pos.x + cos(angle) * radius; 
+		tmp.y = new_pos.y + sin(angle) * radius;
+		if (obj_hit(tmp) != '0')
+			return (true);
+	}
+	return (false);
+}
+
 void ch_player_pos(int dir, bool is_strafe)
 {
 	t_xy	new_pos;
@@ -29,7 +44,7 @@ void ch_player_pos(int dir, bool is_strafe)
 		move_angle += PI;
 	new_pos.x = g_game.player.pos.x + cos(move_angle) * POS_STEP;
 	new_pos.y = g_game.player.pos.y + sin(move_angle) * POS_STEP;
-	if (obj_hit(new_pos) != '0')
+	if (player_collision(new_pos))
 		new_pos	= check_collison(new_pos);
 	g_game.player.pos = new_pos;
 }
