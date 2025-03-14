@@ -24,11 +24,9 @@ void ch_player_pos(int dir, bool is_strafe)
 	if (is_strafe)
 		move_angle = g_game.player.angle + (dir * PI / 2);
 	else
-	{
 		move_angle = g_game.player.angle;
-		if (dir == BACKWARD)
-			move_angle += PI;
-	}
+	if (dir == BACKWARD && !is_strafe)
+		move_angle += PI;
 	new_pos.x = g_game.player.pos.x + cos(move_angle) * POS_STEP;
 	new_pos.y = g_game.player.pos.y + sin(move_angle) * POS_STEP;
 	if (obj_hit(new_pos) != '0')
