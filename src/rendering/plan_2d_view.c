@@ -85,7 +85,8 @@ void	draw_fov(t_xy offset)
 
 	s_angle = g_game.player.angle - (FOV * PI / 180) / 2;
 	e_angle = g_game.player.angle + (FOV * PI / 180) / 2;
-	step = (FOV * PI / 180) / g_game.n_rays;
+	// step = (FOV * PI / 180) / g_game.n_rays;
+	step = 0.001;
 	while (s_angle < e_angle)
 	{
 		start = applay_offset(g_game.player.pos, offset);
