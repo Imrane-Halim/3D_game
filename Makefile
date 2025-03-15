@@ -26,6 +26,9 @@ $(NAME): $(OBJ)
 	$(MAKE) bonus -C $(LIBFT) --silent
 	$(CC) $(OBJ) $(LIBFT)/libft.a $(CFLAGS) $(LDFLAGS) -o $(NAME)
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
 	$(MAKE) clean -C $(LIBFT) --silent
 	$(RM) $(OBJ)
