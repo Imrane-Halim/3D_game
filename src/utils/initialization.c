@@ -47,4 +47,6 @@ void	init_game()
 	// height is obvious
 	g_game.scene.m_width = 30;
 	g_game.scene.m_height = 13;
+	g_game.scene.floor_color = 0x292929;
+	g_game.scene.ceiling_color = 0x4a4a4a;
 }

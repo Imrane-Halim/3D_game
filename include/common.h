@@ -14,6 +14,9 @@ typedef struct s_scene
 
 	// things like floor, ceiling color, player direction
 	// wall images... etc will be added later
+
+	int	ceiling_color;
+	int	floor_color;
 } t_scene;
 
 t_scene	parse_map(char *path);
