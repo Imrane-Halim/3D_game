@@ -18,7 +18,7 @@
 # define FORWARD	1
 # define BACKWARD  -1
 
-# define __DEBUG__	true
+# define __DEBUG__	false
 /*
 	possible implementation of s_scene;
 		typedef struct s_scene
