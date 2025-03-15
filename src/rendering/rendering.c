@@ -57,10 +57,6 @@ inline void draw_line(t_xy start, t_xy end, int color)
 	}
 }
 
-//-------------------------- todo: 3D view
-// void	draw_3D_view(void)
-//{}
-
 //-----------------------
 
 inline int	render_frame(void)
