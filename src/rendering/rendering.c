@@ -65,8 +65,11 @@ inline void draw_line(t_xy start, t_xy end, int color)
 
 inline int	render_frame(void)
 {
+#if __DEBUG__
 	draw_2D_view();
-	// draw_3D_view();
+#else
+	draw_3D_view();
+#endif
 	mlx_put_image_to_window(g_game.window.mlx, g_game.window.win,
 		g_game.window.frame.img, 0, 0);
 	return (0);

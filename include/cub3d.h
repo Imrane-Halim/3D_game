@@ -17,6 +17,8 @@
 # define AGL_STEP	0.08
 # define FORWARD	1
 # define BACKWARD  -1
+
+# define __DEBUG__	true
 /*
 	possible implementation of s_scene;
 		typedef struct s_scene
