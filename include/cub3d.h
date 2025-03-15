@@ -7,8 +7,8 @@
 # include "common.h"
 
 # define PI			3.14159265359
-# define WIDTH		1526
-# define HEIGHT		832
+# define WIDTH		1366
+# define HEIGHT		768
 # define TILESIZE	64
 # define TITLE		"Cub3D"
 
