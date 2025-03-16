@@ -19,13 +19,11 @@ void	init_player()
 	g_game.player.pos.y = 64;
 }
 
-void	init_game()
+void	init_scene(char *path)
 {
-	init_window();
-	init_player();
+	(void)path;
 	// todo:
-	// g_game.scene = parse_map(av[1]);
-	g_game.n_rays = WIDTH;
+	// g_game.scene = parse_map(path);
 	static char *map[] = 
 	{
 		"111111111      111111111",
@@ -49,4 +47,23 @@ void	init_game()
 	g_game.scene.m_height = 13;
 	g_game.scene.floor_color = 0x292929;
 	g_game.scene.ceiling_color = 0x4a4a4a;
+}
+
+void	init_minimap()
+{
+	g_game.map.height = 200;
+	g_game.map.width = 200;
+	g_game.map.pos = (t_xy){18, 550};
+	g_game.map.floor_color = 0x000000;
+	g_game.map.wall_color = 0xffffff;
+	g_game.map.player_color = 0xff0000;
+}
+
+void	init_game()
+{
+	g_game.n_rays = WIDTH;
+	init_window();
+	init_player();
+	init_scene("todo");
+	init_minimap();
 }
