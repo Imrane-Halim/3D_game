@@ -1,6 +1,117 @@
 #include "cub3d.h"
 
-void	draw_minimap()
+#define MIN_TILZESIZE	10
+#define SCALE			0.15625 // MIN_TILZESIZE / TILESIZE
+#define BOUND_CLR		0x00ff00
+#define	BOUND_THIk		9
+
+static t_xy	get_camera_offset()
 {
-	draw_square((t_xy){18, 550}, 200, 200, 0xff);
+	t_xy	offset;
+
+	offset.x = g_game.map.width / 2 - g_game.player.pos.x * SCALE;
+	offset.y = g_game.map.height / 2 - g_game.player.pos.y * SCALE;
+
+	return (offset);
+}
+
+static t_xy	applay_offset(t_xy pos, t_xy offset)
+{
+	return ((t_xy){pos.x + offset.x + g_game.map.pos.x, pos.y + offset.y + g_game.map.pos.y});
+}
+
+static void	draw_tile(t_xy pos, t_xy offset, int color)
+{
+	pos = applay_offset(pos, offset);
+	if (pos.x >= g_game.map.pos.x && pos.x <= g_game.map.pos.x + g_game.map.width
+	&& pos.y >= g_game.map.pos.y && pos.y <= g_game.map.pos.y + g_game.map.height)
+		draw_square(pos, MIN_TILZESIZE, MIN_TILZESIZE, color);
+}
+
+static void	draw_map(t_xy offset)
+{
+	int		x;
+	int		y;
+	
+	y = 0;
+	while (g_game.scene.map[y])
+	{
+		x = 0;
+		while (g_game.scene.map[y][x])
+		{
+			if (g_game.scene.map[y][x] == '1')
+				draw_tile((t_xy){x * MIN_TILZESIZE, y * MIN_TILZESIZE}, offset, g_game.map.wall_color);
+			x++;
+		}
+		y++;
+	}
+}
+
+static void	draw_player(t_xy offset)
+{
+	t_xy	pos;
+
+	pos.x = g_game.player.pos.x * SCALE;
+	pos.y = g_game.player.pos.y * SCALE;
+	pos = applay_offset(pos, offset);
+	pos.x -= 2;
+	pos.y -= 2;
+	draw_square(pos, 5, 5, 0xe60b3e);
+}
+
+void	draw_dir(t_xy offset)
+{
+	t_xy	start;
+	t_xy	pos;
+	t_xy	end;
+
+	float	line_lenght;
+
+	line_lenght = 50;
+	pos.x = g_game.player.pos.x * SCALE;
+	pos.y = g_game.player.pos.y * SCALE;
+	start = applay_offset(pos, offset);
+	end.x = pos.x + cos(g_game.player.angle) * line_lenght;
+	end.y = pos.y + sin(g_game.player.angle) * line_lenght;
+	end = applay_offset(end, offset);
+	draw_line(start, end, 0xe60b3e);
+}
+
+void	draw_bounds()
+{
+	t_xy	pos = g_game.map.pos;
+
+	// draw top bar
+	draw_square(pos, BOUND_THIk, g_game.map.width, BOUND_CLR);
+
+	// draw right bar
+	pos.x += g_game.map.width;
+	draw_square(pos, g_game.map.height + BOUND_THIk, BOUND_THIk, BOUND_CLR);
+
+	// draw left bar
+	pos.x -= g_game.map.width;
+	draw_square(pos, g_game.map.height, BOUND_THIk, BOUND_CLR);
+
+	// draw bottom bar
+	pos.y += g_game.map.height;
+	draw_square(pos, BOUND_THIk, g_game.map.width, BOUND_CLR);
+}
+
+inline void	draw_minimap()
+{
+	t_xy	offset = get_camera_offset();
+
+	// background
+	draw_square(g_game.map.pos, g_game.map.height,
+		g_game.map.width, g_game.map.floor_color);
+
+	// drawing walls
+	draw_map(offset);
+
+	draw_player(offset);
+
+	draw_dir(offset);
+
+	// hide some unwanted stuff in the map edges
+	draw_bounds();
 }

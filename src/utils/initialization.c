@@ -53,9 +53,9 @@ void	init_minimap()
 {
 	g_game.map.height = 200;
 	g_game.map.width = 200;
-	g_game.map.pos = (t_xy){18, 550};
+	g_game.map.pos = (t_xy){9, 550};
 	g_game.map.floor_color = 0x000000;
-	g_game.map.wall_color = 0xffffff;
+	g_game.map.wall_color = 0x0000ff;
 	g_game.map.player_color = 0xff0000;
 }
 

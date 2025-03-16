@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-t_xy	get_camera_offset()
+static t_xy	get_camera_offset()
 {
 	t_xy	offset;
 
@@ -10,12 +10,12 @@ t_xy	get_camera_offset()
 	return (offset);
 }
 
-t_xy	applay_offset(t_xy pos, t_xy offset)
+static t_xy	applay_offset(t_xy pos, t_xy offset)
 {
 	return ((t_xy){pos.x + offset.x, pos.y + offset.y});
 }
 
-void	draw_background()
+static void	draw_background()
 {
 	int	i;
 
@@ -39,7 +39,7 @@ void	draw_background()
 	}
 }
 
-void	draw_map(t_xy offset)
+static void	draw_map(t_xy offset)
 {
 	int		x;
 	int		y;
@@ -64,7 +64,7 @@ void	draw_map(t_xy offset)
 	}
 }
 
-void	draw_player(t_xy offset)
+static void	draw_player(t_xy offset)
 {
 	t_xy	pos;
 
@@ -74,7 +74,7 @@ void	draw_player(t_xy offset)
 	draw_square(pos, 16, 16, 0xe60b3e);
 }
 
-void	draw_fov(t_xy offset)
+static void	draw_fov(t_xy offset)
 {
 	t_xy	start;
 	t_xy	end;
@@ -96,7 +96,7 @@ void	draw_fov(t_xy offset)
 	}
 }
 
-void	draw_dir(t_xy offset)
+static void	draw_dir(t_xy offset)
 {
 	t_xy	start;
 	t_xy	end;
