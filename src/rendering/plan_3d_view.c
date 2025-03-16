@@ -6,8 +6,40 @@ void	draw_floor_ceiling()
 	draw_square((t_xy){0, HEIGHT / 2}, HEIGHT / 2, WIDTH, g_game.scene.floor_color);
 }
 
+void	draw_slice(t_xy ray, float ray_angle, int ray_num)
+{
+	float	dist = distance(g_game.player.pos, ray) * cos(ray_angle - g_game.player.angle);
+	float	wall_height = (TILESIZE / dist) * ((WIDTH / 2) / tan(FOV * PI / 360));
+	int		wall_top = (HEIGHT - wall_height) / 2;
+	int		wall_bottom = wall_top + wall_height;
+
+	if (wall_top < 0)
+		wall_top = 0;
+	if (wall_bottom >= HEIGHT)
+		wall_bottom = HEIGHT - 1;
+	draw_line((t_xy){ray_num, wall_top}, (t_xy){ray_num, wall_bottom}, 0xffffff);
+}
+
 inline void	draw_3D_view(void)
 {
 	draw_floor_ceiling();
-	
+
+	t_xy	ray;
+	float	ray_angle;
+
+	float	s_angle;
+	float	angle_step;
+
+	int		i;
+
+	i = 0;
+	s_angle = g_game.player.angle - (FOV * PI / 180) / 2;
+	angle_step = (FOV * PI / 180) / g_game.n_rays;
+	while (i < g_game.n_rays)
+	{
+		ray_angle = s_angle + i * angle_step;
+		ray = cast_ray(ray_angle);
+		draw_slice(ray, ray_angle, i);
+		i++;
+	}
 }
