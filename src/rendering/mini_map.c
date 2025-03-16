@@ -17,14 +17,19 @@ static t_xy	get_camera_offset()
 
 static t_xy	applay_offset(t_xy pos, t_xy offset)
 {
-	return ((t_xy){pos.x + offset.x + g_game.map.pos.x, pos.y + offset.y + g_game.map.pos.y});
+	return ((t_xy){pos.x + offset.x + g_game.map.pos.x,
+		pos.y + offset.y + g_game.map.pos.y});
 }
 
 static void	draw_tile(t_xy pos, t_xy offset, int color)
 {
+	t_xy	m_pos;
+
+	m_pos = g_game.map.pos;
+
 	pos = applay_offset(pos, offset);
-	if (pos.x >= g_game.map.pos.x && pos.x <= g_game.map.pos.x + g_game.map.width
-	&& pos.y >= g_game.map.pos.y && pos.y <= g_game.map.pos.y + g_game.map.height)
+	if (pos.x >= m_pos.x && pos.x <= m_pos.x + g_game.map.width
+	&& pos.y >= m_pos.y && pos.y <= m_pos.y + g_game.map.height)
 		draw_square(pos, MIN_TILZESIZE, MIN_TILZESIZE, color);
 }
 
@@ -40,7 +45,8 @@ static void	draw_map(t_xy offset)
 		while (g_game.scene.map[y][x])
 		{
 			if (g_game.scene.map[y][x] == '1')
-				draw_tile((t_xy){x * MIN_TILZESIZE, y * MIN_TILZESIZE}, offset, g_game.map.wall_color);
+				draw_tile((t_xy){x * MIN_TILZESIZE,
+					y * MIN_TILZESIZE}, offset, g_game.map.wall_color);
 			x++;
 		}
 		y++;
