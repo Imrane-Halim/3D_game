@@ -66,6 +66,7 @@ inline int	render_frame(void)
 #else
 	draw_3D_view();
 #endif
+	draw_minimap();
 	mlx_put_image_to_window(g_game.window.mlx, g_game.window.win,
 		g_game.window.frame.img, 0, 0);
 	return (0);

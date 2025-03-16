@@ -88,12 +88,26 @@ typedef struct s_player
 	float			angle;
 }	t_player;
 
+typedef struct s_minimap
+{
+	t_xy	pos;
+	int		width;
+	int		height;
+
+	int		floor_color;
+	int		wall_color;
+	// int door_color;
+
+	int		player_color;
+}	t_minimap;
+
 typedef struct s_game
 {
 	t_player		player;
 	t_window		window;
 	t_scene			scene;
 	t_pressed_key	key;
+	t_minimap		map;
 	int				n_rays;
 	int				timer;
 }	t_game;
@@ -141,8 +155,12 @@ void	put_pixel(t_xy coord, int color);
 void	draw_square(t_xy coord, int height, int width, int color);
 void	draw_line(t_xy start, t_xy end, int color);
 
+// these 2 are for debuging or learining
+// purposes only no textures, nothing
 void	draw_2D_view(void);
 void	draw_3D_view(void);
+
+void	draw_minimap();
 
 int		render_frame();
 
