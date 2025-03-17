@@ -15,6 +15,7 @@ void	init_player()
 	g_game.player.fov = FOV * (PI / 180);
 
 	// this will change after parsing is done
+	// for example if stat is 64x64 add 1 to be 65x64
 	g_game.player.pos.x = 64;
 	g_game.player.pos.y = 64;
 }
@@ -35,7 +36,6 @@ void	init_scene(char *path)
 		"   100000000000100000001",
 		"111100000000000000000001",
 		"100000000111100000000001",
-		"1000000001  10000000000111111",
 		"10000000011110000000000000001",
 		"10000000000000000000000000001",
 		"11111111111111111111111111111"
@@ -61,11 +61,7 @@ void	init_minimap()
 
 void	init_textures()
 {
-	int	x, y;
-	g_game.scene.textures.north = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall1.xpm", &x, &y);
-	g_game.scene.textures.south = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall2.xpm", &x, &y);
-	g_game.scene.textures.east = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall3.xpm", &x, &y);
-	g_game.scene.textures.west = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall4.xpm", &x, &y);
+
 }
 
 void	init_game()

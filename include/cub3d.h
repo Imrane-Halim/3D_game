@@ -40,20 +40,11 @@ typedef struct s_xy
 	float	y;
 }	t_xy;
 
-typedef struct s_frame
-{
-	void	*img;
-	void	*adr;
-	int		bbp;
-	int		line_length;
-	int		endian;
-}	t_frame;
-
 typedef struct s_window
 {
 	void	*mlx;
 	void	*win;
-	t_frame	frame;
+	t_image	frame;
 }	t_window;
 
 typedef struct s_pressed_key

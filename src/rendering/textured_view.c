@@ -20,7 +20,7 @@ static void	draw_floor_ceiling()
 	- the textures are 64x64 
 	- TILZESIZE macro is also
 */
-static void	draw_tex_slice(void *tex, int bottom, int top, int x)
+static void	draw_tex_slice(t_image tex, int bottom, int top, int x)
 {
 	(void)tex;
 	int color = 0xff;
@@ -43,16 +43,14 @@ static void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 	if (wall_bottom >= HEIGHT)
 		wall_bottom = HEIGHT - 1;
 
-	void *tex = NULL;
+	t_image tex = g_game.scene.textures.west;
 	if (ray.dir == NORTH)
-		tex = g_game.scene.textures.east;
+		tex = g_game.scene.textures.north;
 	else if (ray.dir == SOUTH)
-		tex = g_game.scene.textures.east;
+		tex = g_game.scene.textures.south;
 	else if (ray.dir == EAST)
 		tex = g_game.scene.textures.east;
-	else if (ray.dir == WEST)
-		tex = g_game.scene.textures.east;
-
+		
 	draw_tex_slice(tex, wall_bottom, wall_top, ray_num);
 }
 

@@ -6,12 +6,21 @@
 # include <stdbool.h>
 # include "libft.h"
 
+typedef struct s_image
+{
+	void	*img;
+	void	*adr;
+	int		bbp;
+	int		line_length;
+	int		endian;
+}	t_image;
+
 typedef struct s_textures
 {
-	void	*north;
-	void	*south;
-	void	*east;
-	void	*west;
+	t_image	north;
+	t_image	south;
+	t_image	east;
+	t_image	west;
 }	t_textures;
 
 typedef struct s_scene
