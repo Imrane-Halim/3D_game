@@ -61,10 +61,11 @@ void	init_minimap()
 
 void	init_textures()
 {
-	g_game.scene.textures.north = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall1.xpm", NULL, NULL);
-	g_game.scene.textures.south = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall2.xpm", NULL, NULL);
-	g_game.scene.textures.east = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall3.xpm", NULL, NULL);
-	g_game.scene.textures.west = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall4.xpm", NULL, NULL);
+	int	x, y;
+	g_game.scene.textures.north = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall1.xpm", &x, &y);
+	g_game.scene.textures.south = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall2.xpm", &x, &y);
+	g_game.scene.textures.east = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall3.xpm", &x, &y);
+	g_game.scene.textures.west = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall4.xpm", &x, &y);
 }
 
 void	init_game()
