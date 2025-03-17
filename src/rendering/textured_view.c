@@ -6,13 +6,29 @@ static void	draw_floor_ceiling()
 	draw_square((t_xy){0, HEIGHT / 2}, HEIGHT / 2, WIDTH, g_game.scene.floor_color);
 }
 
-static int		shade_color(int color, float dist)
+// static int		shade_color(int color, float dist)
+// {
+// 	float	factor = 1.0 - fmin(dist / (TILESIZE * 10.0), 0.8);
+// 	int r = ((color >> 16) & 0xff) * factor;
+// 	int g = ((color >> 8) & 0xff) * factor;
+// 	int b = ((color) & 0xff) * factor;
+// 	return (r << 16 | g << 8 | b);
+// }
+
+/*
+	notes:
+	- the textures are 64x64 
+	- TILZESIZE macro is also
+*/
+static void	draw_tex_slice(void *tex, int bottom, int top, int x)
 {
-	float	factor = 1.0 - fmin(dist / (TILESIZE * 10.0), 0.8);
-	int r = ((color >> 16) & 0xff) * factor;
-	int g = ((color >> 8) & 0xff) * factor;
-	int b = ((color) & 0xff) * factor;
-	return (r << 16 | g << 8 | b);
+	(void)tex;
+	int color = 0xff;
+	for (int y = top; y < bottom; y++)
+	{
+
+		put_pixel((t_xy){x, y}, color);
+	}
 }
 
 static void	draw_slice(t_ray ray, float ray_angle, int ray_num)
@@ -26,17 +42,18 @@ static void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 		wall_top = 0;
 	if (wall_bottom >= HEIGHT)
 		wall_bottom = HEIGHT - 1;
-	int color = 0;
+
+	void *tex = NULL;
 	if (ray.dir == NORTH)
-		color = 0xff0000;
+		tex = g_game.scene.textures.east;
 	else if (ray.dir == SOUTH)
-		color = 0x00ff00;
+		tex = g_game.scene.textures.east;
 	else if (ray.dir == EAST)
-		color = 0x0000ff;
+		tex = g_game.scene.textures.east;
 	else if (ray.dir == WEST)
-		color = 0xffff00;
-	int	shaded_color = shade_color(color, dist);
-	draw_line((t_xy){ray_num, wall_top}, (t_xy){ray_num, wall_bottom}, shaded_color);
+		tex = g_game.scene.textures.east;
+
+	draw_tex_slice(tex, wall_bottom, wall_top, ray_num);
 }
 
 inline void	draw_textured()
