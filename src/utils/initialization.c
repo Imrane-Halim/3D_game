@@ -59,9 +59,21 @@ void	init_minimap()
 	g_game.map.player_color = 0xff0000;
 }
 
+t_image	load_img(char *path)
+{
+	t_image	img;
+
+	img.img = mlx_xpm_file_to_image(g_game.window.mlx, path, &img.width, &img.height);
+	img.adr = mlx_get_data_addr(img.img, &img.bbp, &img.line_length, &img.endian);
+	return (img);
+}
+
 void	init_textures()
 {
-
+	g_game.scene.textures.north = load_img("textures/xpm/wall1.xpm");
+	g_game.scene.textures.south = load_img("textures/xpm/wall2.xpm");
+	g_game.scene.textures.east = load_img("textures/xpm/wall3.xpm");
+	g_game.scene.textures.west = load_img("textures/xpm/wall4.xpm");
 }
 
 void	init_game()
