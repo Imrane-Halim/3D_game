@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-# define __DEBUG__	true
+# define __DEBUG__	false
 
 inline void	put_pixel(t_xy coord, int color)
 {
