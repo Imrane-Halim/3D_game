@@ -26,14 +26,14 @@ void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 		wall_top = 0;
 	if (wall_bottom >= HEIGHT)
 		wall_bottom = HEIGHT - 1;
-	int color;
+	int color = 0;
 	if (ray.dir == NORTH)
 		color = 0xff0000;
-	if (ray.dir == SOUTH)
+	else if (ray.dir == SOUTH)
 		color = 0x00ff00;
-	if (ray.dir == EAST)
+	else if (ray.dir == EAST)
 		color = 0x0000ff;
-	if (ray.dir == WEST)
+	else if (ray.dir == WEST)
 		color = 0xffff00;
 	int	shaded_color = shade_color(color, dist);
 	draw_line((t_xy){ray_num, wall_top}, (t_xy){ray_num, wall_bottom}, shaded_color);
