@@ -160,6 +160,8 @@ void	draw_line(t_xy start, t_xy end, int color);
 void	draw_2D_view(void);
 void	draw_3D_view(void);
 
+void	draw_textured();
+
 void	draw_minimap();
 
 int		render_frame();
