@@ -59,11 +59,20 @@ void	init_minimap()
 	g_game.map.player_color = 0xff0000;
 }
 
+void	init_textures()
+{
+	g_game.scene.textures.north = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall1.xpm", NULL, NULL);
+	g_game.scene.textures.south = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall2.xpm", NULL, NULL);
+	g_game.scene.textures.east = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall3.xpm", NULL, NULL);
+	g_game.scene.textures.west = mlx_xpm_file_to_image(g_game.window.mlx, "textures/xpm/wall4.xpm", NULL, NULL);
+}
+
 void	init_game()
 {
 	g_game.n_rays = WIDTH;
 	init_window();
 	init_player();
+	init_textures();
 	init_scene("todo");
 	init_minimap();
 }

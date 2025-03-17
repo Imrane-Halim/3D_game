@@ -6,6 +6,14 @@
 # include <stdbool.h>
 # include "libft.h"
 
+typedef struct s_textures
+{
+	void	*north;
+	void	*south;
+	void	*east;
+	void	*west;
+}	t_textures;
+
 typedef struct s_scene
 {
 	int	m_width;
@@ -17,6 +25,9 @@ typedef struct s_scene
 
 	int	ceiling_color;
 	int	floor_color;
+
+	t_textures textures;
+	
 } t_scene;
 
 t_scene	parse_map(char *path);
