@@ -62,9 +62,10 @@ inline void draw_line(t_xy start, t_xy end, int color)
 inline int	render_frame(void)
 {
 #if __DEBUG__
-	draw_2D_view();
-#else
+	// draw_2D_view();
 	draw_3D_view();
+#else
+	draw_textured();
 #endif
 	draw_minimap();
 	mlx_put_image_to_window(g_game.window.mlx, g_game.window.win,
