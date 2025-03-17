@@ -15,9 +15,9 @@ int		shade_color(int color, float dist)
 	return (r << 16 | g << 8 | b);
 }
 
-void	draw_slice(t_xy ray, float ray_angle, int ray_num)
+void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 {
-	float	dist = distance(g_game.player.pos, ray) * cos(ray_angle - g_game.player.angle);
+	float	dist = distance(g_game.player.pos, ray.hit) * cos(ray_angle - g_game.player.angle);
 	float	wall_height = (TILESIZE / dist) * ((WIDTH / 2) / tan(FOV * PI / 360));
 	int		wall_top = (HEIGHT - wall_height) / 2;
 	int		wall_bottom = wall_top + wall_height;
@@ -26,7 +26,16 @@ void	draw_slice(t_xy ray, float ray_angle, int ray_num)
 		wall_top = 0;
 	if (wall_bottom >= HEIGHT)
 		wall_bottom = HEIGHT - 1;
-	int	shaded_color = shade_color(0xffffff, dist);
+	int color;
+	if (ray.dir == NORTH)
+		color = 0xff0000;
+	if (ray.dir == SOUTH)
+		color = 0x00ff00;
+	if (ray.dir == EAST)
+		color = 0x0000ff;
+	if (ray.dir == WEST)
+		color = 0xffff00;
+	int	shaded_color = shade_color(color, dist);
 	draw_line((t_xy){ray_num, wall_top}, (t_xy){ray_num, wall_bottom}, shaded_color);
 }
 
@@ -49,7 +58,7 @@ inline void	draw_3D_view(void)
 	{
 		ray_angle = s_angle + i * angle_step;
 		ray = cast_ray(ray_angle);
-		draw_slice(ray.hit, ray_angle, i);
+		draw_slice(ray, ray_angle, i);
 		i++;
 	}
 }
