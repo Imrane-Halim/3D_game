@@ -16,12 +16,6 @@ static void	draw_floor_ceiling()
 // 	return (r << 16 | g << 8 | b);
 // }
 
-/*
-	notes:
-	- the textures are 64x64 
-	- TILZESIZE macro is also
-*/
-
 static int	get_pixel_color(t_image tex, t_xy pos)
 {
 	char	*src;
