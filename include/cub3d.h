@@ -19,15 +19,6 @@
 # define BACKWARD  -1
 
 # define __DEBUG__	false
-/*
-	possible implementation of s_scene;
-		typedef struct s_scene
-		{
-			int	m_width;
-			int	m_height;
-			char **map;
-		} t_scene;
-*/
 
 enum e_keys
 {
@@ -114,6 +105,23 @@ typedef struct s_game
 
 extern t_game	g_game;
 
+//---------------------------
+typedef enum e_dirs
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+} t_dirs;
+
+typedef struct s_ray
+{
+	t_xy	hit;
+	t_dirs	dir;
+}	t_ray;
+
+//---------------------------
+
 //---------------- memory managment
 
 int		close_game(int code);
@@ -143,7 +151,7 @@ int		Mouse_input(void); // todo
 void	start_game();
 
 //---------------- ray casting logic
-t_xy	cast_ray(float angle);
+t_ray	cast_ray(float angle);
 
 //---------------- math
 char	obj_hit(t_xy cord);

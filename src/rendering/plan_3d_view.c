@@ -34,7 +34,7 @@ inline void	draw_3D_view(void)
 {
 	draw_floor_ceiling();
 
-	t_xy	ray;
+	t_ray	ray;
 	float	ray_angle;
 
 	float	s_angle;
@@ -49,7 +49,7 @@ inline void	draw_3D_view(void)
 	{
 		ray_angle = s_angle + i * angle_step;
 		ray = cast_ray(ray_angle);
-		draw_slice(ray, ray_angle, i);
+		draw_slice(ray.hit, ray_angle, i);
 		i++;
 	}
 }

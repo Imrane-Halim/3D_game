@@ -29,55 +29,61 @@ inline t_xy    get_hit(t_xy A, t_xy step)
     return (A);
 }
 
-inline t_xy find_vertical_hit(t_xy p, float angle)
+inline t_ray find_vertical_hit(t_xy p, float angle)
 {
-	t_xy	A;
+	t_ray	A;
 	t_xy	step;
 
 	if (cos(angle) > 0)
 	{
-		A.x = floor(p.x / TILESIZE) * TILESIZE + TILESIZE;
+		A.hit.x = floor(p.x / TILESIZE) * TILESIZE + TILESIZE;
+		A.dir = EAST;
 		step.x = TILESIZE;
 	}
 	else
 	{
-		A.x = floor(p.x / TILESIZE) * TILESIZE - 0.0001;
+		A.hit.x = floor(p.x / TILESIZE) * TILESIZE - 0.0001;
+		A.dir = WEST;
 		step.x = -TILESIZE;
 	}
-	A.y = p.y + (A.x - p.x) * tan(angle);
+	A.hit.y = p.y + (A.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
-	return (get_hit(A, step));
+	A.hit = get_hit(A.hit, step);
+	return (A);
 }
 
-inline t_xy find_horizontal_hit(t_xy p, float angle)
+inline t_ray find_horizontal_hit(t_xy p, float angle)
 {
-	t_xy	A;
+	t_ray	A;
 	t_xy	step;
 
 	if (sin(angle) > 0)
 	{
-		A.y = floor(p.y / TILESIZE) * TILESIZE + TILESIZE;
+		A.hit.y = floor(p.y / TILESIZE) * TILESIZE + TILESIZE;
+		A.dir = SOUTH;
 		step.y = TILESIZE;
 	}
 	else
 	{
-		A.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
+		A.hit.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
+		A.dir = NORTH;
 		step.y = -TILESIZE;
 	}
-	A.x = p.x + (A.y - p.y) / tan(angle);
+	A.hit.x = p.x + (A.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
-	return (get_hit(A, step));
+	A.hit = get_hit(A.hit, step);
+	return (A);
 }
 
 // note: angle is in radian
-inline t_xy	cast_ray(float angle)
+inline t_ray	cast_ray(float angle)
 {
 	t_xy player = g_game.player.pos;
 
-	t_xy vert_hit = find_vertical_hit(player, angle);
-	t_xy horiz_hit = find_horizontal_hit(player, angle);
+	t_ray vert_hit = find_vertical_hit(player, angle);
+	t_ray horiz_hit = find_horizontal_hit(player, angle);
 
-	if (distance(player, vert_hit) < distance(player, horiz_hit))
+	if (distance(player, vert_hit.hit) < distance(player, horiz_hit.hit))
 		return (vert_hit);
 	return (horiz_hit);
 }

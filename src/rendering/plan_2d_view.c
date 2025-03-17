@@ -90,7 +90,7 @@ static void	draw_fov(t_xy offset)
 	while (s_angle < e_angle)
 	{
 		start = applay_offset(g_game.player.pos, offset);
-		end = applay_offset(cast_ray(s_angle), offset);
+		end = applay_offset(cast_ray(s_angle).hit, offset);
 		draw_line(start, end, 0x02cf0c);
 		s_angle += step;
 	}
