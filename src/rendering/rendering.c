@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+# define __DEBUG__	true
+
 inline void	put_pixel(t_xy coord, int color)
 {
 	char	*dst;

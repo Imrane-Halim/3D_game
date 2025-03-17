@@ -18,7 +18,6 @@
 # define FORWARD	1
 # define BACKWARD  -1
 
-# define __DEBUG__	false
 
 enum e_keys
 {
