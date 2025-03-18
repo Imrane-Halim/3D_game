@@ -7,16 +7,16 @@ static void	draw_floor_ceiling()
 }
 
 // this will be added later
-// static int		shade_color(int color, float dist)
-// {
-// 	float	factor = 1.0 - fmin(dist / (TILESIZE * 10.0), 0.8);
-// 	int r = ((color >> 16) & 0xff) * factor;
-// 	int g = ((color >> 8) & 0xff) * factor;
-// 	int b = ((color) & 0xff) * factor;
-// 	return (r << 16 | g << 8 | b);
-// }
+static int		shade_color(int color, float dist)
+{
+	float	factor = 1.0 - fmin(dist / (TILESIZE * 10.0), 0.8);
+	int r = ((color >> 16) & 0xff) * factor;
+	int g = ((color >> 8) & 0xff) * factor;
+	int b = ((color) & 0xff) * factor;
+	return (r << 16 | g << 8 | b);
+}
 
-static int	get_pixel_color(t_image tex, t_xy pos)
+static inline int	get_pixel_color(t_image tex, t_xy pos)
 {
 	char	*src;
 	int		x;
@@ -30,13 +30,15 @@ static int	get_pixel_color(t_image tex, t_xy pos)
 	return (*(unsigned int *)src);
 }
 
-static void	draw_tex_slice(t_ray ray, t_image tex, int bottom, int top, int x)
+static void	draw_tex_slice(float dist, t_image tex, int bottom, int top, int x)
 {
-	(void)ray;
-	int color = 0xff;
+	int color;
+	int	tex_x;
 	for (int y = top; y < bottom; y++)
-	{
-		color = get_pixel_color(tex, (t_xy){24, 45});
+	{	
+		tex_x = x % TILESIZE;
+		color = get_pixel_color(tex, (t_xy){tex_x, y % TILESIZE});
+		color = shade_color(color, dist);
 		put_pixel((t_xy){x, y}, color);
 	}
 }
@@ -61,7 +63,7 @@ static void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 	else if (ray.dir == EAST)
 		tex = g_game.scene.textures.east;
 		
-	draw_tex_slice(ray, tex, wall_bottom, wall_top, ray_num);
+	draw_tex_slice(dist, tex, wall_bottom, wall_top, ray_num);
 }
 
 inline void	draw_textured()
