@@ -30,6 +30,58 @@ static inline int	get_pixel_color(t_image tex, t_xy pos)
 	return (*(unsigned int *)src);
 }
 
+/*
+static inline void draw_tex_slice(float dist, t_image tex, int bottom, int top, int x, t_ray ray)
+{
+    int color;
+    
+    // Calculate the exact hit position on the wall for x-coordinate in texture
+    float wall_x;
+    if (ray.dir == NORTH || ray.dir == SOUTH)
+        wall_x = ray.hit.x - floor(ray.hit.x / TILESIZE) * TILESIZE;
+    else
+        wall_x = ray.hit.y - floor(ray.hit.y / TILESIZE) * TILESIZE;
+    
+    // Convert to texture coordinate
+    int tex_x = (int)(wall_x * tex.width / TILESIZE);
+    
+    // Fix texture orientation for certain directions
+    if ((ray.dir == WEST) || (ray.dir == NORTH))
+        tex_x = tex.width - tex_x - 1;
+    
+    // Calculate the height of this wall slice
+    int wall_height = bottom - top;
+    
+    // Calculate where the wall would theoretically start if not clipped
+    float theoretical_height = (TILESIZE / dist) * ((WIDTH / 2) / tan(FOV * PI / 360));
+    float theoretical_top = (HEIGHT - theoretical_height) / 2;
+    
+    // For vertical texture mapping
+    for (int y = top; y < bottom; y++)
+    {
+        // Map screen y-coordinate to texture y-coordinate
+        // This accounts for walls taller than the screen
+        float y_ratio = (y - top) / (float)wall_height;
+        
+        // Adjust for clipping at top of screen
+        if (top == 0 && theoretical_top < 0) {
+            y_ratio = (y + fabs(theoretical_top)) / theoretical_height;
+        }
+        
+        int tex_y = (int)(y_ratio * tex.height);
+        
+        // Get the texture color
+        color = get_pixel_color(tex, (t_xy){tex_x, tex_y});
+        
+        // Apply distance shading
+        color = shade_color(color, dist);
+        
+        // Draw the pixel
+        put_pixel((t_xy){x, y}, color);
+    }
+}
+*/
+
 static inline void	draw_tex_slice(float dist, t_image tex, int bottom, int top, int x)
 {
 	int color;
