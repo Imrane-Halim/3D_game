@@ -7,7 +7,7 @@ static void	draw_floor_ceiling()
 }
 
 // this will be added later
-static int		shade_color(int color, float dist)
+static inline int		shade_color(int color, float dist)
 {
 	float	factor = 1.0 - fmin(dist / (TILESIZE * 10.0), 0.8);
 	int r = ((color >> 16) & 0xff) * factor;
@@ -30,7 +30,7 @@ static inline int	get_pixel_color(t_image tex, t_xy pos)
 	return (*(unsigned int *)src);
 }
 
-static void	draw_tex_slice(float dist, t_image tex, int bottom, int top, int x)
+static inline void	draw_tex_slice(float dist, t_image tex, int bottom, int top, int x)
 {
 	int color;
 	int	tex_x;
