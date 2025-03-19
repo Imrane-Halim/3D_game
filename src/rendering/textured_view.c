@@ -27,19 +27,17 @@ static inline void draw_tex_slice(t_casted_ray cray, int bottom, int top)
 {
 	t_xy	tex_offset;
 	float	start_y;
-	float	wall_hit;
+	float	wall_x;
 	int		color;
-	int		y = top;
+	int		y;
 
-	// vertical hit
 	if (cray.ray.dir == EAST || cray.ray.dir == WEST)
-		wall_hit = cray.ray.hit.y - floor(cray.ray.hit.y / TILESIZE) * TILESIZE;
+		wall_x = cray.ray.hit.y - floor(cray.ray.hit.y / TILESIZE) * TILESIZE;
 	else
-		wall_hit = cray.ray.hit.x - floor(cray.ray.hit.x / TILESIZE) * TILESIZE;
-	
-	// Scale to texture coordinates
-	tex_offset.x = (int)((wall_hit / TILESIZE) * cray.tex.width);
+		wall_x = cray.ray.hit.x - floor(cray.ray.hit.x / TILESIZE) * TILESIZE;
+	tex_offset.x = (int)((wall_x / TILESIZE) * cray.tex.width);
 	start_y = (HEIGHT - cray.slice_hieght) / 2;
+	y = top;
 	while (y < bottom)
 	{
 		tex_offset.y = (int)(((y - start_y) / cray.slice_hieght) * cray.tex.height);
