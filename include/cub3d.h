@@ -110,6 +110,15 @@ typedef struct s_ray
 	t_dirs	dir;
 }	t_ray;
 
+typedef struct s_casted_ray
+{
+	t_image	tex;
+	t_ray	ray;
+	float	dist;
+	float	slice_hieght;
+	int		ray_num;
+}	t_casted_ray;
+
 //---------------------------
 
 //---------------- memory managment
