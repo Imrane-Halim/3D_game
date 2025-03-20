@@ -12,7 +12,8 @@ int		game_loop()
 
 void	start_game()
 {
-	mlx_mouse_hide(g_game.window.mlx, g_game.window.win);
+	// will be added later 
+	//mlx_mouse_hide(g_game.window.mlx, g_game.window.win);
 
 	mlx_hook(g_game.window.win, KeyPress, KeyPressMask, handle_press, NULL);
 	mlx_hook(g_game.window.win, KeyRelease, KeyReleaseMask, handle_release, NULL);
