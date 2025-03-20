@@ -138,7 +138,7 @@ int 	handle_press(int keynum);
 int		handle_key(int keynum, bool is_pressed);
 
 int		Keyboard_input();
-int		Mouse_input(void); // todo
+int		Mouse_input(int x, int y, void *data);
 
 //---------------- player movements
 

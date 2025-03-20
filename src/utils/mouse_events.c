@@ -1,12 +1,17 @@
 #include "cub3d.h"
 
-int Mouse_input(void)
+int Mouse_input(int x, int y, void *data)
 {
-    int x,y;
+	(void)data;
+	(void)y;
 
-    mlx_mouse_get_pos(g_game.window.mlx, g_game.window.win, &x, &y);
+	int		dx;
+	float	sens = 0.001f;
 
-    printf("x: %d, y: %d\n", x, y);
-
-    return (0);
+	dx = x - (WIDTH / 2);
+	g_game.player.angle += dx * sens;
+	if (g_game.player.angle > 2 * PI)
+		g_game.player.angle = 0;
+	mlx_mouse_move(g_game.window.mlx, g_game.window.win, WIDTH / 2, HEIGHT / 2);
+	return (0);
 }
