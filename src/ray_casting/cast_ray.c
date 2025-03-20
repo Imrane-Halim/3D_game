@@ -5,9 +5,9 @@ inline char obj_hit(t_xy cord)
 	int map_x = (int)(cord.x / TILESIZE);
 	int map_y = (int)(cord.y / TILESIZE);
 	
-	if (map_x < 0 || map_x >= g_game.scene.m_width)
-		return (0);
 	if (map_y < 0 || map_y >= g_game.scene.m_height)
+		return (0);
+	if (map_x < 0 || map_x >= (int)ft_strlen(g_game.scene.map[map_y]))
 		return (0);
 	return (g_game.scene.map[map_y][map_x]);
 }
