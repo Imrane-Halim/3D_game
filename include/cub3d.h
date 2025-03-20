@@ -17,7 +17,7 @@
 # define AGL_STEP	0.02
 # define FORWARD	1
 # define BACKWARD  -1
-
+# define MOUSE_SENS	0.001f
 
 enum e_keys
 {

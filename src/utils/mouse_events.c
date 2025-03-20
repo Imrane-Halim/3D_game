@@ -6,10 +6,9 @@ int Mouse_input(int x, int y, void *data)
 	(void)y;
 
 	int		dx;
-	float	sens = 0.001f;
 
 	dx = x - (WIDTH / 2);
-	g_game.player.angle += dx * sens;
+	g_game.player.angle += dx * MOUSE_SENS;
 	if (g_game.player.angle > 2 * PI)
 		g_game.player.angle = 0;
 	mlx_mouse_move(g_game.window.mlx, g_game.window.win, WIDTH / 2, HEIGHT / 2);
