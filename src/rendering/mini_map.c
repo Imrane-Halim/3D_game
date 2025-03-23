@@ -48,11 +48,12 @@ static void	draw_map(t_xy offset)
 		{
 			if (g_game.scene.map[y][x] == '1')
 				color = g_game.map.wall_color;
-			else if (g_game.scene.map[y][x] == 'D')
+			else if (g_game.scene.map[y][x] == 'D' || g_game.scene.map[y][x] == 'O')
 				color = g_game.map.door_color;
 			else
-				color = 0;
-			draw_tile((t_xy){x * MIN_TILZESIZE, y * MIN_TILZESIZE}, offset, color);
+				color = g_game.map.floor_color;
+			draw_tile((t_xy){x * MIN_TILZESIZE,
+				y * MIN_TILZESIZE}, offset, color);
 			x++;
 		}
 		y++;
