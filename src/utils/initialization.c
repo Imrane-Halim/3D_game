@@ -31,10 +31,10 @@ void	init_scene(char *path)
 		"100000101      100000001",
 		"100000001      100000001",
 		"100010001111111100000001",
-		"100001000000000000000001",
-		"111100000000000000000001",
-		"   100000000000100000001",
-		"111100000000000000000001",
+		"100001000000000100000001",
+		"111100000000000100000001",
+		"   100000000000D00000001",
+		"111100000000000111111111",
 		"10000000011110000000000111111",
 		"10000000011110000000000000001",
 		"10000000000000000000000000001",
@@ -58,6 +58,7 @@ void	init_minimap()
 	g_game.map.floor_color = 0x000000;
 	g_game.map.wall_color = 0x0000ff;
 	g_game.map.player_color = 0xff0000;
+	g_game.map.door_color = 0xffff00;
 }
 
 t_image	load_img(char *path)
@@ -75,6 +76,7 @@ void	init_textures()
 	g_game.scene.textures.south = load_img("textures/xpm/wall2.xpm");
 	g_game.scene.textures.east = load_img("textures/xpm/wall3.xpm");
 	g_game.scene.textures.west = load_img("textures/xpm/wall4.xpm");
+	g_game.scene.textures.door = load_img("textures/xpm/door.xpm");
 }
 
 void	init_game()

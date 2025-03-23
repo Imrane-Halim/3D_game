@@ -17,14 +17,16 @@ inline float	distance(t_xy a, t_xy b)
 	return (sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)));
 }
 
-inline t_xy    get_hit(t_xy A, t_xy step)
+inline t_ray    get_hit(t_ray A, t_xy step)
 {
     while (true)
 	{
-		if (obj_hit(A) != '0')
+		if (obj_hit(A.hit) == 'D')
+			A.dir = DOOR;
+		if (obj_hit(A.hit) != '0')
 			break;
-		A.x += step.x;
-		A.y += step.y;
+		A.hit.x += step.x;
+		A.hit.y += step.y;
 	}
     return (A);
 }
@@ -48,7 +50,7 @@ inline t_ray find_vertical_hit(t_xy p, float angle)
 	}
 	A.hit.y = p.y + (A.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
-	A.hit = get_hit(A.hit, step);
+	A = get_hit(A, step);
 	return (A);
 }
 
@@ -71,7 +73,7 @@ inline t_ray find_horizontal_hit(t_xy p, float angle)
 	}
 	A.hit.x = p.x + (A.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
-	A.hit = get_hit(A.hit, step);
+	A = get_hit(A, step);
 	return (A);
 }
 

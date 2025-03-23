@@ -24,6 +24,7 @@ typedef struct s_textures
 	t_image	south;
 	t_image	east;
 	t_image	west;
+	t_image	door;
 }	t_textures;
 
 typedef struct s_scene

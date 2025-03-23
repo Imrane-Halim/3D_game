@@ -77,7 +77,7 @@ typedef struct s_minimap
 
 	int		floor_color;
 	int		wall_color;
-	// int door_color;
+	int		door_color;
 
 	int		player_color;
 }	t_minimap;
@@ -101,7 +101,8 @@ typedef enum e_dirs
 	NORTH,
 	SOUTH,
 	EAST,
-	WEST
+	WEST,
+	DOOR
 } t_dirs;
 
 typedef struct s_ray
