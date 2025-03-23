@@ -23,7 +23,7 @@ inline t_ray    get_hit(t_ray A, t_xy step)
 	{
 		if (obj_hit(A.hit) == 'D')
 			A.dir = DOOR;
-		if (obj_hit(A.hit) != '0')
+		if (obj_hit(A.hit) != '0' && obj_hit(A.hit) != 'O')
 			break;
 		A.hit.x += step.x;
 		A.hit.y += step.y;
