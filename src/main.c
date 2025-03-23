@@ -19,7 +19,8 @@ void	start_game()
 	mlx_hook(g_game.window.win, KeyRelease, KeyReleaseMask, handle_release, NULL);
 	mlx_hook(g_game.window.win, DestroyNotify, StructureNotifyMask, close_game, NULL);
 	
-	mlx_hook(g_game.window.win, MotionNotify, PointerMotionMask, Mouse_input, NULL);
+	// will be enabled before push
+	// mlx_hook(g_game.window.win, MotionNotify, PointerMotionMask, Mouse_input, NULL);
 
 	mlx_loop_hook(g_game.window.mlx, game_loop, NULL);
 	mlx_loop(g_game.window.mlx);
