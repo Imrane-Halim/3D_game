@@ -10,7 +10,7 @@ bool	player_collision(t_xy new_pos)
 	{
 		tmp.x = new_pos.x + cos(angle) * radius; 
 		tmp.y = new_pos.y + sin(angle) * radius;
-		if (obj_hit(tmp) != '0')
+		if (obj_hit(tmp) != '0' && obj_hit(tmp) != 'O')
 			return (true);
 		angle += PI / 4;
 	}
@@ -105,8 +105,28 @@ int 	handle_key(int keynum, bool is_pressed)
 	return 0;
 }
 
+void	door_event()
+{
+	float	x, y;
+	float	radius;
+	char	c;
+
+	radius = TILESIZE;
+	x = g_game.player.pos.x + cos(g_game.player.angle) * radius;
+	y = g_game.player.pos.y + sin(g_game.player.angle) * radius;
+	c = obj_hit((t_xy){x, y});
+	if (c != 'D' && c != 'O')
+		return ;
+	if (c == 'D')
+		g_game.scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'O';
+	else
+		g_game.scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'D';
+}
+
 int 	handle_press(int keynum)
 {
+	if (keynum == ' ')
+		door_event();
 	return handle_key(keynum, true);
 }
 

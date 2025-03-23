@@ -41,7 +41,12 @@ void	init_scene(char *path)
 		"11111111111111111111111111111",
 		NULL
 	};
-	g_game.scene.map = map;
+	g_game.scene.map = ft_calloc(13, sizeof(char *));
+	for (int i = 0; i < 12; i++)
+	{
+		g_game.scene.map[i] = ft_strdup(map[i]);
+	}
+
 	// note: width var holds the len of the logest line
 	// height is obvious
 	g_game.scene.m_width = 30;

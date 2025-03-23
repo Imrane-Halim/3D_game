@@ -4,7 +4,7 @@ INC			= include
 
 CFLAGS 		= -Wall -Wextra -Werror
 CFLAGS		+= -I$(INC) -I$(LIBFT)
-CFLAGS		+= -g3 #-fsanitize=address
+CFLAGS		+= -g3 -fsanitize=address
 CFLAGS		+= -O3 # optimazation
 
 LDFLAGS		= -lmlx_Linux -lX11 -lXext -lm #-lz
