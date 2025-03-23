@@ -9,9 +9,19 @@ void	destroy_images()
 	mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.door.img);
 }
 
+void	free_map()
+{
+	int	i;
+
+	i = 0;
+	while (g_game.scene.map[i])
+		free(g_game.scene.map[i++]);
+	free(g_game.scene.map);
+}
+
 int		close_game(int code)
 {
-	// free_map();
+	free_map();
 	destroy_images();
 	mlx_destroy_image(g_game.window.mlx, g_game.window.frame.img);
 	mlx_destroy_window(g_game.window.mlx, g_game.window.win);
