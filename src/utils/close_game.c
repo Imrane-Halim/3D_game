@@ -7,6 +7,7 @@ void	destroy_images()
 	mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.east.img);
 	mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.west.img);
 	mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.door.img);
+	mlx_destroy_image(g_game.window.mlx, g_game.hand.img);
 }
 
 void	free_map()

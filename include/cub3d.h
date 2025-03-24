@@ -89,6 +89,7 @@ typedef struct s_game
 	t_scene			scene;
 	t_pressed_key	key;
 	t_minimap		map;
+	t_image			hand;
 	int				n_rays;
 	int				timer;
 }	t_game;
@@ -160,6 +161,7 @@ float	distance(t_xy a, t_xy b);
 //---------------- rendring
 
 void	put_pixel(t_xy coord, int color);
+int		get_pixel_color(t_image tex, t_xy pos);
 void	draw_square(t_xy coord, int height, int width, int color);
 void	draw_line(t_xy start, t_xy end, int color);
 

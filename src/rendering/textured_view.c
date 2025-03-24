@@ -9,7 +9,7 @@ static inline int	shade_color(int color, float dist)
 	return (r << 16 | g << 8 | b);
 }
 
-static inline int	get_pixel_color(t_image tex, t_xy pos)
+inline int	get_pixel_color(t_image tex, t_xy pos)
 {
 	char	*src;
 	int		x;

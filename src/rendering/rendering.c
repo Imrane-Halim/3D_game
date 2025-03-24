@@ -61,6 +61,30 @@ inline void draw_line(t_xy start, t_xy end, int color)
 
 //-----------------------
 
+static void	draw_hand()
+{
+	float speed = 0.05f;
+	int amplitude = 100;
+	static int	old_y = HEIGHT / 2;
+
+	int hand_y = (HEIGHT / 2) + (int)(cos(g_game.timer * speed) * amplitude);
+	if (g_game.key.w || g_game.key.s)
+		old_y = hand_y;
+	
+	int hand_x = WIDTH - g_game.hand.width;
+	unsigned int color = 0;
+
+	for (int y = 0; y < g_game.hand.height; y++)
+	{
+		for (int x = 0; x < g_game.hand.width; x++)
+		{
+			color = get_pixel_color(g_game.hand, (t_xy){x, y});
+			if (color != 0xFF000000) // Skip transparent pixels
+				put_pixel((t_xy){x + hand_x, y + old_y}, color);
+		}
+	}
+}
+
 inline int	render_frame(void)
 {
 #if __DEBUG__
@@ -70,6 +94,7 @@ inline int	render_frame(void)
 	draw_textured();
 #endif
 	draw_minimap();
+	draw_hand();
 	mlx_put_image_to_window(g_game.window.mlx, g_game.window.win,
 		g_game.window.frame.img, 0, 0);
 	return (0);

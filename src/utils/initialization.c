@@ -82,6 +82,7 @@ void	init_textures()
 	g_game.scene.textures.east = load_img("textures/xpm/wall3.xpm");
 	g_game.scene.textures.west = load_img("textures/xpm/wall4.xpm");
 	g_game.scene.textures.door = load_img("textures/xpm/door.xpm");
+	g_game.hand = load_img("textures/xpm/hand.xpm");
 }
 
 void	init_game()
