@@ -155,7 +155,7 @@ source: https://permadi.com/1996/05/ray-casting-tutorial-7/
 1. find the coordinates of the first ever point, let's call it A
 	--> for y:
 	if (ray facing up)
-		A.y = ((int)player.y / TILESIZE) * TILESIZE - 1;
+		A.y = ((int)player.y / TILESIZE) * TILESIZE - EPSILLON;
 	if (ray facing down)
 		A.y = ((int)player.y / TILESIZE) * TILESIZE + TILESIZE;
 	
