@@ -88,7 +88,7 @@ typedef struct s_game
 	t_window		window;
 	t_scene			scene;
 	t_pressed_key	key;
-	t_minimap		map;
+	t_minimap		minimap;
 	t_image			hand;
 	int				n_rays;
 	int				timer;

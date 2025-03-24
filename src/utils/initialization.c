@@ -57,13 +57,13 @@ void	init_scene(char *path)
 
 void	init_minimap()
 {
-	g_game.map.height = 200;
-	g_game.map.width = 200;
-	g_game.map.pos = (t_xy){9, 550};
-	g_game.map.floor_color = 0x000000;
-	g_game.map.wall_color = 0x0000ff;
-	g_game.map.player_color = 0xff0000;
-	g_game.map.door_color = 0xffff00;
+	g_game.minimap.height = 200;
+	g_game.minimap.width = 200;
+	g_game.minimap.pos = (t_xy){9, 550};
+	g_game.minimap.floor_color = 0x000000;
+	g_game.minimap.wall_color = 0x0000ff;
+	g_game.minimap.player_color = 0xff0000;
+	g_game.minimap.door_color = 0xffff00;
 }
 
 t_image	load_img(char *path)
