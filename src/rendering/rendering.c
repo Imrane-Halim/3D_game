@@ -68,7 +68,7 @@ static void	draw_hand()
 	static int	old_y = HEIGHT / 2;
 
 	int hand_y = (HEIGHT / 2) + (int)(cos(g_game.timer * speed) * amplitude);
-	if (g_game.key.w || g_game.key.s)
+	if (g_game.key.w || g_game.key.s || g_game.key.d || g_game.key.a)
 		old_y = hand_y;
 	
 	int hand_x = WIDTH - g_game.hand.width;
