@@ -5,7 +5,7 @@ t_game	g_game;
 int		game_loop()
 {
 	g_game.timer++;
-	Keyboard_input();
+	keyboard_input();
 	render_frame();
 	return (0);
 }
@@ -20,7 +20,7 @@ void	start_game()
 	mlx_hook(g_game.window.win, DestroyNotify, StructureNotifyMask, close_game, NULL);
 	
 	// will be enabled before push
-	// mlx_hook(g_game.window.win, MotionNotify, PointerMotionMask, Mouse_input, NULL);
+	// mlx_hook(g_game.window.win, MotionNotify, PointerMotionMask, mouse_input, NULL);
 
 	mlx_loop_hook(g_game.window.mlx, game_loop, NULL);
 	mlx_loop(g_game.window.mlx);

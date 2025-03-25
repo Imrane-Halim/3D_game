@@ -143,8 +143,8 @@ int					handle_release(int keynum);
 int					handle_press(int keynum);
 int					handle_key(int keynum, bool is_pressed);
 
-int					Keyboard_input(void);
-int					Mouse_input(int x, int y, void *data);
+int					keyboard_input(void);
+int					mouse_input(int x, int y, void *data);
 
 //---------------- player movements
 

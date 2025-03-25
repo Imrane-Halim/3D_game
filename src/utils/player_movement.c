@@ -1,14 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   player_movement.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/25 19:15:59 by imrane            #+#    #+#             */
+/*   Updated: 2025/03/25 19:16:00 by imrane           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 bool	player_collision(t_xy new_pos)
 {
-	float	radius = TILESIZE * 0.1;
-	float	angle = 0;
+	float	radius;
+	float	angle;
 	t_xy	tmp;
 
+	radius = TILESIZE * 0.1;
+	angle = 0;
 	while (angle < PI * 2)
 	{
-		tmp.x = new_pos.x + cos(angle) * radius; 
+		tmp.x = new_pos.x + cos(angle) * radius;
 		tmp.y = new_pos.y + sin(angle) * radius;
 		if (obj_hit(tmp) != '0' && obj_hit(tmp) != 'O')
 			return (true);
@@ -19,8 +33,9 @@ bool	player_collision(t_xy new_pos)
 
 t_xy	check_collison(t_xy new_pos)
 {
-	t_xy tmp_pos = new_pos;
+	t_xy	tmp_pos;
 
+	tmp_pos = new_pos;
 	tmp_pos.x = g_game.player.pos.x;
 	if (!player_collision(tmp_pos))
 		return (tmp_pos);
@@ -31,12 +46,14 @@ t_xy	check_collison(t_xy new_pos)
 	return (g_game.player.pos);
 }
 
-t_xy unstick_player(t_xy pos)
+t_xy	unstick_player(t_xy pos)
 {
 	t_xy	test_pos;
-	float	angle = 0;
-	float	radius = TILESIZE * 0.15;
-	
+	float	angle;
+	float	radius;
+
+	angle = 0;
+	radius = TILESIZE * 0.15;
 	while (angle < PI * 2)
 	{
 		test_pos.x = pos.x + cos(angle) * radius;
@@ -48,7 +65,7 @@ t_xy unstick_player(t_xy pos)
 	return (pos);
 }
 
-void ch_player_pos(int dir, bool is_strafe)
+void	ch_player_pos(int dir, bool is_strafe)
 {
 	t_xy	new_pos;
 	float	move_angle;
@@ -65,7 +82,7 @@ void ch_player_pos(int dir, bool is_strafe)
 	new_pos.y = g_game.player.pos.y + sin(move_angle) * POS_STEP;
 	if (player_collision(new_pos))
 	{
-		new_pos	= check_collison(new_pos);
+		new_pos = check_collison(new_pos);
 		if (player_collision(new_pos))
 			return ;
 	}
@@ -74,8 +91,8 @@ void ch_player_pos(int dir, bool is_strafe)
 
 void	ch_player_xangle(float angle)
 {
-	float new_angle;
-	
+	float	new_angle;
+
 	new_angle = g_game.player.angle + angle;
 	if (fabs(new_angle) > PI * 2)
 		new_angle = 0;

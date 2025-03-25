@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   keyboard_events.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/25 19:16:58 by imrane            #+#    #+#             */
+/*   Updated: 2025/03/25 19:17:03 by imrane           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int 	handle_key(int keynum, bool is_pressed)
+int	handle_key(int keynum, bool is_pressed)
 {
 	if (keynum == ESC_KEY && is_pressed)
 		close_game(0, NULL);
@@ -20,14 +32,15 @@ int 	handle_key(int keynum, bool is_pressed)
 		g_game.key.s = is_pressed;
 	else if (keynum == W_KEY)
 		g_game.key.w = is_pressed;
-	return 0;
+	return (0);
 }
 
-void	door_event()
+void	door_event(void)
 {
-	float	x, y;
 	float	radius;
 	char	c;
+	float	x;
+	float	y;
 
 	radius = TILESIZE;
 	x = g_game.player.pos.x + cos(g_game.player.angle) * radius;
@@ -41,19 +54,19 @@ void	door_event()
 		g_game.scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'D';
 }
 
-int 	handle_press(int keynum)
+int	handle_press(int keynum)
 {
 	if (keynum == ' ')
 		door_event();
-	return handle_key(keynum, true);
+	return (handle_key(keynum, true));
 }
 
-int 	handle_release(int keynum)
+int	handle_release(int keynum)
 {
-	return handle_key(keynum, false);
+	return (handle_key(keynum, false));
 }
 
-int		Keyboard_input()
+int	keyboard_input(void)
 {
 	if (g_game.key.w || g_game.key.up)
 		ch_player_pos(FORWARD, false);

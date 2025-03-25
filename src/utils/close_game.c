@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   close_game.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/25 19:13:44 by imrane            #+#    #+#             */
+/*   Updated: 2025/03/25 19:13:45 by imrane           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void	destroy_images()
+void	destroy_images(void)
 {
 	if (g_game.scene.textures.north.img)
 		mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.north.img);
@@ -10,13 +22,13 @@ void	destroy_images()
 		mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.east.img);
 	if (g_game.scene.textures.west.img)
 		mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.west.img);
-	if (g_game.scene.textures.door.img)	
+	if (g_game.scene.textures.door.img)
 		mlx_destroy_image(g_game.window.mlx, g_game.scene.textures.door.img);
 	if (g_game.hand.img)
 		mlx_destroy_image(g_game.window.mlx, g_game.hand.img);
 }
 
-void	free_map()
+void	free_map(void)
 {
 	int	i;
 
@@ -28,7 +40,7 @@ void	free_map()
 	free(g_game.scene.map);
 }
 
-int		close_game(int code, char *message)
+int	close_game(int code, char *message)
 {
 	if (message)
 		ft_putendl_fd(message, STDERR_FILENO);

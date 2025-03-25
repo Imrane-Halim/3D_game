@@ -1,12 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mouse_events.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/25 19:16:08 by imrane            #+#    #+#             */
+/*   Updated: 2025/03/25 19:16:38 by imrane           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int Mouse_input(int x, int y, void *data)
+int	mouse_input(int x, int y, void *data)
 {
+	int	dx;
+
 	(void)data;
 	(void)y;
-
-	int		dx;
-
 	dx = x - (WIDTH / 2);
 	g_game.player.angle += dx * MOUSE_SENS;
 	if (g_game.player.angle > 2 * PI)
