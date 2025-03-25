@@ -12,9 +12,8 @@ inline void	put_pixel(t_xy coord, int color)
 	y = (int)coord.y;
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
 		return ;
-	dst = g_game.window.frame.adr
-			+ (y * g_game.window.frame.line_length
-			+ x * (g_game.window.frame.bbp / 8));
+	dst = g_game.window.frame.adr + (y * g_game.window.frame.line_length + x
+			* (g_game.window.frame.bbp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -39,48 +38,50 @@ inline void	draw_square(t_xy coord, int height, int width, int color)
 	}
 }
 
-inline void draw_line(t_xy start, t_xy end, int color)
+inline void	draw_line(t_xy start, t_xy end, int color)
 {
-	float dx = end.x - start.x;
-	float dy = end.y - start.y;
-	float step = fmax(fabs(dx), fabs(dy));
-	
-	dx /= step;
-	dy /= step;
-	
-	float x = start.x;
-	float y = start.y;
-	
-	for (int i = 0; i <= step; i++)
+	float	dx;
+	float	dy;
+	float	step;
+	t_xy	coord;
+	int		i;
+
+	step = fmax(fabs(end.x - start.x), fabs(end.y - start.y));
+	dx = (end.x - start.x) / step;
+	dy = (end.y - start.y) / step;
+	coord = start;
+	i = 0;
+	while (i <= step)
 	{
-		put_pixel((t_xy){x, y}, color);
-		x += dx;
-		y += dy;
+		put_pixel(coord, color);
+		coord.x += dx;
+		coord.y += dy;
+		i++;
 	}
 }
 
 //-----------------------
 
-static void	draw_hand()
+static void	draw_hand(void)
 {
-	float speed = 0.05f;
-	int amplitude = 100;
-	static int	old_y = HEIGHT / 2;
+	t_xy			pos;
+	int				hand_y;
+	static int		old_y = HEIGHT / 2;
+	unsigned int	color;
 
-	int hand_y = (HEIGHT / 2) + (int)(cos(g_game.timer * speed) * amplitude);
+	hand_y = (HEIGHT / 2) + (int)(cos(g_game.timer * 0.05f) * 100);
 	if (g_game.key.w || g_game.key.s || g_game.key.d || g_game.key.a)
 		old_y = hand_y;
-	
-	int hand_x = WIDTH - g_game.hand.width;
-	unsigned int color = 0;
-
-	for (int y = 0; y < g_game.hand.height; y++)
+	pos.y = -1;
+	while (++pos.y < g_game.hand.height)
 	{
-		for (int x = 0; x < g_game.hand.width; x++)
+		pos.x = -1;
+		while (++pos.x < g_game.hand.width)
 		{
-			color = get_pixel_color(g_game.hand, (t_xy){x, y});
+			color = get_pixel_color(g_game.hand, pos);
 			if (color != 0xff000000)
-				put_pixel((t_xy){x + hand_x, y + old_y}, color);
+				put_pixel((t_xy){pos.x + (WIDTH - g_game.hand.width), pos.y
+					+ old_y}, color);
 		}
 	}
 }
