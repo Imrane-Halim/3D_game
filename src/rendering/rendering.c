@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-# define __DEBUG__	false
+// # define __DEBUG__	false
 
 inline void	put_pixel(t_xy coord, int color)
 {
@@ -79,7 +79,7 @@ static void	draw_hand()
 		for (int x = 0; x < g_game.hand.width; x++)
 		{
 			color = get_pixel_color(g_game.hand, (t_xy){x, y});
-			if (color != 0xFF000000) // Skip transparent pixels
+			if (color != 0xff000000)
 				put_pixel((t_xy){x + hand_x, y + old_y}, color);
 		}
 	}
@@ -87,12 +87,7 @@ static void	draw_hand()
 
 inline int	render_frame(void)
 {
-#if __DEBUG__
-	// draw_2D_view();
-	draw_3D_view();
-#else
 	draw_textured();
-#endif
 	draw_minimap();
 	draw_hand();
 	mlx_put_image_to_window(g_game.window.mlx, g_game.window.win,

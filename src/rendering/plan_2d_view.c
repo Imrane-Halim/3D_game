@@ -1,3 +1,4 @@
+/*
 #include "cub3d.h"
 
 static t_xy	get_camera_offset()
@@ -122,3 +123,4 @@ inline void	draw_2D_view(void)
 	draw_fov(offset);
 	draw_dir(offset);
 }
+*/
