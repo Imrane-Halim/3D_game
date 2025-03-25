@@ -145,8 +145,9 @@ int		Mouse_input(int x, int y, void *data);
 
 //---------------- player movements
 
-// void	ch_player_pos(int dir);
-// void	ch_player_xangle(float angle);
+void	ch_player_xangle(float angle);
+void	ch_player_pos(int dir, bool is_strafe);
+
 
 //---------------- this where everything stars
 
