@@ -25,6 +25,8 @@ t_image	load_img(char *path)
 	t_image	img;
 
 	img.img = mlx_xpm_file_to_image(g_game.window.mlx, path, &img.width, &img.height);
+	if (!img.img)
+		close_game(EXIT_FAILURE, "Error\nFailed to load texture");
 	img.adr = mlx_get_data_addr(img.img, &img.bbp, &img.line_length, &img.endian);
 	return (img);
 }

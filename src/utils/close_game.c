@@ -20,6 +20,8 @@ void	free_map()
 {
 	int	i;
 
+	if (!g_game.scene.map)
+		return ;
 	i = 0;
 	while (g_game.scene.map[i])
 		free(g_game.scene.map[i++]);
