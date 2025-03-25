@@ -26,11 +26,12 @@ t_image	load_img(char *path)
 
 	img.img = mlx_xpm_file_to_image(g_game.window.mlx, path, &img.width, &img.height);
 	if (!img.img)
-		close_game(EXIT_FAILURE, "Error\nFailed to load texture");
+		close_game(EXIT_FAILURE, TEX_LOAD_ERR);
 	img.adr = mlx_get_data_addr(img.img, &img.bbp, &img.line_length, &img.endian);
 	return (img);
 }
 
+// todo: string literals to constants (macros)
 void	init_textures()
 {
 	g_game.scene.textures.north = load_img("textures/xpm/wall1.xpm");

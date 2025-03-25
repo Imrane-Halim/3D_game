@@ -19,6 +19,9 @@
 # define BACKWARD  -1
 # define MOUSE_SENS	0.001f
 
+// error messages
+# define TEX_LOAD_ERR	"Error\nFailed to load texture"
+
 enum e_keys
 {
 	ESC_KEY = 65307,
