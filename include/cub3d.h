@@ -132,6 +132,7 @@ int		close_game(int code);
 void	init_window();
 void	init_player();
 void	init_game();
+void	init_scene(char *path);
 
 //---------------- events handling stuff
 

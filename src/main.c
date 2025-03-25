@@ -28,13 +28,14 @@ void	start_game()
 
 int main(int ac, char **av)
 {
-	(void)av;
 	if (ac != 2)
 	{
 		printf("usage: ./cub3d <SCENE_PATH>");
 		return (EXIT_FAILURE);
 	}
 	init_game();
+	init_scene(av[1]);
+	init_player();
 	start_game();
 	return (EXIT_SUCCESS);
 }
