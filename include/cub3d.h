@@ -3,7 +3,7 @@
 
 # include <X11/X.h>
 # include <math.h>
-# include "mlx.h"
+# include <mlx.h>
 # include "common.h"
 
 # define PI			3.14159265359
