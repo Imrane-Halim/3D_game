@@ -1,48 +1,47 @@
 #ifndef COMMON_H
 # define COMMON_H
 
-# include <errno.h>
-# include <stdio.h>
-# include <stdbool.h>
 # include "libft.h"
+# include <errno.h>
+# include <stdbool.h>
+# include <stdio.h>
 
 typedef struct s_image
 {
-	void	*img;
-	void	*adr;
-	int		bbp;
-	int		line_length;
-	int		endian;
+	void		*img;
+	void		*adr;
+	int			bbp;
+	int			line_length;
+	int			endian;
 
-	int		width;
-	int		height;
-}	t_image;
+	int			width;
+	int			height;
+}				t_image;
 
 typedef struct s_textures
 {
-	t_image	north;
-	t_image	south;
-	t_image	east;
-	t_image	west;
-	t_image	door;
-}	t_textures;
+	t_image		north;
+	t_image		south;
+	t_image		east;
+	t_image		west;
+	t_image		door;
+}				t_textures;
 
 typedef struct s_scene
 {
-	int	m_width;
-	int	m_height;
-	char **map;
+	int			m_width;
+	int			m_height;
+	char		**map;
 
 	// things like floor, ceiling color, player direction
 	// wall images... etc will be added later
+	int			ceiling_color;
+	int			floor_color;
 
-	int	ceiling_color;
-	int	floor_color;
+	t_textures	textures;
 
-	t_textures textures;
-	
-} t_scene;
+}				t_scene;
 
-t_scene	parse_map(char *path);
+t_scene			parse_map(char *path);
 
 #endif
