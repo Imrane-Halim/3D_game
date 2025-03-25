@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cast_ray.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/25 19:23:38 by imrane            #+#    #+#             */
+/*   Updated: 2025/03/25 19:28:08 by imrane           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-inline char obj_hit(t_xy cord)
+inline char	obj_hit(t_xy cord)
 {
-	int map_x = (int)(cord.x / TILESIZE);
-	int map_y = (int)(cord.y / TILESIZE);
-	
+	int	map_x;
+	int	map_y;
+
+	map_x = (int)(cord.x / TILESIZE);
+	map_y = (int)(cord.y / TILESIZE);
 	if (map_y < 0 || map_y >= g_game.scene.m_height)
 		return (0);
 	if (map_x < 0 || map_x >= (int)ft_strlen(g_game.scene.map[map_y]))
@@ -12,79 +26,76 @@ inline char obj_hit(t_xy cord)
 	return (g_game.scene.map[map_y][map_x]);
 }
 
-inline float	distance(t_xy a, t_xy b)
+inline t_ray	get_hit(t_ray A, t_xy step)
 {
-	return (sqrt((b.x - a.x) * (b.x - a.x) + (b.y - a.y) * (b.y - a.y)));
-}
-
-inline t_ray    get_hit(t_ray A, t_xy step)
-{
-    while (true)
+	while (true)
 	{
 		if (obj_hit(A.hit) == 'D')
 			A.dir = DOOR;
 		if (obj_hit(A.hit) != '0' && obj_hit(A.hit) != 'O')
-			break;
+			break ;
 		A.hit.x += step.x;
 		A.hit.y += step.y;
 	}
-    return (A);
+	return (A);
 }
 
-inline t_ray find_vertical_hit(t_xy p, float angle)
+inline t_ray	find_vertical_hit(t_xy p, float angle)
 {
-	t_ray	A;
+	t_ray	first_hit;
 	t_xy	step;
 
 	if (cos(angle) > 0)
 	{
-		A.hit.x = floor(p.x / TILESIZE) * TILESIZE + TILESIZE;
-		A.dir = EAST;
+		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE + TILESIZE;
+		first_hit.dir = EAST;
 		step.x = TILESIZE;
 	}
 	else
 	{
-		A.hit.x = floor(p.x / TILESIZE) * TILESIZE - 0.0001;
-		A.dir = WEST;
+		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE - 0.0001;
+		first_hit.dir = WEST;
 		step.x = -TILESIZE;
 	}
-	A.hit.y = p.y + (A.hit.x - p.x) * tan(angle);
+	first_hit.hit.y = p.y + (first_hit.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
-	A = get_hit(A, step);
-	return (A);
+	first_hit = get_hit(first_hit, step);
+	return (first_hit);
 }
 
-inline t_ray find_horizontal_hit(t_xy p, float angle)
+inline t_ray	find_horizontal_hit(t_xy p, float angle)
 {
-	t_ray	A;
+	t_ray	first_hit;
 	t_xy	step;
 
 	if (sin(angle) > 0)
 	{
-		A.hit.y = floor(p.y / TILESIZE) * TILESIZE + TILESIZE;
-		A.dir = SOUTH;
+		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE + TILESIZE;
+		first_hit.dir = SOUTH;
 		step.y = TILESIZE;
 	}
 	else
 	{
-		A.hit.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
-		A.dir = NORTH;
+		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
+		first_hit.dir = NORTH;
 		step.y = -TILESIZE;
 	}
-	A.hit.x = p.x + (A.hit.y - p.y) / tan(angle);
+	first_hit.hit.x = p.x + (first_hit.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
-	A = get_hit(A, step);
-	return (A);
+	first_hit = get_hit(first_hit, step);
+	return (first_hit);
 }
 
 // note: angle is in radian
 inline t_ray	cast_ray(float angle)
 {
-	t_xy player = g_game.player.pos;
+	t_xy	player;
+	t_ray	vert_hit;
+	t_ray	horiz_hit;
 
-	t_ray vert_hit = find_vertical_hit(player, angle);
-	t_ray horiz_hit = find_horizontal_hit(player, angle);
-
+	player = g_game.player.pos;
+	vert_hit = find_vertical_hit(player, angle);
+	horiz_hit = find_horizontal_hit(player, angle);
 	if (distance(player, vert_hit.hit) < distance(player, horiz_hit.hit))
 		return (vert_hit);
 	return (horiz_hit);
