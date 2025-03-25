@@ -122,6 +122,8 @@ typedef struct s_casted_ray
 	float	dist;
 	float	slice_hieght;
 	int		ray_num;
+	int		wall_top;
+	int		wall_bottom;
 }	t_casted_ray;
 
 //---------------------------
