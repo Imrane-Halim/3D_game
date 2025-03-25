@@ -125,7 +125,7 @@ typedef struct s_casted_ray
 
 //---------------- memory managment
 
-int		close_game(int code);
+int		close_game(int code, char *message);
 
 //---------------- initialazation
 

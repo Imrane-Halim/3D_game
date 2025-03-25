@@ -85,7 +85,7 @@ void	ch_player_xangle(float angle)
 int 	handle_key(int keynum, bool is_pressed)
 {
 	if (keynum == ESC_KEY && is_pressed)
-		close_game(0);
+		close_game(0, NULL);
 	else if (keynum == UP_KEY)
 		g_game.key.up = is_pressed;
 	else if (keynum == DOWN_KEY)
