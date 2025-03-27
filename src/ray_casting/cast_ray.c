@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:23:38 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/25 19:28:08 by imrane           ###   ########.fr       */
+/*   Updated: 2025/03/27 21:28:01 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ inline char	obj_hit(t_xy cord)
 
 	map_x = (int)(cord.x / TILESIZE);
 	map_y = (int)(cord.y / TILESIZE);
-	if (map_y < 0 || map_y >= g_game.scene.m_height)
+	if (map_y < 0 || map_y >= g_game()->scene.m_height)
 		return (0);
-	if (map_x < 0 || map_x >= (int)ft_strlen(g_game.scene.map[map_y]))
+	if (map_x < 0 || map_x >= (int)ft_strlen(g_game()->scene.map[map_y]))
 		return (0);
-	return (g_game.scene.map[map_y][map_x]);
+	return (g_game()->scene.map[map_y][map_x]);
 }
 
 inline t_ray	get_hit(t_ray A, t_xy step)
@@ -93,7 +93,7 @@ inline t_ray	cast_ray(float angle)
 	t_ray	vert_hit;
 	t_ray	horiz_hit;
 
-	player = g_game.player.pos;
+	player = g_game()->player.pos;
 	vert_hit = find_vertical_hit(player, angle);
 	horiz_hit = find_horizontal_hit(player, angle);
 	if (distance(player, vert_hit.hit) < distance(player, horiz_hit.hit))

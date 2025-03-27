@@ -5,8 +5,8 @@ static t_xy	get_camera_offset()
 {
 	t_xy	offset;
 
-	offset.x = WIDTH / 2 - g_game.player.pos.x;
-	offset.y = HEIGHT / 2 - g_game.player.pos.y;
+	offset.x = WIDTH / 2 - g_game()->player.pos.x;
+	offset.y = HEIGHT / 2 - g_game()->player.pos.y;
 
 	return (offset);
 }
@@ -47,12 +47,12 @@ static void	draw_map(t_xy offset)
 	t_xy	pos;
 	
 	y = 0;
-	while (g_game.scene.map[y])
+	while (g_game()->scene.map[y])
 	{
 		x = 0;
-		while (g_game.scene.map[y][x])
+		while (g_game()->scene.map[y][x])
 		{
-			if (g_game.scene.map[y][x] == '1')
+			if (g_game()->scene.map[y][x] == '1')
 			{
 				pos.y = y * TILESIZE;
 				pos.x = x * TILESIZE;
@@ -69,7 +69,7 @@ static void	draw_player(t_xy offset)
 {
 	t_xy	pos;
 
-	pos = applay_offset(g_game.player.pos, offset);
+	pos = applay_offset(g_game()->player.pos, offset);
 	pos.x -= 8;
 	pos.y -= 8;
 	draw_square(pos, 16, 16, 0xe60b3e);
@@ -84,13 +84,13 @@ static void	draw_fov(t_xy offset)
 	float	s_angle;
 	float	e_angle;
 
-	s_angle = g_game.player.angle - (FOV * PI / 180) / 2;
-	e_angle = g_game.player.angle + (FOV * PI / 180) / 2;
-	// step = (FOV * PI / 180) / g_game.n_rays;
+	s_angle = g_game()->player.angle - (FOV * PI / 180) / 2;
+	e_angle = g_game()->player.angle + (FOV * PI / 180) / 2;
+	// step = (FOV * PI / 180) / g_game()->n_rays;
 	step = 0.001;
 	while (s_angle < e_angle)
 	{
-		start = applay_offset(g_game.player.pos, offset);
+		start = applay_offset(g_game()->player.pos, offset);
 		end = applay_offset(cast_ray(s_angle).hit, offset);
 		draw_line(start, end, 0x02cf0c);
 		s_angle += step;
@@ -105,9 +105,9 @@ static void	draw_dir(t_xy offset)
 	float	line_lenght;
 
 	line_lenght = 100;
-	start = applay_offset(g_game.player.pos, offset);
-	end.x = g_game.player.pos.x + cos(g_game.player.angle) * line_lenght;
-	end.y = g_game.player.pos.y + sin(g_game.player.angle) * line_lenght;
+	start = applay_offset(g_game()->player.pos, offset);
+	end.x = g_game()->player.pos.x + cos(g_game()->player.angle) * line_lenght;
+	end.y = g_game()->player.pos.y + sin(g_game()->player.angle) * line_lenght;
 	end = applay_offset(end, offset);
 	draw_line(start, end, 0xe60b3e);
 }

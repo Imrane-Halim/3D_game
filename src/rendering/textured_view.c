@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/25 19:21:45 by imrane           ###   ########.fr       */
+/*   Updated: 2025/03/27 21:28:01 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ static inline void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 {
 	t_casted_ray	cray;
 
-	cray.dist = distance(g_game.player.pos, ray.hit)
-		* cos(ray_angle - g_game.player.angle);
+	cray.dist = distance(g_game()->player.pos, ray.hit)
+		* cos(ray_angle - g_game()->player.angle);
 	cray.slice_hieght = (TILESIZE / cray.dist)
 		* ((WIDTH / 2) / tan(FOV * PI / 360));
 	cray.ray_num = ray_num;
@@ -85,15 +85,15 @@ static inline void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 		cray.wall_top = 0;
 	if (cray.wall_bottom >= HEIGHT)
 		cray.wall_bottom = HEIGHT - 1;
-	cray.tex = g_game.scene.textures.door;
+	cray.tex = g_game()->scene.textures.door;
 	if (ray.dir == NORTH)
-		cray.tex = g_game.scene.textures.north;
+		cray.tex = g_game()->scene.textures.north;
 	else if (ray.dir == SOUTH)
-		cray.tex = g_game.scene.textures.south;
+		cray.tex = g_game()->scene.textures.south;
 	else if (ray.dir == EAST)
-		cray.tex = g_game.scene.textures.east;
+		cray.tex = g_game()->scene.textures.east;
 	else if (ray.dir == WEST)
-		cray.tex = g_game.scene.textures.west;
+		cray.tex = g_game()->scene.textures.west;
 	draw_tex_slice(cray, cray.wall_bottom, cray.wall_top);
 }
 
@@ -105,13 +105,13 @@ inline void	draw_textured(void)
 	float	angle_step;
 	int		i;
 
-	draw_square((t_xy){0, 0}, HEIGHT / 2, WIDTH, g_game.scene.ceiling_color);
+	draw_square((t_xy){0, 0}, HEIGHT / 2, WIDTH, g_game()->scene.ceiling_color);
 	draw_square((t_xy){0, HEIGHT / 2}, HEIGHT / 2, WIDTH,
-		g_game.scene.floor_color);
+		g_game()->scene.floor_color);
 	i = 0;
-	s_angle = g_game.player.angle - (FOV * PI / 180) / 2;
-	angle_step = (FOV * PI / 180) / g_game.n_rays;
-	while (i < g_game.n_rays)
+	s_angle = g_game()->player.angle - (FOV * PI / 180) / 2;
+	angle_step = (FOV * PI / 180) / g_game()->n_rays;
+	while (i < g_game()->n_rays)
 	{
 		ray_angle = s_angle + i * angle_step;
 		ray = cast_ray(ray_angle);

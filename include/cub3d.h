@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/25 19:21:17 by imrane           ###   ########.fr       */
+/*   Updated: 2025/03/27 21:48:37 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define TITLE "Cub3D"
 
 # define FOV 60
-# define POS_STEP 4
-# define AGL_STEP 0.02
+# define POS_STEP 8
+# define AGL_STEP 0.04
 # define FORWARD 1
 # define BACKWARD -1
 # define MOUSE_SENS 0.001f
@@ -107,7 +107,7 @@ typedef struct s_game
 	int				timer;
 }					t_game;
 
-extern t_game		g_game;
+t_game				*g_game(void);
 
 //---------------------------
 typedef enum e_dirs

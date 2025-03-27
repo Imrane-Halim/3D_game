@@ -3,9 +3,9 @@
 
 static void	draw_floor_ceiling()
 {
-	draw_square((t_xy){0, 0}, HEIGHT / 2, WIDTH, g_game.scene.ceiling_color);
+	draw_square((t_xy){0, 0}, HEIGHT / 2, WIDTH, g_game()->scene.ceiling_color);
 	draw_square((t_xy){0, HEIGHT / 2}, HEIGHT / 2,
-		WIDTH, g_game.scene.floor_color);
+		WIDTH, g_game()->scene.floor_color);
 }
 
 static int		shade_color(int color, float dist)
@@ -19,8 +19,8 @@ static int		shade_color(int color, float dist)
 
 static void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 {
-	float	dist = distance(g_game.player.pos, ray.hit)
-		* cos(ray_angle - g_game.player.angle);
+	float	dist = distance(g_game()->player.pos, ray.hit)
+		* cos(ray_angle - g_game()->player.angle);
 	float	wall_height = (TILESIZE / dist) 
 		* ((WIDTH / 2) / tan(FOV * PI / 360));
 	int		wall_top = (HEIGHT - wall_height) / 2;
@@ -57,9 +57,9 @@ inline void	draw_3D_view(void)
 	int		i;
 
 	i = 0;
-	s_angle = g_game.player.angle - (FOV * PI / 180) / 2;
-	angle_step = (FOV * PI / 180) / g_game.n_rays;
-	while (i < g_game.n_rays)
+	s_angle = g_game()->player.angle - (FOV * PI / 180) / 2;
+	angle_step = (FOV * PI / 180) / g_game()->n_rays;
+	while (i < g_game()->n_rays)
 	{
 		ray_angle = s_angle + i * angle_step;
 		ray = cast_ray(ray_angle);
