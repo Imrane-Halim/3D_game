@@ -1,15 +1,5 @@
 #include "cub3d.h"
 
-void	init_player(void)
-{
-	// convert degree to radian
-	g_game()->player.fov = FOV * (PI / 180);
-	// this will change after parsing is done
-	// for example if stat is 64x64 add 1 to be 65x64
-	g_game()->player.pos.x = 64;
-	g_game()->player.pos.y = 64;
-}
-
 void	init_scene(char *path)
 {
 	t_game		*game;

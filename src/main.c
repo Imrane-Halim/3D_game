@@ -7,6 +7,14 @@ inline t_game	*g_game(void)
 	return (&game);
 }
 
+void	init_game(void)
+{
+	g_game()->n_rays = WIDTH;
+	init_window();
+	init_textures();
+	init_minimap();
+}
+
 int	game_loop(void)
 {
 	g_game()->timer++;

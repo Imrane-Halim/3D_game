@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:36:27 by imrane           ###   ########.fr       */
+/*   Updated: 2025/04/05 14:59:38 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ void	init_textures(void)
 	g_game()->hand = load_img("textures/xpm/hand.xpm");
 }
 
-void	init_game(void)
+void	init_player(void)
 {
-	g_game()->n_rays = WIDTH;
-	init_window();
-	init_textures();
-	init_minimap();
+	// convert degree to radian
+	g_game()->player.fov = FOV * (PI / 180);
+	// this will change after parsing is done
+	// for example if stat is 64x64 add 1 to be 65x64
+	g_game()->player.pos.x = 64;
+	g_game()->player.pos.y = 64;
 }

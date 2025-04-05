@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 11:47:11 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:00:42 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ void				init_window(void);
 void				init_player(void);
 void				init_game(void);
 void				init_scene(char *path);
+void				init_minimap(void);
+void				init_textures(void);
 
 //---------------- events handling stuff
 
