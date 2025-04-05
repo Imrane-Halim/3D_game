@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:47 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:47:04 by imrane           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:11:35 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ inline void	draw_line(t_xy start, t_xy end, int color)
 
 //-----------------------
 
-static void	draw_hand(void)
+static inline void	draw_hand(void)
 {
 	t_xy			pos;
 	int				hand_y;

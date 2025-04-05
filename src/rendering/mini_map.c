@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:53 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 15:03:10 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:10:35 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // 	return (offset);
 // }
 
-static t_xy	applay_offset(t_xy pos, t_xy offset)
+static inline t_xy	applay_offset(t_xy pos, t_xy offset)
 {
 	return ((t_xy){pos.x + offset.x + g_game()->minimap.pos.x, pos.y + offset.y
 		+ g_game()->minimap.pos.y});
@@ -84,7 +84,7 @@ static inline void	draw_map(t_xy offset)
 // 	draw_square(pos, 5, 5, 0xe60b3e);
 // }
 
-void	draw_dir(t_xy offset)
+static inline void	draw_dir(t_xy offset)
 {
 	t_xy	start;
 	t_xy	pos;
