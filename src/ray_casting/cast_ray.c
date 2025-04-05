@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:23:38 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:28:01 by imrane           ###   ########.fr       */
+/*   Updated: 2025/04/05 11:38:52 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ inline char	obj_hit(t_xy cord)
 	return (g_game()->scene.map[map_y][map_x]);
 }
 
-inline t_ray	get_hit(t_ray A, t_xy step)
+static inline t_ray	get_hit(t_ray A, t_xy step)
 {
 	while (true)
 	{
@@ -40,7 +40,7 @@ inline t_ray	get_hit(t_ray A, t_xy step)
 	return (A);
 }
 
-inline t_ray	find_vertical_hit(t_xy p, float angle)
+static inline t_ray	find_vertical_hit(t_xy p, float angle)
 {
 	t_ray	first_hit;
 	t_xy	step;
@@ -59,11 +59,10 @@ inline t_ray	find_vertical_hit(t_xy p, float angle)
 	}
 	first_hit.hit.y = p.y + (first_hit.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
-	first_hit = get_hit(first_hit, step);
-	return (first_hit);
+	return get_hit(first_hit, step);
 }
 
-inline t_ray	find_horizontal_hit(t_xy p, float angle)
+static inline t_ray	find_horizontal_hit(t_xy p, float angle)
 {
 	t_ray	first_hit;
 	t_xy	step;
@@ -82,8 +81,7 @@ inline t_ray	find_horizontal_hit(t_xy p, float angle)
 	}
 	first_hit.hit.x = p.x + (first_hit.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
-	first_hit = get_hit(first_hit, step);
-	return (first_hit);
+	return get_hit(first_hit, step);
 }
 
 // note: angle is in radian
