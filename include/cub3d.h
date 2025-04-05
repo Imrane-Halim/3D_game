@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 11:43:52 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/05 11:47:11 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ typedef struct s_game
 	int				timer;
 }					t_game;
 
-t_game				*g_game(void);
-
 //---------------------------
 typedef enum e_dirs
 {
@@ -137,6 +135,7 @@ typedef struct s_casted_ray
 }					t_casted_ray;
 
 //---------------------------
+t_game				*g_game(void);
 
 //---------------- memory managment
 
@@ -182,9 +181,9 @@ void				draw_square(t_xy coord, int height, int width, int color);
 void				draw_line(t_xy start, t_xy end, int color);
 
 // these 2 are for debuging or learining
-// purposes only no textures, nothing
-void				draw_2D_view(void);
-void				draw_3D_view(void);
+// purposes only no textures, nothing :)
+//void				draw_2D_view(void);
+//void				draw_3D_view(void);
 
 void				draw_textured(void);
 
