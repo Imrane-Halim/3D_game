@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 15:00:42 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:02:41 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_casted_ray
 }					t_casted_ray;
 
 //---------------------------
+
 t_game				*g_game(void);
 
 //---------------- memory managment
@@ -164,7 +165,7 @@ int					mouse_input(int x, int y, void *data);
 void				ch_player_xangle(float angle);
 void				ch_player_pos(int dir, bool is_strafe);
 
-//---------------- this where everything stars
+//---------------- here where everything stars
 
 void				start_game(void);
 
@@ -183,7 +184,7 @@ void				draw_square(t_xy coord, int height, int width, int color);
 void				draw_line(t_xy start, t_xy end, int color);
 
 // these 2 are for debuging or learining
-// purposes only no textures, nothing :)
+// purposes only, no textures, nothing :)
 //void				draw_2D_view(void);
 //void				draw_3D_view(void);
 

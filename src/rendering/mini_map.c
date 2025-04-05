@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   mini_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:53 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:46:36 by imrane           ###   ########.fr       */
+/*   Updated: 2025/04/05 15:03:10 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 #define MIN_TILZESIZE 10
-// MIN_TILZESIZE / TILESIZE
+// SCALE MIN_TILZESIZE / TILESIZE
 #define SCALE 0.15625
 #define BOUND_CLR 0x00ff00
 #define BOUND_THIK 9
