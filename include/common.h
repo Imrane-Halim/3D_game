@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:19 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/25 19:21:20 by imrane           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:39:44 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 typedef struct s_image
 {
+	char		*path;
+	
 	void		*img;
 	void		*adr;
 	int			bbp;

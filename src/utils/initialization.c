@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 14:59:38 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/08 11:47:22 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,12 @@ t_image	load_img(char *path)
 // todo: string literals to constants (macros)
 void	init_textures(void)
 {
-	g_game()->scene.textures.north = load_img("textures/xpm/wall1.xpm");
-	g_game()->scene.textures.south = load_img("textures/xpm/wall2.xpm");
-	g_game()->scene.textures.east = load_img("textures/xpm/wall3.xpm");
-	g_game()->scene.textures.west = load_img("textures/xpm/wall4.xpm");
-	g_game()->scene.textures.door = load_img("textures/xpm/door.xpm");
-	g_game()->hand = load_img("textures/xpm/hand.xpm");
+	g_game()->scene.textures.north = load_img(g_game()->scene.textures.north.path);
+	g_game()->scene.textures.south = load_img(g_game()->scene.textures.south.path);
+	g_game()->scene.textures.east = load_img(g_game()->scene.textures.east.path);
+	g_game()->scene.textures.west = load_img(g_game()->scene.textures.west.path);
+	g_game()->scene.textures.door = load_img(g_game()->scene.textures.door.path);
+	g_game()->hand = load_img(g_game()->hand.path);
 }
 
 void	init_player(void)

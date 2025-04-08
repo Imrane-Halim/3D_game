@@ -49,8 +49,8 @@ int	main(int ac, char **av)
 		printf("usage: ./cub3d <SCENE_PATH>");
 		return (EXIT_FAILURE);
 	}
-	init_game();
 	init_scene(av[1]);
+	init_game();
 	init_player();
 	start_game();
 	return (EXIT_SUCCESS);

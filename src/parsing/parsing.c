@@ -33,4 +33,11 @@ void	init_scene(char *path)
 	game->scene.m_height = 12;
 	game->scene.floor_color = 0x292929;
 	game->scene.ceiling_color = 0x4a4a4a;
+
+	game->scene.textures.north.path = "textures/xpm/wall1.xpm";
+	game->scene.textures.south.path = "textures/xpm/wall2.xpm";
+	game->scene.textures.east.path = "textures/xpm/wall3.xpm";
+	game->scene.textures.west.path = "textures/xpm/wall4.xpm";
+	game->scene.textures.door.path = "textures/xpm/door.xpm";
+	game->hand.path = "textures/xpm/hand.xpm";
 }
