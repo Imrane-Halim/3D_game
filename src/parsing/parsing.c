@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_scene(char *path)
+void	init_scene(char *scene_path)
 {
 	t_game		*game;
 	static char	*map[] = {
@@ -18,9 +18,11 @@ void	init_scene(char *path)
 			"11111111111111111111111111111",
 			NULL};
 
-	(void)path;
+	(void)scene_path;
 	// todo:
 	// g_game()->scene = parse_map(path);
+	// I used allocated memory insted of just passing the static poiner
+	// bcz of string litteral
 	game = g_game();
 	game->scene.map = ft_calloc(13, sizeof(char *));
 	for (int i = 0; i < 12; i++)
@@ -34,6 +36,7 @@ void	init_scene(char *path)
 	game->scene.floor_color = 0x292929;
 	game->scene.ceiling_color = 0x4a4a4a;
 
+	// this will be changed after parsing is done to by dynamic
 	game->scene.textures.north.path = "textures/xpm/wall1.xpm";
 	game->scene.textures.south.path = "textures/xpm/wall2.xpm";
 	game->scene.textures.east.path = "textures/xpm/wall3.xpm";
