@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 15:02:41 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/17 14:45:02 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int					close_game(int code, char *message);
 //---------------- initialazation
 
 void				init_window(void);
-void				init_player(void);
+void				init_player(t_xy start_pos, float start_angle);
 void				init_game(void);
 void				init_scene(char *path);
 void				init_minimap(void);

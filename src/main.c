@@ -51,7 +51,6 @@ int	main(int ac, char **av)
 	}
 	init_scene(av[1]);
 	init_game();
-	init_player();
 	start_game();
 	return (EXIT_SUCCESS);
 }

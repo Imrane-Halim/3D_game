@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/08 11:47:22 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/04/17 14:44:11 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ void	init_textures(void)
 	g_game()->hand = load_img(g_game()->hand.path);
 }
 
-void	init_player(void)
+void	init_player(t_xy start_pos, float start_angle)
 {
 	// convert degree to radian
 	g_game()->player.fov = FOV * (PI / 180);
 	// this will change after parsing is done
 	// for example if stat is 64x64 add 1 to be 65x64
-	g_game()->player.pos.x = 64;
-	g_game()->player.pos.y = 64;
+	g_game()->player.pos = start_pos;
+	g_game()->player.angle = start_angle;
 }

@@ -22,7 +22,7 @@ void	init_scene(char *scene_path)
 	// todo:
 	// g_game()->scene = parse_map(path);
 	// I used allocated memory insted of just passing the static poiner
-	// bcz of string litteral
+	// bcz of string litteral (segfaults)
 	game = g_game();
 	game->scene.map = ft_calloc(13, sizeof(char *));
 	for (int i = 0; i < 12; i++)
@@ -36,11 +36,14 @@ void	init_scene(char *scene_path)
 	game->scene.floor_color = 0x292929;
 	game->scene.ceiling_color = 0x4a4a4a;
 
-	// this will be changed after parsing is done to by dynamic
+	// this will be changed after parsing is done to be dynamic
 	game->scene.textures.north.path = "textures/xpm/wall1.xpm";
 	game->scene.textures.south.path = "textures/xpm/wall2.xpm";
 	game->scene.textures.east.path = "textures/xpm/wall3.xpm";
 	game->scene.textures.west.path = "textures/xpm/wall4.xpm";
 	game->scene.textures.door.path = "textures/xpm/door.xpm";
 	game->hand.path = "textures/xpm/hand.xpm";
+
+	// parse player pos and looking angle
+	init_player((t_xy){67, 67}, 0);
 }
