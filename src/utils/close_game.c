@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:13:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:42:56 by imrane           ###   ########.fr       */
+/*   Updated: 2025/04/22 15:32:07 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	free_map(void)
 
 int	close_game(int code, char *message)
 {
-	if (message)
+	if (code && message)
 		ft_putendl_fd(message, STDERR_FILENO);
 	free_map();
 	destroy_images();
