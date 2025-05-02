@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_char.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/29 20:01:26 by ael-aiss          #+#    #+#             */
+/*   Updated: 2025/05/02 11:49:50 by ael-aiss         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+bool	check_zero(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0' && (j == 0 || !map[i][j + 1]))
+				return (false);
+			if (map[i][j] == '0' && j > 0 && map[i][j - 1] == ' ')
+				return (false);
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	other_char(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (!is_player_char(map[i][j]) && map[i][j] != '0' &&
+				map[i][j] != '1' && map[i][j] != ' ')
+				return (false);
+			j++;
+		}
+		i++;
+	}
+	return (true);
+}
+
+bool	check_char(char **map)
+{
+	int	i;
+	int	j;
+	int	check;
+
+	i = 0;
+	j = 0;
+	check = 0;
+	if (!other_char(map) || !check_zero(map))
+		return (false);
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (is_player_char(map[i][j]))
+				check++;
+			j++;
+		}
+		i++;
+	}
+	if (check != 1)
+		return (false);
+	return (true);
+}

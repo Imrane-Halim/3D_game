@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   set_position.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 20:01:42 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/02 13:56:33 by ael-aiss         ###   ########.fr       */
+/*   Created: 2025/05/02 11:02:42 by ael-aiss          #+#    #+#             */
+/*   Updated: 2025/05/02 11:50:34 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_scene	*parse_map(char *path)
+bool	is_player_char(char c)
 {
-	t_scene	*scene;
-	char	*content;
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
 
-	if (!path)
-		return (NULL);
-	if (!check_extension(path))
+void	set_player_position(char **string, int *i, int *j)
+{
+	int	row;
+	int	col;
+
+	row = 0;
+	while (string[row])
 	{
-		printf("Invalid extention.\n");
-		return (NULL);
+		col = 0;
+		while (string[row][col])
+		{
+			if (is_player_char(string[row][col]))
+			{
+				*i = row;
+				*j = col;
+				return ;
+			}
+			col++;
+		}
+		row++;
 	}
-	content = file_to_string(path);
-	if (!content)
-		return (NULL);
-	scene = init_scene(content);
-	free(content);
-	return (scene);
+	*i = -1;
+	*j = -1;
 }

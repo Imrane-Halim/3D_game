@@ -1,33 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 20:01:42 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/02 13:56:33 by ael-aiss         ###   ########.fr       */
+/*   Created: 2025/05/02 11:50:11 by ael-aiss          #+#    #+#             */
+/*   Updated: 2025/05/02 11:50:12 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_scene	*parse_map(char *path)
+t_scene	*init_scene(char *content)
 {
 	t_scene	*scene;
-	char	*content;
+	char	**paths;
+	char	**colors;
+	char	**map;
+	int		i;
 
-	if (!path)
+	i = 0;
+	scene = malloc(sizeof(t_scene));
+	if (!scene)
 		return (NULL);
-	if (!check_extension(path))
+	paths = get_paths_textures(content, &i);
+	colors = get_colors(content, &i);
+	map = get_map(content, &i);
+	if (!paths || !map || !colors)
 	{
-		printf("Invalid extention.\n");
+		free_variables(colors, map, paths);
+		free(scene);
 		return (NULL);
 	}
-	content = file_to_string(path);
-	if (!content)
-		return (NULL);
-	scene = init_scene(content);
-	free(content);
+	scene->map = map;
+	set_paths_textures(&scene, paths);
+	set_height_width(scene);
+	set_colors(scene, colors);
 	return (scene);
 }

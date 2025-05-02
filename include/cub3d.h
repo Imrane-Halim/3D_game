@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/17 14:45:02 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/02 11:45:21 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "common.h"
 # include <X11/X.h>
+# include <fcntl.h>
 # include <math.h>
-# include <mlx.h>
+// # include <mlx.h>
 
 # define PI 3.14159265359
 # define WIDTH 1366
@@ -134,6 +135,10 @@ typedef struct s_casted_ray
 	int				wall_bottom;
 }					t_casted_ray;
 
+//===============parising======================
+
+//===============================================
+
 //---------------------------
 
 t_game				*g_game(void);
@@ -147,7 +152,6 @@ int					close_game(int code, char *message);
 void				init_window(void);
 void				init_player(t_xy start_pos, float start_angle);
 void				init_game(void);
-void				init_scene(char *path);
 void				init_minimap(void);
 void				init_textures(void);
 

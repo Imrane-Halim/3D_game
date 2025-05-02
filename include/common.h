@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:19 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/08 11:39:44 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/02 11:45:56 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 typedef struct s_image
 {
 	char		*path;
-	
+
 	void		*img;
 	void		*adr;
 	int			bbp;
@@ -46,16 +46,9 @@ typedef struct s_scene
 	int			m_width;
 	int			m_height;
 	char		**map;
-
-	// things like floor, ceiling color, player direction
-	// wall images... etc will be added later
 	int			ceiling_color;
 	int			floor_color;
-
 	t_textures	textures;
-
 }				t_scene;
-
-t_scene			parse_map(char *path);
 
 #endif
