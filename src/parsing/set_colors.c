@@ -6,11 +6,11 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:53:15 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/02 11:57:29 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 void	set_colors(t_scene *scene, char **colors)
 {

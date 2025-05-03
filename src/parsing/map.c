@@ -6,11 +6,11 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:49:44 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/02 11:49:45 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 void	set_height_width(t_scene *scene)
 {

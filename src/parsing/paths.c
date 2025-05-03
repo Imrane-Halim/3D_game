@@ -6,11 +6,11 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:42:54 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/02 13:57:41 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 bool	extract_paths(char **paths)
 {

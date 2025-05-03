@@ -6,11 +6,11 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:43:07 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/02 13:50:09 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/03 12:45:55 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "parsing.h"
 
 char	**get_colors_2(char *content, int *i)
 {
@@ -65,7 +65,7 @@ bool	is_valid_rgb_component(int *rgb)
 	i = 0;
 	while (i < 3)
 	{
-		vallue = rgb[i];
+		value = rgb[i];
 		if (value >= 0 && value <= 255)
 			return (false);
 		i++;
@@ -95,7 +95,7 @@ bool	convert_colors_to_int(char **colors, int *rgb)
 		t_rgb[2] = atoi(split[2]);
 		if (!is_valid_rgb_component(t_rgb))
 			return (false);
-		rgb[i] = (r << 16) | (g << 8) | b;
+		rgb[i] = (t_rgb[0] << 16) | (t_rgb[0] << 8) | t_rgb[0];
 		free_2d_array(split);
 		i++;
 	}
