@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 09:05:51 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/04 10:09:36 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ bool	check_size(char **map)
 
 	count_dimensions(map, &height, &width, &min);
 	if (height < 3 || width < 3 || min < 3)
+	{
+		printf("Both the width and height of the map must be greater than 3\n");
 		return (false);
+	}
 	return (true);
 }
 

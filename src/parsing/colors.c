@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:43:07 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/03 12:45:55 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/04 11:08:19 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	count_commas(const char *str)
 	{
 		if (*str == ',')
 			count++;
-		if ((*str > 9 || *str < 0) && *str != ',')
+		if ((*str > '9' || *str < '0') && *str != ',')
 			return (10);
 		str++;
 	}
@@ -66,8 +66,11 @@ bool	is_valid_rgb_component(int *rgb)
 	while (i < 3)
 	{
 		value = rgb[i];
-		if (value >= 0 && value <= 255)
+		if (value < 0 || value > 255)
+		{
+			printf("Invalid color value: %d. It should be between 0 and 255.\n", value);
 			return (false);
+		}
 		i++;
 	}
 	return (true);
@@ -109,13 +112,16 @@ char	**get_colors(char *content, int *i)
 
 	colors = get_colors_2(content, i);
 	if (!colors)
+	{
+		printf("Cannot get colors from the file.\n");
 		return (NULL);
+	}
 	if (!edit_colors(&colors))
 	{
 		free_2d_array(colors);
 		colors = NULL;
 	}
-	if (!convert_colors_to_int(colors, rgb))
+	if (!colors || !convert_colors_to_int(colors, rgb))
 	{
 		free_2d_array(colors);
 		colors = NULL;

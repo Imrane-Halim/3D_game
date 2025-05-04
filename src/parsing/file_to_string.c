@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:50:06 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/04 10:36:06 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,10 @@ char	*file_to_string(char *path)
 		return (NULL);
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
+	{
+		printf("File does not exist.\n");
 		return (NULL);
+	}
 	content = NULL;
 	b_read = read(fd, tmp, 1);
 	while (b_read > 0)

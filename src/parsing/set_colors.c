@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:53:15 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/04 11:05:35 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,15 @@ void	set_colors(t_scene *scene, char **colors)
 bool	check_prefix_colors(char **colors)
 {
 	if (!check(colors[0], "F"))
+	{
+		printf("Error: Prefix must be \'F\'\n");
 		return (false);
+	}
 	if (!check(colors[1], "C"))
+	{
+		printf("Error: Prefix must be \'C\'\n");
 		return (false);
+	}
 	return (true);
 }
 
@@ -72,11 +78,15 @@ bool	check_colors(char **colors)
 	{
 		tmp = ft_strchr(colors[0], ' ');
 		if (!tmp || !*tmp)
+		{
+			printf("Colors must be written like this: F/C R,G,B\n");
 			return (false);
+		}
 		free(colors[i]);
 		colors[i] = ft_strdup(tmp);
 		if (!colors[i])
 		{
+			printf("Colors must be written like this: F/C R,G,B\n");
 			free_2d_array(colors);
 			return (false);
 		}

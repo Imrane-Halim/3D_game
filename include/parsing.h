@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:13 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/03 12:48:28 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/04 10:30:18 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "common.h"
 # include "cub3d.h"
 
-t_scene	*parse_map(char *path);
 
 void	free_scene(t_scene *scene);
 bool	check(char *str, char *prefix);

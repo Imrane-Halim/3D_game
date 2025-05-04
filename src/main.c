@@ -50,7 +50,17 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	//init_scene(av[1]);
-	//init_game();
-	//start_game();
+	t_scene *scene = parse_map(av[1]);
+	if (!scene)
+	{
+		printf("invalid scene\n");
+		return (0);
+	}
+	/*
+		this function return pointer scene so u must convert it before.
+		use it , 
+	*/
+	init_game();
+	start_game();
 	return (EXIT_SUCCESS);
 }

@@ -22,7 +22,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) $(SRC)
 	$(MAKE) bonus -C $(LIBFT) --silent
 	$(CC) $(OBJ) $(LIBFT)/libft.a $(CFLAGS) $(LDFLAGS) -o $(NAME)
 
