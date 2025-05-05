@@ -56,7 +56,9 @@ int	main(int ac, char **av)
 		printf("invalid scene\n");
 		return (EXIT_FAILURE);
 	}
-	g_game()->scene = *scene;
+	ft_memcpy(&g_game()->scene, scene, sizeof(t_scene));
+	//g_game()->scene = *scene;
+	free(scene);
 	init_game();
 	start_game();
 	return (EXIT_SUCCESS);
