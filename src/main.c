@@ -54,13 +54,9 @@ int	main(int ac, char **av)
 	if (!scene)
 	{
 		printf("invalid scene\n");
-		return (0);
+		return (EXIT_FAILURE);
 	}
 	g_game()->scene = *scene;
-	/*
-		this function return pointer scene so u must convert it before.
-		use it , 
-	*/
 	init_game();
 	start_game();
 	return (EXIT_SUCCESS);
