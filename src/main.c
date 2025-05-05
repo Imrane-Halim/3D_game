@@ -56,6 +56,7 @@ int	main(int ac, char **av)
 		printf("invalid scene\n");
 		return (0);
 	}
+	g_game()->scene = *scene;
 	/*
 		this function return pointer scene so u must convert it before.
 		use it , 

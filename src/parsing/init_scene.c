@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_scene.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:50:11 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/05 09:35:03 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_scene	*init_scene(char *content)
 	int		i;
 
 	i = 0;
-	scene = malloc(sizeof(t_scene));
+	scene = ft_calloc(1, sizeof(t_scene));
 	if (!scene)
 		return (NULL);
 	paths = get_paths_textures(content, &i);
