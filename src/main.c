@@ -58,6 +58,7 @@ int	main(int ac, char **av)
 	}
 	ft_memcpy(&g_game()->scene, scene, sizeof(t_scene));
 	//g_game()->scene = *scene;
+	g_game()->player.pos = (t_xy){100, 100};
 	free(scene);
 	init_game();
 	start_game();
