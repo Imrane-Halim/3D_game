@@ -35,8 +35,8 @@ void	start_game(void)
 		close_game, NULL);
 	
 	// will be enabled before push
-	// mlx_hook(g_game()->window.win, MotionNotify, PointerMotionMask,
-	// 	mouse_input, NULL);
+	mlx_hook(g_game()->window.win, MotionNotify, PointerMotionMask,
+	 	mouse_input, NULL);
 
 	mlx_loop_hook(g_game()->window.mlx, game_loop, NULL);
 	mlx_loop(g_game()->window.mlx);
