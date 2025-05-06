@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:43:07 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/04 11:08:19 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:23:17 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ bool	convert_colors_to_int(char **colors, int *rgb)
 		t_rgb[2] = atoi(split[2]);
 		if (!is_valid_rgb_component(t_rgb))
 			return (false);
-		rgb[i] = (t_rgb[0] << 16) | (t_rgb[0] << 8) | t_rgb[0];
+		rgb[i] = (t_rgb[0] << 16) | (t_rgb[1] << 8) | t_rgb[2];
 		free_2d_array(split);
 		i++;
 	}

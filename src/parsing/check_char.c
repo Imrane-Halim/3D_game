@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:01:26 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/03 12:43:03 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/06 08:46:23 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ bool	other_char(char **map)
 		while (map[i][j])
 		{
 			if (!is_player_char(map[i][j]) && map[i][j] != '0' &&
-				map[i][j] != '1' && map[i][j] != ' ')
+				map[i][j] != '1' && map[i][j] != ' ' && map[i][j] != 'D')
 				return (false);
 			j++;
 		}
@@ -72,13 +72,13 @@ bool	check_char(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (is_player_char(map[i][j]))
+			if (is_player_char(map[i][j]) || map[i][j] == 'D')
 				check++;
 			j++;
 		}
 		i++;
 	}
-	if (check != 1)
+	if (check != 2)
 		return (false);
 	return (true);
 }

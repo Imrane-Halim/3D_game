@@ -6,7 +6,7 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/03 12:42:19 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/06 08:22:47 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,10 @@ typedef struct s_casted_ray
 }					t_casted_ray;
 
 //===============parising======================
+void	free_2d_array(char **array);
+void	free_variables(char **colors, char **map, char **paths);
+void	free_textures(t_textures *textures);
+void	free_scene(t_scene *scene);
 
 //===============================================
 

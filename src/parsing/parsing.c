@@ -6,28 +6,37 @@
 /*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:01:42 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/04 10:29:41 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/06 09:42:56 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-t_scene	*parse_map(char *path)
+void exit_with_failure()
+{
+	printf("Error.\n");
+		//free_scene(scene);
+	exit(EXIT_FAILURE);
+}
+
+t_scene	parse_map(char *path)
 {
 	t_scene	*scene;
 	char	*content;
 
 	if (!path)
-		return (NULL);
+		exit_with_failure();
 	if (!check_extension(path))
 	{
 		printf("Invalid extention.\n");
-		return (NULL);
+		exit_with_failure();
 	}
 	content = file_to_string(path);
 	if (!content)
-		return (NULL);
+		exit_with_failure();
 	scene = init_scene(content);
 	free(content);
-	return (scene);
+	if (!scene)
+		exit_with_failure();
+	return (*scene);
 }

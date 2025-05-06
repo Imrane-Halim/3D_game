@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:13:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/05 10:26:47 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/06 10:11:26 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,37 @@ void	free_map(void)
 		free(g_game()->scene.map[i++]);
 	free(g_game()->scene.map);
 }
-
 void	free_paths(void)
 {
-	free(g_game()->scene.textures.north.path);
-	free(g_game()->scene.textures.south.path);
-	free(g_game()->scene.textures.west.path);
-	free(g_game()->scene.textures.east.path);
+	t_textures *textures = &g_game()->scene.textures;
+
+	free_textures(textures);
+	//if (textures->north.path)
+	//	free(textures->north.path);
+	//if (textures->south.path)
+	//	free(textures->south.path);
+	//if (textures->west.path)
+	//	free(textures->west.path);
+	//if (textures->east.path)
+	//	free(textures->east.path);
+	//if (textures->door.path)
+	//	free(textures->door.path);
 }
+
 
 int	close_game(int code, char *message)
 {
 	if (code && message)
 		ft_putendl_fd(message, STDERR_FILENO);
-	//free_paths();
 	free_map();
+	//free(g_game().scene);
+	//free_scene(&(g_game()->scene));
 	destroy_images();
 	mlx_destroy_image(g_game()->window.mlx, g_game()->window.frame.img);
 	mlx_destroy_window(g_game()->window.mlx, g_game()->window.win);
 	mlx_destroy_display(g_game()->window.mlx);
 	free(g_game()->window.mlx);
+	//free_paths();
 	exit(code);
 	return (code);
 }

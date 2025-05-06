@@ -50,16 +50,19 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	//init_scene(av[1]);
-	t_scene *scene = parse_map(av[1]);
-	if (!scene)
-	{
-		printf("invalid scene\n");
-		return (EXIT_FAILURE);
-	}
-	ft_memcpy(&g_game()->scene, scene, sizeof(t_scene));
-	//g_game()->scene = *scene;
+	t_scene scene = parse_map(av[1]);
+	//if (!scene)
+	//{
+	//	printf("invalid scene\n");
+	//	return (EXIT_FAILURE);
+	//}
+	//ft_memcpy(&g_game()->scene, scene, sizeof(t_scene));
+	g_game()->scene = scene;
 	g_game()->player.pos = (t_xy){100, 100};
-	free(scene);
+	/*
+		u should find other method for init game because problem of leaks form ur code. 
+		i fixed door and color , now 
+	*/
 	init_game();
 	start_game();
 	return (EXIT_SUCCESS);

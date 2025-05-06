@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:42:54 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/05 10:26:37 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/06 08:40:26 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	set_paths_textures(t_scene **scene, char **paths)
 	(*scene)->textures.south.path = ft_strdup(paths[1]);
 	(*scene)->textures.west.path = ft_strdup(paths[2]);
 	(*scene)->textures.east.path = ft_strdup(paths[3]);
-	(*scene)->textures.door.path = "textures/xpm/door.xpm";
+	(*scene)->textures.door.path = ft_strdup("textures/xpm/door.xpm");
 	g_game()->hand.path = "textures/xpm/hand.xpm";
 	free_2d_array(paths);
 }
