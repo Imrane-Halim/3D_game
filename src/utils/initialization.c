@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/17 14:44:11 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:32:47 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_image	load_img(char *path)
 
 	img.img = mlx_xpm_file_to_image(g_game()->window.mlx, path, &img.width,
 			&img.height);
+	free(path);
 	if (!img.img)
 		close_game(EXIT_FAILURE, TEX_LOAD_ERR);
 	img.adr = mlx_get_data_addr(img.img, &img.bbp, &img.line_length,
