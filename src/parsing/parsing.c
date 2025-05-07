@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:01:42 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/07 09:38:30 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:46:58 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void exit_with_failure(char *message)
 t_scene	parse_map(char *path)
 {
 	t_scene	*scene;
+	t_scene	tmp;
 	char	*content;
 
 	if (!path)
@@ -34,5 +35,7 @@ t_scene	parse_map(char *path)
 	free(content);
 	if (!scene)
 		exit_with_failure("Error: Failed to initialize scene.\n");
-	return (*scene);
+	tmp = *scene;
+	free(scene);
+	return (tmp);
 }
