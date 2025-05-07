@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:13 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/06 13:36:06 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:02:42 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "common.h"
 # include "cub3d.h"
 # include <errno.h>
-
 
 void	free_scene(t_scene *scene);
 bool	check(char *str, char *prefix);

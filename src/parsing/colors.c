@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:43:07 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/06 09:23:17 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:02:11 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ bool	is_valid_rgb_component(int *rgb)
 		value = rgb[i];
 		if (value < 0 || value > 255)
 		{
-			printf("Invalid color value: %d. It should be between 0 and 255.\n", value);
+			printf("Invalid color value: %d."
+				" It should be between 0 and 255.\n", value);
 			return (false);
 		}
 		i++;

@@ -6,15 +6,15 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:01:42 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/07 09:46:58 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:51:37 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void exit_with_failure(char *message)
+void	exit_with_failure(char *message)
 {
-	printf("%s\n",message);
+	printf("%s\n", message);
 	exit(EXIT_FAILURE);
 }
 

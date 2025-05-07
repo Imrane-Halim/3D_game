@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:23:38 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 11:38:52 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:50:55 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static inline t_ray	find_vertical_hit(t_xy p, float angle)
 	}
 	first_hit.hit.y = p.y + (first_hit.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
-	return get_hit(first_hit, step);
+	return (get_hit(first_hit, step));
 }
 
 static inline t_ray	find_horizontal_hit(t_xy p, float angle)
@@ -81,7 +81,7 @@ static inline t_ray	find_horizontal_hit(t_xy p, float angle)
 	}
 	first_hit.hit.x = p.x + (first_hit.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
-	return get_hit(first_hit, step);
+	return (get_hit(first_hit, step));
 }
 
 // note: angle is in radian

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:49:44 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/04 10:28:49 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:01:47 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	set_height_width(t_scene *scene)
 		i++;
 	}
 }
+
 bool	check_valid_map(char **map)
 {
 	if (!check_size(map))

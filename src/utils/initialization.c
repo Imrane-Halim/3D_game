@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/07 09:32:47 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/07 09:50:29 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,23 @@ t_image	load_img(char *path)
 // todo: string literals to constants (macros)
 void	init_textures(void)
 {
-	g_game()->scene.textures.north = load_img(g_game()->scene.textures.north.path);
-	g_game()->scene.textures.south = load_img(g_game()->scene.textures.south.path);
-	g_game()->scene.textures.east = load_img(g_game()->scene.textures.east.path);
-	g_game()->scene.textures.west = load_img(g_game()->scene.textures.west.path);
-	g_game()->scene.textures.door = load_img(g_game()->scene.textures.door.path);
-	g_game()->hand = load_img(g_game()->hand.path);
+	g_game()->scene.textures.north = load_img(
+		g_game()->scene.textures.north.path);
+	g_game()->scene.textures.south = load_img(
+		g_game()->scene.textures.south.path);
+	g_game()->scene.textures.east = load_img(
+		g_game()->scene.textures.east.path);
+	g_game()->scene.textures.west = load_img(
+		g_game()->scene.textures.west.path);
+	g_game()->scene.textures.door = load_img(
+		g_game()->scene.textures.door.path);
+	g_game()->hand = load_img(
+		g_game()->hand.path);
 }
 
 void	init_player(t_xy start_pos, float start_angle)
 {
-	// convert degree to radian
 	g_game()->player.fov = FOV * (PI / 180);
-	// this will change after parsing is done
-	// for example if stat is 64x64 add 1 to be 65x64
 	g_game()->player.pos = start_pos;
 	g_game()->player.angle = start_angle;
 }

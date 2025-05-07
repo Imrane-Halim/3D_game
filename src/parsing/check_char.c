@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_char.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:01:26 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/06 15:57:01 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/07 09:51:55 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool	check_char(char **map)
 	int	i;
 	int	j;
 	int	check;
-	int check_door;
+	int	check_door;
 
 	i = 0;
 	check = 0;
