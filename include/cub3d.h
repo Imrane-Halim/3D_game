@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/06 08:22:47 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/07 10:04:45 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <X11/X.h>
 # include <fcntl.h>
 # include <math.h>
- # include <mlx.h>
+# include <mlx.h>
 
 # define PI 3.14159265359
 # define WIDTH 1366
@@ -145,61 +145,61 @@ void	free_scene(t_scene *scene);
 
 //---------------------------
 
-t_game				*g_game(void);
+t_game	*g_game(void);
 
 //---------------- memory managment
 
-int					close_game(int code, char *message);
+int		close_game(int code, char *message);
 
 //---------------- initialazation
 
-void				init_window(void);
-void				init_player(t_xy start_pos, float start_angle);
-void				init_game(void);
-void				init_minimap(void);
-void				init_textures(void);
+void	init_window(void);
+void	init_player(t_xy start_pos, float start_angle);
+void	init_game(void);
+void	init_minimap(void);
+void	init_textures(void);
 
 //---------------- events handling stuff
 
-int					handle_release(int keynum);
-int					handle_press(int keynum);
-int					handle_key(int keynum, bool is_pressed);
+int		handle_release(int keynum);
+int		handle_press(int keynum);
+int		handle_key(int keynum, bool is_pressed);
 
-int					keyboard_input(void);
-int					mouse_input(int x, int y, void *data);
+int		keyboard_input(void);
+int		mouse_input(int x, int y, void *data);
 
 //---------------- player movements
 
-void				ch_player_xangle(float angle);
-void				ch_player_pos(int dir, bool is_strafe);
+void	ch_player_xangle(float angle);
+void	ch_player_pos(int dir, bool is_strafe);
 
 //---------------- here where everything stars
 
-void				start_game(void);
+void	start_game(void);
 
 //---------------- ray casting logic
-t_ray				cast_ray(float angle);
+t_ray	cast_ray(float angle);
 
 //---------------- math
-char				obj_hit(t_xy cord);
-float				distance(t_xy a, t_xy b);
+char	obj_hit(t_xy cord);
+float	distance(t_xy a, t_xy b);
 
 //---------------- rendring
 
-void				put_pixel(t_xy coord, int color);
-int					get_pixel_color(t_image tex, t_xy pos);
-void				draw_square(t_xy coord, int height, int width, int color);
-void				draw_line(t_xy start, t_xy end, int color);
+void	put_pixel(t_xy coord, int color);
+int		get_pixel_color(t_image tex, t_xy pos);
+void	draw_square(t_xy coord, int height, int width, int color);
+void	draw_line(t_xy start, t_xy end, int color);
 
 // these 2 are for debuging or learining
 // purposes only, no textures, nothing :)
 //void				draw_2D_view(void);
 //void				draw_3D_view(void);
 
-void				draw_textured(void);
+void	draw_textured(void);
 
-void				draw_minimap(void);
+void	draw_minimap(void);
 
-int					render_frame(void);
+int		render_frame(void);
 
 #endif
