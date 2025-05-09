@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:11:00 by ihalim            #+#    #+#             */
-/*   Updated: 2025/05/07 10:17:47 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/09 11:10:35 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	main(int ac, char **av)
 		ANGLE:	N S E W (PI / 2, PI + PI / 2, 0, PI)
 		POS:	pos better be pos + {32, 32};
 	*/
+	init_player();
 	init_game();
 	start_game();
 	return (EXIT_SUCCESS);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/07 10:04:45 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/09 10:57:07 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int		close_game(int code, char *message);
 //---------------- initialazation
 
 void	init_window(void);
-void	init_player(t_xy start_pos, float start_angle);
+void	init_player();
 void	init_game(void);
 void	init_minimap(void);
 void	init_textures(void);
