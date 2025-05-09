@@ -3,31 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/09 11:27:12 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/09 20:52:23 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void init_window(void)
+void	init_window(void)
 {
-	t_game *game;
+	t_game	*game;
 
 	game = g_game();
 	game->window.mlx = mlx_init();
 	game->window.win = mlx_new_window(game->window.mlx, WIDTH, HEIGHT, TITLE);
 	game->window.frame.img = mlx_new_image(game->window.mlx, WIDTH, HEIGHT);
 	game->window.frame.adr = mlx_get_data_addr(game->window.frame.img,
-											   &game->window.frame.bbp, &game->window.frame.line_length,
-											   &game->window.frame.endian);
+												&game->window.frame.bbp,
+												&game->window.frame.line_length,
+												&game->window.frame.endian);
 }
 
-void init_minimap(void)
+void	init_minimap(void)
 {
-	t_xy pos;
+	t_xy	pos;
 
 	pos.x = 9;
 	pos.y = 550;
@@ -40,22 +41,22 @@ void init_minimap(void)
 	g_game()->minimap.door_color = 0xffff00;
 }
 
-t_image load_img(char *path)
+t_image	load_img(char *path)
 {
-	t_image img;
+	t_image	img;
 
 	img.img = mlx_xpm_file_to_image(g_game()->window.mlx, path, &img.width,
-									&img.height);
+			&img.height);
 	free(path);
 	if (!img.img)
 		close_game(EXIT_FAILURE, TEX_LOAD_ERR);
 	img.adr = mlx_get_data_addr(img.img, &img.bbp, &img.line_length,
-								&img.endian);
+			&img.endian);
 	return (img);
 }
 
 // todo: string literals to constants (macros)
-void init_textures(void)
+void	init_textures(void)
 {
 	g_game()->scene.textures.north = load_img(
 		g_game()->scene.textures.north.path);
@@ -71,7 +72,7 @@ void init_textures(void)
 		g_game()->hand.path);
 }
 
-float angle_help(char m)
+float	angle_help(char m)
 {
 	if (m == 'N')
 		return (PI / 2);
@@ -84,16 +85,15 @@ float angle_help(char m)
 	return (-1);
 }
 
-float get_correct_angle()
+float	get_correct_angle(void)
 {
-	int i;
-	int j;
-	char **map;
-	float angle;
+	int		i;
+	int		j;
+	char	**map;
+	float	angle;
 
 	map = g_game()->scene.map;
 	i = 0;
-
 	while (map[i])
 	{
 		j = 0;
@@ -111,11 +111,11 @@ float get_correct_angle()
 	return (-1);
 }
 
-void get_correct_pos(t_xy *pos)
+void	get_correct_pos(t_xy *pos)
 {
-	int i;
-	int j;
-	char **map;
+	int		i;
+	int		j;
+	char	**map;
 
 	i = 0;
 	map = g_game()->scene.map;
@@ -126,8 +126,8 @@ void get_correct_pos(t_xy *pos)
 		{
 			if (is_player_char(map[i][j]))
 			{
-				pos->x = j*64;
-				pos->y = i*64;
+				pos->x = j * 64;
+				pos->y = i * 64;
 				return ;
 			}
 			j++;
@@ -135,10 +135,11 @@ void get_correct_pos(t_xy *pos)
 		i++;
 	}
 }
-void init_player()
+
+void	init_player(void)
 {
-	float angle;
-	t_xy pos;
+	float	angle;
+	t_xy	pos;
 
 	get_correct_pos(&pos);
 	angle = get_correct_angle();
