@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textured_view.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:28:01 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/10 10:12:41 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ inline int	get_pixel_color(t_image tex, t_xy pos)
 	return (*(unsigned int *)src);
 }
 
-static inline void	draw_tex_slice(t_casted_ray cray, int bottom, int top)
+static inline void	draw_tex_slice(t_game *game,
+	t_casted_ray cray, int bottom, int top)
 {
 	t_xy	offset;
 	float	st_y;
@@ -63,18 +64,19 @@ static inline void	draw_tex_slice(t_casted_ray cray, int bottom, int top)
 	while (top < bottom)
 	{
 		offset.y = (int)(((top - st_y) / cray.slice_hieght) * cray.tex.height);
-		put_pixel((t_xy){cray.ray_num, top},
+		put_pixel(game, (t_xy){cray.ray_num, top},
 			shade_color(get_pixel_color(cray.tex, offset), cray.dist));
 		top++;
 	}
 }
 
-static inline void	draw_slice(t_ray ray, float ray_angle, int ray_num)
+static inline void	draw_slice(t_game *game,
+	t_ray ray, float ray_angle, int ray_num)
 {
 	t_casted_ray	cray;
 
-	cray.dist = distance(g_game()->player.pos, ray.hit)
-		* cos(ray_angle - g_game()->player.angle);
+	cray.dist = distance(game->player.pos, ray.hit)
+		* cos(ray_angle - game->player.angle);
 	cray.slice_hieght = (TILESIZE / cray.dist)
 		* ((WIDTH / 2) / tan(FOV * PI / 360));
 	cray.ray_num = ray_num;
@@ -85,19 +87,19 @@ static inline void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 		cray.wall_top = 0;
 	if (cray.wall_bottom >= HEIGHT)
 		cray.wall_bottom = HEIGHT - 1;
-	cray.tex = g_game()->scene.textures.door;
+	cray.tex = game->scene.textures.door;
 	if (ray.dir == NORTH)
-		cray.tex = g_game()->scene.textures.north;
+		cray.tex = game->scene.textures.north;
 	else if (ray.dir == SOUTH)
-		cray.tex = g_game()->scene.textures.south;
+		cray.tex = game->scene.textures.south;
 	else if (ray.dir == EAST)
-		cray.tex = g_game()->scene.textures.east;
+		cray.tex = game->scene.textures.east;
 	else if (ray.dir == WEST)
-		cray.tex = g_game()->scene.textures.west;
-	draw_tex_slice(cray, cray.wall_bottom, cray.wall_top);
+		cray.tex = game->scene.textures.west;
+	draw_tex_slice(game, cray, cray.wall_bottom, cray.wall_top);
 }
 
-inline void	draw_textured(void)
+inline void	draw_textured(t_game *game)
 {
 	t_ray	ray;
 	float	ray_angle;
@@ -105,17 +107,17 @@ inline void	draw_textured(void)
 	float	angle_step;
 	int		i;
 
-	draw_square((t_xy){0, 0}, HEIGHT / 2, WIDTH, g_game()->scene.ceiling_color);
+	draw_square((t_xy){0, 0}, HEIGHT / 2, WIDTH, game->scene.ceiling_color);
 	draw_square((t_xy){0, HEIGHT / 2}, HEIGHT / 2, WIDTH,
-		g_game()->scene.floor_color);
+		game->scene.floor_color);
 	i = 0;
-	s_angle = g_game()->player.angle - (FOV * PI / 180) / 2;
-	angle_step = (FOV * PI / 180) / g_game()->n_rays;
-	while (i < g_game()->n_rays)
+	s_angle = game->player.angle - (FOV * PI / 180) / 2;
+	angle_step = (FOV * PI / 180) / game->n_rays;
+	while (i < game->n_rays)
 	{
 		ray_angle = s_angle + i * angle_step;
 		ray = cast_ray(ray_angle);
-		draw_slice(ray, ray_angle, i);
+		draw_slice(game, ray, ray_angle, i);
 		i++;
 	}
 }

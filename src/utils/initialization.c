@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/09 20:52:23 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/10 10:14:42 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	init_window(void)
 	game->window.win = mlx_new_window(game->window.mlx, WIDTH, HEIGHT, TITLE);
 	game->window.frame.img = mlx_new_image(game->window.mlx, WIDTH, HEIGHT);
 	game->window.frame.adr = mlx_get_data_addr(game->window.frame.img,
-												&game->window.frame.bbp,
-												&game->window.frame.line_length,
-												&game->window.frame.endian);
+			&game->window.frame.bbp,
+			&game->window.frame.line_length,
+			&game->window.frame.endian);
 }
 
 void	init_minimap(void)

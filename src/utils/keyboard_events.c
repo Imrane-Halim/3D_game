@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard_events.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:16:58 by imrane            #+#    #+#             */
-/*   Updated: 2025/03/27 21:28:01 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/10 09:31:45 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	handle_key(int keynum, bool is_pressed)
+int	handle_key(t_game *game, int keynum, bool is_pressed)
 {
 	if (keynum == ESC_KEY && is_pressed)
 		close_game(0, NULL);
 	else if (keynum == UP_KEY)
-		g_game()->key.up = is_pressed;
+		game->key.up = is_pressed;
 	else if (keynum == DOWN_KEY)
-		g_game()->key.down = is_pressed;
+		game->key.down = is_pressed;
 	else if (keynum == RIGHT_KEY)
-		g_game()->key.right = is_pressed;
+		game->key.right = is_pressed;
 	else if (keynum == LEFT_KEY)
-		g_game()->key.left = is_pressed;
+		game->key.left = is_pressed;
 	else if (keynum == A_KEY)
-		g_game()->key.a = is_pressed;
+		game->key.a = is_pressed;
 	else if (keynum == D_KEY)
-		g_game()->key.d = is_pressed;
+		game->key.d = is_pressed;
 	else if (keynum == S_KEY)
-		g_game()->key.s = is_pressed;
+		game->key.s = is_pressed;
 	else if (keynum == W_KEY)
-		g_game()->key.w = is_pressed;
+		game->key.w = is_pressed;
 	return (0);
 }
 
-void	door_event(void)
+void	door_event(t_game *game)
 {
 	float	radius;
 	char	c;
@@ -43,42 +43,42 @@ void	door_event(void)
 	float	y;
 
 	radius = TILESIZE;
-	x = g_game()->player.pos.x + cos(g_game()->player.angle) * radius;
-	y = g_game()->player.pos.y + sin(g_game()->player.angle) * radius;
+	x = game->player.pos.x + cos(game->player.angle) * radius;
+	y = game->player.pos.y + sin(game->player.angle) * radius;
 	c = obj_hit((t_xy){x, y});
 	if (c != 'D' && c != 'O')
 		return ;
 	if (c == 'D')
-		g_game()->scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'O';
+		game->scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'O';
 	else
-		g_game()->scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'D';
+		game->scene.map[(int)y / TILESIZE][(int)x / TILESIZE] = 'D';
 }
 
 int	handle_press(int keynum)
 {
 	if (keynum == ' ')
-		door_event();
-	return (handle_key(keynum, true));
+		door_event(g_game());
+	return (handle_key(g_game(), keynum, true));
 }
 
 int	handle_release(int keynum)
 {
-	return (handle_key(keynum, false));
+	return (handle_key(g_game(), keynum, false));
 }
 
-int	keyboard_input(void)
+int	keyboard_input(t_game *game)
 {
-	if (g_game()->key.w || g_game()->key.up)
-		ch_player_pos(FORWARD, false);
-	if (g_game()->key.s || g_game()->key.down)
-		ch_player_pos(BACKWARD, false);
-	if (g_game()->key.d)
-		ch_player_pos(FORWARD, true);
-	if (g_game()->key.a)
-		ch_player_pos(BACKWARD, true);
-	if (g_game()->key.right)
-		ch_player_xangle(AGL_STEP);
-	if (g_game()->key.left)
-		ch_player_xangle(-AGL_STEP);
+	if (game->key.w || game->key.up)
+		ch_player_pos(game, FORWARD, false);
+	if (game->key.s || game->key.down)
+		ch_player_pos(game, BACKWARD, false);
+	if (game->key.d)
+		ch_player_pos(game, FORWARD, true);
+	if (game->key.a)
+		ch_player_pos(game, BACKWARD, true);
+	if (game->key.right)
+		ch_player_xangle(game, AGL_STEP);
+	if (game->key.left)
+		ch_player_xangle(game, -AGL_STEP);
 	return (0);
 }

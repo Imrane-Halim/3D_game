@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:53 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 15:10:35 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/10 09:46:32 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static inline void	draw_map(t_xy offset)
 // 	draw_square(pos, 5, 5, 0xe60b3e);
 // }
 
-static inline void	draw_dir(t_xy offset)
+static inline void	draw_dir(t_game *game, t_xy offset)
 {
 	t_xy	start;
 	t_xy	pos;
@@ -98,39 +98,39 @@ static inline void	draw_dir(t_xy offset)
 	end.x = pos.x + cos(g_game()->player.angle) * line_lenght;
 	end.y = pos.y + sin(g_game()->player.angle) * line_lenght;
 	end = applay_offset(end, offset);
-	draw_line(start, end, 0xe60b3e);
+	draw_line(game, start, end, 0xe60b3e);
 }
 
 // this function used to be clear and readable but
 // I had to remove some helper functions and put their code here
 // because of the norme, old implementation is in the comments
-inline void	draw_minimap(void)
+inline void	draw_minimap(t_game *game)
 {
 	t_xy	offset;
 	t_xy	pos;
 
-	offset.x = g_game()->minimap.width / 2 - g_game()->player.pos.x * SCALE;
-	offset.y = g_game()->minimap.height / 2 - g_game()->player.pos.y * SCALE;
-	draw_square(g_game()->minimap.pos,
-		g_game()->minimap.height, g_game()->minimap.width,
-		g_game()->minimap.floor_color);
+	offset.x = game->minimap.width / 2 - game->player.pos.x * SCALE;
+	offset.y = game->minimap.height / 2 - game->player.pos.y * SCALE;
+	draw_square(game->minimap.pos,
+		game->minimap.height, game->minimap.width,
+		game->minimap.floor_color);
 	draw_map(offset);
-	pos.x = g_game()->player.pos.x * SCALE;
-	pos.y = g_game()->player.pos.y * SCALE;
+	pos.x = game->player.pos.x * SCALE;
+	pos.y = game->player.pos.y * SCALE;
 	pos = applay_offset(pos, offset);
 	pos.x -= 2;
 	pos.y -= 2;
 	draw_square(pos, 5, 5, 0xe60b3e);
-	draw_dir(offset);
-	pos = g_game()->minimap.pos;
-	draw_square(pos, BOUND_THIK, g_game()->minimap.width, BOUND_CLR);
-	pos.x += g_game()->minimap.width;
-	draw_square(pos, g_game()->minimap.height
+	draw_dir(game, offset);
+	pos = game->minimap.pos;
+	draw_square(pos, BOUND_THIK, game->minimap.width, BOUND_CLR);
+	pos.x += game->minimap.width;
+	draw_square(pos, game->minimap.height
 		+ BOUND_THIK, BOUND_THIK, BOUND_CLR);
-	pos.x -= g_game()->minimap.width;
-	draw_square(pos, g_game()->minimap.height, BOUND_THIK, BOUND_CLR);
-	pos.y += g_game()->minimap.height;
-	draw_square(pos, BOUND_THIK, g_game()->minimap.width, BOUND_CLR);
+	pos.x -= game->minimap.width;
+	draw_square(pos, game->minimap.height, BOUND_THIK, BOUND_CLR);
+	pos.y += game->minimap.height;
+	draw_square(pos, BOUND_THIK, game->minimap.width, BOUND_CLR);
 }
 
 // void	draw_bounds()

@@ -6,15 +6,13 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:47 by imrane            #+#    #+#             */
-/*   Updated: 2025/04/05 15:11:35 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/10 10:13:06 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// # define __DEBUG__	false
-
-inline void	put_pixel(t_xy coord, int color)
+inline void	put_pixel(t_game *game, t_xy coord, int color)
 {
 	char	*dst;
 	int		x;
@@ -24,9 +22,9 @@ inline void	put_pixel(t_xy coord, int color)
 	y = (int)coord.y;
 	if (x < 0 || y < 0 || x >= WIDTH || y >= HEIGHT)
 		return ;
-	dst = g_game()->window.frame.adr
-		+ (y * g_game()->window.frame.line_length + x
-			* (g_game()->window.frame.bbp / 8));
+	dst = game->window.frame.adr
+		+ (y * game->window.frame.line_length + x
+			* (game->window.frame.bbp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -34,9 +32,11 @@ inline void	put_pixel(t_xy coord, int color)
 
 inline void	draw_square(t_xy coord, int height, int width, int color)
 {
-	int	save_x;
-	int	save_y;
+	int		save_x;
+	int		save_y;
+	t_game	*game;
 
+	game = g_game();
 	save_x = coord.x;
 	save_y = coord.y;
 	while (coord.y < height + save_y)
@@ -44,14 +44,14 @@ inline void	draw_square(t_xy coord, int height, int width, int color)
 		coord.x = save_x;
 		while (coord.x < width + save_x)
 		{
-			put_pixel(coord, color);
+			put_pixel(game, coord, color);
 			coord.x++;
 		}
 		coord.y++;
 	}
 }
 
-inline void	draw_line(t_xy start, t_xy end, int color)
+inline void	draw_line(t_game *game, t_xy start, t_xy end, int color)
 {
 	float	dx;
 	float	dy;
@@ -66,7 +66,7 @@ inline void	draw_line(t_xy start, t_xy end, int color)
 	i = 0;
 	while (i <= step)
 	{
-		put_pixel(coord, color);
+		put_pixel(game, coord, color);
 		coord.x += dx;
 		coord.y += dy;
 		i++;
@@ -75,37 +75,37 @@ inline void	draw_line(t_xy start, t_xy end, int color)
 
 //-----------------------
 
-static inline void	draw_hand(void)
+static inline void	draw_hand(t_game *game)
 {
 	t_xy			pos;
 	int				hand_y;
 	static int		old_y = HEIGHT / 2;
 	unsigned int	color;
 
-	hand_y = (HEIGHT / 2) + (int)(cos(g_game()->timer * 0.05f) * 100);
-	if (g_game()->key.w || g_game()->key.s
-		|| g_game()->key.d || g_game()->key.a)
+	hand_y = (HEIGHT / 2) + (int)(cos(game->timer * 0.05f) * 100);
+	if (game->key.w || game->key.s
+		|| game->key.d || game->key.a)
 		old_y = hand_y;
 	pos.y = -1;
-	while (++pos.y < g_game()->hand.height)
+	while (++pos.y < game->hand.height)
 	{
 		pos.x = -1;
-		while (++pos.x < g_game()->hand.width)
+		while (++pos.x < game->hand.width)
 		{
-			color = get_pixel_color(g_game()->hand, pos);
+			color = get_pixel_color(game->hand, pos);
 			if (color != 0xff000000)
-				put_pixel((t_xy){pos.x + (WIDTH - g_game()->hand.width), pos.y
+				put_pixel(game, (t_xy){pos.x + (WIDTH - game->hand.width), pos.y
 					+ old_y}, color);
 		}
 	}
 }
 
-inline int	render_frame(void)
+inline int	render_frame(t_game *game)
 {
-	draw_textured();
-	draw_minimap();
-	draw_hand();
-	mlx_put_image_to_window(g_game()->window.mlx, g_game()->window.win,
-		g_game()->window.frame.img, 0, 0);
+	draw_textured(game);
+	draw_minimap(game);
+	draw_hand(game);
+	mlx_put_image_to_window(game->window.mlx, game->window.win,
+		game->window.frame.img, 0, 0);
 	return (0);
 }

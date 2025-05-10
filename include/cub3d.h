@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/09 10:57:07 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/10 10:18:07 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define TITLE "Cub3D"
 
 # define FOV 60
-# define POS_STEP 4
-# define AGL_STEP 0.02
+# define POS_STEP 2
+# define AGL_STEP 0.01
 # define FORWARD 1
 # define BACKWARD -1
 # define MOUSE_SENS 0.001f
@@ -154,7 +154,7 @@ int		close_game(int code, char *message);
 //---------------- initialazation
 
 void	init_window(void);
-void	init_player();
+void	init_player(void);
 void	init_game(void);
 void	init_minimap(void);
 void	init_textures(void);
@@ -163,15 +163,15 @@ void	init_textures(void);
 
 int		handle_release(int keynum);
 int		handle_press(int keynum);
-int		handle_key(int keynum, bool is_pressed);
+int		handle_key(t_game *game, int keynum, bool is_pressed);
 
-int		keyboard_input(void);
+int		keyboard_input(t_game *game);
 int		mouse_input(int x, int y, void *data);
 
 //---------------- player movements
 
-void	ch_player_xangle(float angle);
-void	ch_player_pos(int dir, bool is_strafe);
+void	ch_player_xangle(t_game *game, float angle);
+void	ch_player_pos(t_game *game, int dir, bool is_strafe);
 
 //---------------- here where everything stars
 
@@ -186,20 +186,20 @@ float	distance(t_xy a, t_xy b);
 
 //---------------- rendring
 
-void	put_pixel(t_xy coord, int color);
+void	put_pixel(t_game *game, t_xy coord, int color);
 int		get_pixel_color(t_image tex, t_xy pos);
 void	draw_square(t_xy coord, int height, int width, int color);
-void	draw_line(t_xy start, t_xy end, int color);
+void	draw_line(t_game *game, t_xy start, t_xy end, int color);
 
 // these 2 are for debuging or learining
 // purposes only, no textures, nothing :)
 //void				draw_2D_view(void);
 //void				draw_3D_view(void);
 
-void	draw_textured(void);
+void	draw_textured(t_game *game);
 
-void	draw_minimap(void);
+void	draw_minimap(t_game *game);
 
-int		render_frame(void);
+int		render_frame(t_game *game);
 
 #endif

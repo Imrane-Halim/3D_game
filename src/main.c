@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:11:00 by ihalim            #+#    #+#             */
-/*   Updated: 2025/05/09 11:10:35 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/10 10:14:04 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,32 @@ void	init_game(void)
 	init_minimap();
 }
 
-int	game_loop(void)
+int	game_loop(void *data)
 {
-	g_game()->timer++;
-	keyboard_input();
-	render_frame();
+	t_game	*game;
+
+	game = (t_game *)data;
+	game->timer++;
+	keyboard_input(game);
+	render_frame(game);
 	return (0);
 }
 
 // mlx_hide_mouse()
 void	start_game(void)
 {
-	mlx_hook(g_game()->window.win, KeyPress, KeyPressMask, handle_press, NULL);
-	mlx_hook(g_game()->window.win, KeyRelease, KeyReleaseMask,
+	t_game	*game;
+
+	game = g_game();
+	mlx_hook(game->window.win, KeyPress, KeyPressMask, handle_press, NULL);
+	mlx_hook(game->window.win, KeyRelease, KeyReleaseMask,
 		handle_release, NULL);
-	mlx_hook(g_game()->window.win, DestroyNotify, StructureNotifyMask,
+	mlx_hook(game->window.win, DestroyNotify, StructureNotifyMask,
 		close_game, NULL);
-	mlx_hook(g_game()->window.win, MotionNotify, PointerMotionMask,
-		mouse_input, NULL);
-	mlx_loop_hook(g_game()->window.mlx, game_loop, NULL);
-	mlx_loop(g_game()->window.mlx);
+	mlx_hook(game->window.win, MotionNotify, PointerMotionMask,
+		mouse_input, game);
+	mlx_loop_hook(game->window.mlx, game_loop, game);
+	mlx_loop(game->window.mlx);
 }
 
 int	main(int ac, char **av)
@@ -57,13 +63,6 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	g_game()->scene = parse_map(av[1]);
-	/*
-		todo: player position
-		void	init_player(pos, angle);
-
-		ANGLE:	N S E W (PI / 2, PI + PI / 2, 0, PI)
-		POS:	pos better be pos + {32, 32};
-	*/
 	init_player();
 	init_game();
 	start_game();
