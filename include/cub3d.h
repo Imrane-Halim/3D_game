@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/10 11:44:05 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/10 14:40:20 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,10 @@ void	ch_player_pos(t_game *game, int dir, bool is_strafe);
 void	start_game(void);
 
 //---------------- ray casting logic
-t_ray	cast_ray(float angle);
+t_ray	cast_ray(t_game *game, float angle);
 
 //---------------- math
-char	obj_hit(t_xy cord);
+char	obj_hit(t_game *game, t_xy cord);
 float	distance(t_xy a, t_xy b);
 
 //---------------- rendring

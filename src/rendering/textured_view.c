@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/10 10:12:41 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/10 14:37:44 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ inline void	draw_textured(t_game *game)
 	while (i < game->n_rays)
 	{
 		ray_angle = s_angle + i * angle_step;
-		ray = cast_ray(ray_angle);
+		ray = cast_ray(game, ray_angle);
 		draw_slice(game, ray, ray_angle, i);
 		i++;
 	}

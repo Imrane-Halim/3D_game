@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:16:58 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/10 09:31:45 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/10 14:40:39 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	door_event(t_game *game)
 	radius = TILESIZE;
 	x = game->player.pos.x + cos(game->player.angle) * radius;
 	y = game->player.pos.y + sin(game->player.angle) * radius;
-	c = obj_hit((t_xy){x, y});
+	c = obj_hit(game, (t_xy){x, y});
 	if (c != 'D' && c != 'O')
 		return ;
 	if (c == 'D')
