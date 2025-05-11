@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_player_position.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 09:26:03 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/11 09:26:59 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/11 09:35:13 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ void	get_correct_pos(t_xy *pos)
 		{
 			if (is_player_char(map[i][j]))
 			{
-				pos->x = j * 64;
-				pos->y = i * 64;
+				pos->x = j * 64 + 32;
+				pos->y = i * 64 + 32;
+				g_game()->scene.map[i][j] = '0';
 				return ;
 			}
 			j++;
