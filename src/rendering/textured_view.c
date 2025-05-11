@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/10 14:37:44 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/11 10:14:01 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static inline void	draw_tex_slice(t_game *game,
 		wall_x = cray.ray.hit.x - floor(cray.ray.hit.x / TILESIZE) * TILESIZE;
 	offset.x = (int)((wall_x / TILESIZE) * cray.tex.width);
 	st_y = (HEIGHT - cray.slice_hieght) / 2;
-	while (top < bottom)
+	while (top <= bottom)
 	{
 		offset.y = (int)(((top - st_y) / cray.slice_hieght) * cray.tex.height);
 		put_pixel(game, (t_xy){cray.ray_num, top},
