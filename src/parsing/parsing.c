@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:01:42 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/07 09:51:37 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/11 09:29:23 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	exit_with_failure(char *message)
 {
-	printf("%s\n", message);
+	printf("%s", message);
 	exit(EXIT_FAILURE);
 }
 

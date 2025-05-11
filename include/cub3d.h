@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/10 14:40:20 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/11 09:27:17 by ael-aiss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,9 @@ void	free_textures(t_textures *textures);
 void	free_scene(t_scene *scene);
 
 //===============================================
+float	angle_help(char m);
+float	get_correct_angle(void);
+void	get_correct_pos(t_xy *pos);
 
 //---------------------------
 
