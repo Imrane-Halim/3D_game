@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   paths.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 08:42:54 by ael-aiss          #+#    #+#             */
-/*   Updated: 2025/05/07 09:38:00 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/12 09:36:46 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,10 @@ bool	fill_paths(char *content, int *i, char **paths)
 char	**get_paths_textures(char *content, int *i)
 {
 	char	**paths;
-	int		p;
 
 	paths = malloc(sizeof(char *) * 5);
 	if (!paths)
 		return (NULL);
-	p = 0;
 	while (content[*i] && content[*i] == '\n')
 		(*i)++;
 	if (!fill_paths(content, i, paths))
