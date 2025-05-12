@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialization.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/11 09:26:35 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/12 10:21:26 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ t_image	load_img(char *path)
 
 	img.img = mlx_xpm_file_to_image(g_game()->window.mlx, path, &img.width,
 			&img.height);
-	free(path);
+	img.path = path;
 	if (!img.img)
+	{
 		close_game(EXIT_FAILURE, TEX_LOAD_ERR);
+	}
 	img.adr = mlx_get_data_addr(img.img, &img.bbp, &img.line_length,
 			&img.endian);
 	return (img);
@@ -58,6 +60,12 @@ t_image	load_img(char *path)
 // todo: string literals to constants (macros)
 void	init_textures(void)
 {
+	g_game()->scene.textures.north.img = NULL;
+	g_game()->scene.textures.south.img = NULL;
+	g_game()->scene.textures.east.img = NULL;
+	g_game()->scene.textures.west.img = NULL;
+	g_game()->scene.textures.door.img = NULL;
+	g_game()->hand.img = NULL;
 	g_game()->scene.textures.north = load_img(
 		g_game()->scene.textures.north.path);
 	g_game()->scene.textures.south = load_img(

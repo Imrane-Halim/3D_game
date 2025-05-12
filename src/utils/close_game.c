@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:13:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/09 11:26:05 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/12 10:21:18 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,22 @@ void	free_map(void)
 	free(g_game()->scene.map);
 }
 
+void	free_pathes(void)
+{
+	free(g_game()->scene.textures.north.path);
+	free(g_game()->scene.textures.south.path);
+	free(g_game()->scene.textures.east.path);
+	free(g_game()->scene.textures.west.path);
+	free(g_game()->scene.textures.door.path);
+	free(g_game()->hand.path);
+}
+
 int	close_game(int code, char *message)
 {
 	if (code && message)
 		ft_putendl_fd(message, STDERR_FILENO);
 	free_map();
+	free_pathes();
 	if (g_game()->window.mlx)
 	{
 		destroy_images();
