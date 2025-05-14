@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:51:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 10:59:42 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 20:27:13 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	get_clr(t_scene *scene, char **args)
 	if (nl)
 		*nl = '\0';
 	colors = ft_split(args[1], ',');
-	if (count_args(colors) != 3)
+	if (count_args(colors) != 3 || *(ft_strrchr(args[1], '\0') - 1) == ',')
 		return (free_arr(colors), 1);
 	rgb[0] = ft_atoi(colors[0]);
 	rgb[1] = ft_atoi(colors[1]);
