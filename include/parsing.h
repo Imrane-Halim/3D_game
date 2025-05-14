@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:13 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 16:03:27 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 18:12:34 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # define IDENTIFIER_ERR "Missing, invalid, or duplicated identifier detected."
 # define NEWLINE_ERR "Unexpected newline character found in the map."
 # define INVALIDCHAR_ERR "Invalid characters found in the map."
-# define PLAYER_ERR "The map must contain exactly one\
-player. Found none or multiple."
+# define PLAYER_ERR "The map must contain exactly one player."
 # define WALL_ERR "The map walls are not properly closed."
-# define NOMAP_ERR "No map found in file"
+# define NOMAP_ERR "No map found in file."
 
 // lists to check
 # define PLAYER_CHARS "NSEW"
