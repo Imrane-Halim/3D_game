@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:49:55 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 10:50:13 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 18:32:29 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,26 @@ int	check_prev_line(char **map, int i, int num)
 	return (0);
 }
 
+// this function is a bit unreadalbe because of fkn norminette
 int	check_interior(char **map, char *line, int num)
 {
-	int	i;
+	char	*allowed_chars;
+	int		i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == ' ')
+		if (line[i] == ' ' || ft_strchr(PLAYER_CHARS"0D", line[i]))
 		{
-			if (map[num - 1][i] != ' ' && map[num - 1][i] != '1')
+			if (line[i] == ' ')
+				allowed_chars = " 1";
+			else
+				allowed_chars = "01" PLAYER_CHARS "D";
+			if ((size_t)i > ft_strlen(map[num - 1]))
 				return (1);
-			if (line[i + 1] != ' ' && line[i + 1] != '1')
+			if (!ft_strchr(allowed_chars, map[num - 1][i]))
 				return (1);
-		}
-		if (line[i] == '0')
-		{
-			if (map[num - 1][i] != '0' && map[num - 1][i] != '1'
-				&& !ft_strchr(PLAYER_CHARS "D", map[num - 1][i]))
-				return (1);
-			if (line[i + 1] != '0' && line[i + 1] != '1'
-				&& !ft_strchr(PLAYER_CHARS "D", line[i + 1]))
+			if (!ft_strchr(allowed_chars, line[i + 1]))
 				return (1);
 		}
 		i++;
