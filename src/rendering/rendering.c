@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:47 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 16:20:53 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 16:24:29 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,10 @@ static inline void	draw_hand(t_game *game)
 	t_xy			pos;
 	int				hand_y;
 	unsigned int	color;
+	static float	speed = 0.03f;
+	static int		power = 100;
 
-	hand_y = (HEIGHT / 2) + (int)(cos(game->timer * 0.03f) * 100);
+	hand_y = (HEIGHT / 2) + (int)(cos(game->timer * speed) * power);
 	pos.y = -1;
 	while (++pos.y < game->hand.height)
 	{
