@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:11:00 by ihalim            #+#    #+#             */
-/*   Updated: 2025/05/14 11:00:39 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 11:28:00 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,10 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	g_game()->scene = parse_scene(av[1]);
+
+	printf("%d\n", g_game()->scene.m_height);
+	printf("%d\n", g_game()->scene.m_width);
+	
 	init_game();
 	start_game();
 	close_game(EXIT_SUCCESS, "");
