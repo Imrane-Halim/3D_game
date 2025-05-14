@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:50:45 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 14:33:27 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/14 15:59:03 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	check_player_pos(t_scene *scene, char *line)
 	if (scene->parsed & ePLAYER_FOUND)
 		return (1);
 	scene->parsed |= ePLAYER_FOUND;
-	pos.y = (scene->m_height) * 64;
-	pos.x = (line_pos - line) * 64;
+	pos.y = (scene->m_height) * 64 + 32;
+	pos.x = (line_pos - line) * 64 + 32;
 	if (line_pos[0] == 'N')
 		init_player(pos, PI + PI / 2);
 	if (line_pos[0] == 'S')
@@ -34,6 +34,7 @@ int	check_player_pos(t_scene *scene, char *line)
 		init_player(pos, 0);
 	if (line_pos[0] == 'W')
 		init_player(pos, PI);
+	*line_pos = '0';
 	return (0);
 }
 

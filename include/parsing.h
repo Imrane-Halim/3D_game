@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:13 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 10:52:51 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 16:03:27 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define PLAYER_ERR "The map must contain exactly one\
 player. Found none or multiple."
 # define WALL_ERR "The map walls are not properly closed."
+# define NOMAP_ERR "No map found in file"
 
 // lists to check
 # define PLAYER_CHARS "NSEW"

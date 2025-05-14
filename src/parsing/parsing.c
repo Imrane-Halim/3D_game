@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:50:19 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 10:57:55 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 16:03:42 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	parse_map(t_scene *scene)
 	if (!line)
 	{
 		g_game()->scene = *scene;
-		close_game(EXIT_FAILURE, "No map found!");
+		close_game(EXIT_FAILURE, NOMAP_ERR);
 	}
 	load_map(scene, line);
 	g_game()->scene = *scene;
