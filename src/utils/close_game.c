@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:13:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/12 10:21:18 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/12 17:47:22 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	free_pathes(void)
 int	close_game(int code, char *message)
 {
 	if (code && message)
+	{
+		ft_putendl_fd("Error", STDERR_FILENO);
 		ft_putendl_fd(message, STDERR_FILENO);
+	}
 	free_map();
 	free_pathes();
 	if (g_game()->window.mlx)
@@ -69,6 +72,8 @@ int	close_game(int code, char *message)
 		mlx_destroy_display(g_game()->window.mlx);
 		free(g_game()->window.mlx);
 	}
+	close(g_game()->scene.fd);
+	get_next_line(-1);
 	exit(code);
 	return (code);
 }

@@ -13,10 +13,11 @@ RAY_CAST	= $(wildcard src/ray_casting/*.c)
 RENDERING	= $(wildcard src/rendering/*.c)
 PARSING 	= $(wildcard src/parsing/*.c)
 UTILS 		= $(wildcard src/utils/*.c)
+GNL 		= $(wildcard gnl/*.c)
 
 MAIN		= src/main.c
 
-SRC = 	$(UTILS) $(RENDERING) $(PARSING) $(RAY_CAST) $(MAIN)
+SRC = 	$(UTILS) $(RENDERING) $(PARSING) $(RAY_CAST) $(GNL) $(MAIN)
 
 OBJ = $(SRC:.c=.o)
 

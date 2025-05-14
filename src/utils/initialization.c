@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:17:11 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/12 10:21:26 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/14 11:07:47 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ t_image	load_img(char *path)
 // todo: string literals to constants (macros)
 void	init_textures(void)
 {
-	g_game()->scene.textures.north.img = NULL;
-	g_game()->scene.textures.south.img = NULL;
-	g_game()->scene.textures.east.img = NULL;
-	g_game()->scene.textures.west.img = NULL;
-	g_game()->scene.textures.door.img = NULL;
-	g_game()->hand.img = NULL;
 	g_game()->scene.textures.north = load_img(
 		g_game()->scene.textures.north.path);
 	g_game()->scene.textures.south = load_img(
@@ -75,18 +69,12 @@ void	init_textures(void)
 	g_game()->scene.textures.west = load_img(
 		g_game()->scene.textures.west.path);
 	g_game()->scene.textures.door = load_img(
-		g_game()->scene.textures.door.path);
-	g_game()->hand = load_img(
-		g_game()->hand.path);
+		ft_strdup("./textures/xpm/door.xpm"));
+	g_game()->hand = load_img(ft_strdup("./textures/xpm/hand.xpm"));
 }
 
-void	init_player(void)
+void	init_player(t_xy pos, float angle)
 {
-	float	angle;
-	t_xy	pos;
-
-	get_correct_pos(&pos);
-	angle = get_correct_angle();
 	g_game()->player.fov = FOV * (PI / 180);
 	g_game()->player.pos = pos;
 	g_game()->player.angle = angle;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   common.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:19 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/09 09:58:13 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/14 10:56:37 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define COMMON_H
 
 # include "libft.h"
-# include <errno.h>
 # include <stdbool.h>
 # include <stdio.h>
 
@@ -48,10 +47,13 @@ typedef struct s_scene
 	char		**map;
 	int			ceiling_color;
 	int			floor_color;
+
+	int			fd;
 	t_textures	textures;
+	short		parsed;
 }				t_scene;
 
-t_scene	parse_map(char *path);
-bool	is_player_char(char c);
+t_scene	parse_scene(char *path);
+char	*get_next_line(int fd);
 
 #endif

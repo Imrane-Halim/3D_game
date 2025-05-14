@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 10:11:00 by ihalim            #+#    #+#             */
-/*   Updated: 2025/05/10 11:42:32 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/14 11:00:39 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ int	main(int ac, char **av)
 		printf("usage: ./cub3d <SCENE_PATH>");
 		return (EXIT_FAILURE);
 	}
-	g_game()->scene = parse_map(av[1]);
-	init_player();
+	g_game()->scene = parse_scene(av[1]);
 	init_game();
 	start_game();
+	close_game(EXIT_SUCCESS, "");
 	return (EXIT_SUCCESS);
 }

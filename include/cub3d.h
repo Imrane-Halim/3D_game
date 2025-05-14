@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ael-aiss <ael-aiss@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:16 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/11 09:27:17 by ael-aiss         ###   ########.fr       */
+/*   Updated: 2025/05/13 11:30:35 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define MOUSE_SENS 0.001f
 
 // error messages
-# define TEX_LOAD_ERR "Error\nFailed to load texture"
+# define TEX_LOAD_ERR "Failed to load texture"
 
 typedef enum e_keys
 {
@@ -135,17 +135,6 @@ typedef struct s_casted_ray
 	int				wall_bottom;
 }					t_casted_ray;
 
-//===============parising======================
-void	free_2d_array(char **array);
-void	free_variables(char **colors, char **map, char **paths);
-void	free_textures(t_textures *textures);
-void	free_scene(t_scene *scene);
-
-//===============================================
-float	angle_help(char m);
-float	get_correct_angle(void);
-void	get_correct_pos(t_xy *pos);
-
 //---------------------------
 
 t_game	*g_game(void);
@@ -157,7 +146,7 @@ int		close_game(int code, char *message);
 //---------------- initialazation
 
 void	init_window(void);
-void	init_player(void);
+void	init_player(t_xy pos, float angle);
 void	init_game(void);
 void	init_minimap(void);
 void	init_textures(void);
