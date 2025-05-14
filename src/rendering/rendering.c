@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:47 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/10 10:13:06 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/14 16:20:53 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,9 @@ static inline void	draw_hand(t_game *game)
 {
 	t_xy			pos;
 	int				hand_y;
-	static int		old_y = HEIGHT / 2;
 	unsigned int	color;
 
-	hand_y = (HEIGHT / 2) + (int)(cos(game->timer * 0.05f) * 100);
-	if (game->key.w || game->key.s
-		|| game->key.d || game->key.a)
-		old_y = hand_y;
+	hand_y = (HEIGHT / 2) + (int)(cos(game->timer * 0.03f) * 100);
 	pos.y = -1;
 	while (++pos.y < game->hand.height)
 	{
@@ -95,7 +91,7 @@ static inline void	draw_hand(t_game *game)
 			color = get_pixel_color(game->hand, pos);
 			if (color != 0xff000000)
 				put_pixel(game, (t_xy){pos.x + (WIDTH - game->hand.width), pos.y
-					+ old_y}, color);
+					+ hand_y}, color);
 		}
 	}
 }
