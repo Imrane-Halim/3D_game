@@ -6,7 +6,7 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:44 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/11 10:14:01 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/15 16:02:27 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static inline void	draw_tex_slice(t_game *game,
 	if (cray.ray.dir == DOOR)
 	{
 		frac_x = cray.ray.hit.x - floor(cray.ray.hit.x / TILESIZE) * TILESIZE;
-		is_vertical = (frac_x < 0.001 || frac_x > TILESIZE - 0.001);
+		is_vertical = (frac_x < 0.01 || frac_x > TILESIZE - 0.01);
 	}
 	if (is_vertical)
 		wall_x = cray.ray.hit.y - floor(cray.ray.hit.y / TILESIZE) * TILESIZE;
