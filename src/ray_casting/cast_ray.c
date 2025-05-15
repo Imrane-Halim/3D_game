@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:23:38 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 11:03:37 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/15 10:10:31 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static inline t_ray	find_vertical_hit(t_game *game, t_xy p, float angle)
 	{
 		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE - 0.0001;
 		first_hit.dir = WEST;
-		step.x = -TILESIZE;
+		step.x = -TILESIZE - 0.0001;
 	}
 	first_hit.hit.y = p.y + (first_hit.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
@@ -77,7 +77,7 @@ static inline t_ray	find_horizontal_hit(t_game *game, t_xy p, float angle)
 	{
 		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
 		first_hit.dir = NORTH;
-		step.y = -TILESIZE;
+		step.y = -TILESIZE - 0.0001;
 	}
 	first_hit.hit.x = p.x + (first_hit.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
