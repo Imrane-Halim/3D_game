@@ -6,11 +6,12 @@
 /*   By: ihalim <ihalim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:23:38 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/15 14:50:51 by ihalim           ###   ########.fr       */
+/*   Updated: 2025/05/15 14:57:12 by ihalim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#define EPSILON 0.001
 
 inline char	obj_hit(t_game *game, t_xy cord)
 {
@@ -47,15 +48,15 @@ static inline t_ray	find_vertical_hit(t_game *game, t_xy p, float angle)
 
 	if (cos(angle) > 0)
 	{
-		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE + TILESIZE + 0.0001;
+		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE + TILESIZE + EPSILON;
 		first_hit.dir = EAST;
-		step.x = TILESIZE + 0.0001;
+		step.x = TILESIZE + EPSILON;
 	}
 	else
 	{
-		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE  - 0.0001;
+		first_hit.hit.x = floor(p.x / TILESIZE) * TILESIZE - EPSILON;
 		first_hit.dir = WEST;
-		step.x = -TILESIZE - 0.0001;
+		step.x = -TILESIZE - EPSILON;
 	}
 	first_hit.hit.y = p.y + (first_hit.hit.x - p.x) * tan(angle);
 	step.y = step.x * tan(angle);
@@ -69,15 +70,15 @@ static inline t_ray	find_horizontal_hit(t_game *game, t_xy p, float angle)
 
 	if (sin(angle) > 0)
 	{
-		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE + TILESIZE + 0.0001;
+		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE + TILESIZE + EPSILON;
 		first_hit.dir = SOUTH;
-		step.y = TILESIZE + 0.0001;
+		step.y = TILESIZE + EPSILON;
 	}
 	else
 	{
-		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE - 0.0001;
+		first_hit.hit.y = floor(p.y / TILESIZE) * TILESIZE - EPSILON;
 		first_hit.dir = NORTH;
-		step.y = -TILESIZE - 0.0001;
+		step.y = -TILESIZE - EPSILON;
 	}
 	first_hit.hit.x = p.x + (first_hit.hit.y - p.y) / tan(angle);
 	step.x = step.y / tan(angle);
