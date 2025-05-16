@@ -6,7 +6,7 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 19:21:13 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 18:12:34 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/16 09:47:49 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void			free_arr(char **arr);
 char			**add_line_to_arr(char **arr, char *line);
 char			*find_char_in_line(char *line, char *chars, int find_type);
 void			ft_close(t_scene *scene, char *line, char *reason);
+int				count_freq(char *str, char c, int max);
 
 // identifier functions
 int				process_identifier(t_scene *scene, char **args);

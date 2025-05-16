@@ -6,11 +6,29 @@
 /*   By: imrane <imrane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 10:50:45 by imrane            #+#    #+#             */
-/*   Updated: 2025/05/14 15:59:03 by imrane           ###   ########.fr       */
+/*   Updated: 2025/05/16 09:50:48 by imrane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+// this function is supposed to be in utils.c but added here due to norm
+// returns 1 is `C` frequency excedes the `max` in `str`
+int	count_freq(char *str, char c, int max)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+	{
+		if (c == *str)
+			count++;
+		if (count > max)
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
 // ----- these functions check palyer position, invalid chars... etc
 int	check_player_pos(t_scene *scene, char *line)
