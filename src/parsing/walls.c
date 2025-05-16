@@ -71,7 +71,7 @@ int	check_interior(char **map, char *line, int num)
 				allowed_chars = " 1";
 			else
 				allowed_chars = "01" PLAYER_CHARS "D";
-			if ((size_t)i > ft_strlen(map[num - 1]))
+			if ((size_t)i > ft_strlen(map[num - 1]) && line[i] != ' ')
 				return (1);
 			if (!ft_strchr(allowed_chars, map[num - 1][i]))
 				return (1);
