@@ -106,7 +106,8 @@ C R,G,B                # Ceiling color (RGB)
 ## 🎮 Controls  
 | Key           | Action                 |  
 |---------------|------------------------|  
-| `W/A/S/D`     | Move                   |  
+| `W/A/S/D`     | Move                   |
+| `SPACE`       | Open and close doors   |
 | `←`/`→`       | Rotate camera          |  
 | `ESC`         | Quit game              |  
 | `Mouse`       | Camera rotation (bonus)|  
