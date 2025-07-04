@@ -1,6 +1,8 @@
 # Cub3D  
 **A minimalist raycasting engine using minilibx-linux**  
 ![Screenshot](screenshot.png)
+---
+**top 2D view**
 ![Screenshot](debug.png)
 ---
 
