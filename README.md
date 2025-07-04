@@ -1,6 +1,7 @@
 # Cub3D  
 **A minimalist raycasting engine using minilibx-linux**  
 ![Screenshot](screenshot.png)
+![Screenshot](debug.png)
 ---
 
 ## 🚀 Features  
@@ -28,6 +29,7 @@ git clone https://github.com/Imrane-Halim/Cub3d && cd cub3D
 2. **Build project**:  
 ```bash  
 make        # Mandatory and bonus
+make debug  # Top 2D view of the game
 ```
 
 ---
