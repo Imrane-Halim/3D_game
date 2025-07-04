@@ -1,38 +1,60 @@
-NAME 		= cub3D
-LIBFT		= libft
-INC			= include
+NAME        = cub3D
+LIBFT       = libft
+INC         = include
 
-CFLAGS 		= -Wall -Wextra -Werror
-CFLAGS		+= -I$(INC) -I$(LIBFT)
-CFLAGS		+= -g3 #-fsanitize=address
-CFLAGS		+= -Ofast # optimazation
+# Base flags
+CFLAGS      = -Wall -Wextra #-Werror
+CFLAGS      += -I$(INC) -I$(LIBFT)
+CFLAGS      += -g3 -Ofast
 
-LDFLAGS		= -lmlx_Linux -lX11 -lXext -lm #-lz
+LDFLAGS     = -lmlx_Linux -lX11 -lXext -lm #-lz
 
-RAY_CAST	= $(wildcard src/ray_casting/*.c)
-RENDERING	= $(wildcard src/rendering/*.c)
-PARSING 	= $(wildcard src/parsing/*.c)
-UTILS 		= $(wildcard src/utils/*.c)
-GNL 		= $(wildcard gnl/*.c)
+# Source files
+RAY_CAST    = $(wildcard src/ray_casting/*.c)
+RENDERING   = $(wildcard src/rendering/*.c)
+PARSING     = $(wildcard src/parsing/*.c)
+UTILS       = $(wildcard src/utils/*.c)
+GNL         = $(wildcard gnl/*.c)
+MAIN        = src/main.c
 
-MAIN		= src/main.c
+SRC         = $(UTILS) $(RENDERING) $(PARSING) $(RAY_CAST) $(GNL) $(MAIN)
+OBJ         = $(SRC:.c=.o)
+RENDERING_OBJ = $(RENDERING:.c=.o)
 
-SRC = 	$(UTILS) $(RENDERING) $(PARSING) $(RAY_CAST) $(GNL) $(MAIN)
+# File to track current build mode
+BUILD_MODE_FILE = .build_mode
 
-OBJ = $(SRC:.c=.o)
+# Default target (release mode)
+all: release
 
-all: $(NAME)
+release: | $(BUILD_MODE_FILE)
+	@if [ "$$(cat $(BUILD_MODE_FILE))" != "release" ]; then \
+		$(RM) $(RENDERING_OBJ); \
+		echo "release" > $(BUILD_MODE_FILE); \
+	fi
+	@$(MAKE) $(NAME) CFLAGS="$(CFLAGS)"
 
-$(NAME): $(OBJ) $(SRC)
+debug: | $(BUILD_MODE_FILE)
+	@if [ "$$(cat $(BUILD_MODE_FILE))" != "debug" ]; then \
+		$(RM) $(RENDERING_OBJ); \
+		echo "debug" > $(BUILD_MODE_FILE); \
+	fi
+	@$(MAKE) $(NAME) CFLAGS="$(CFLAGS) -D DEBUG"
+
+$(NAME): $(OBJ)
 	$(MAKE) bonus -C $(LIBFT) --silent
-	$(CC) $(OBJ) $(LIBFT)/libft.a $(CFLAGS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT)/libft.a $(CFLAGS) $(LDFLAGS) -o $@
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(BUILD_MODE_FILE):
+	@mkdir -p $(dir $(BUILD_MODE_FILE))
+	@echo "release" > $(BUILD_MODE_FILE)
+
 clean:
 	$(MAKE) clean -C $(LIBFT) --silent
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) $(BUILD_MODE_FILE)
 
 fclean: clean
 	$(MAKE) fclean -C $(LIBFT) --silent
@@ -40,5 +62,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
-.SECONDARY: $(OBJ)
+.PHONY: all release debug clean fclean re

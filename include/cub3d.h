@@ -186,8 +186,8 @@ void	draw_line(t_game *game, t_xy start, t_xy end, int color);
 // these 2 are for debuging or learining
 // purposes only, no textures, nothing :)
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-void				draw_2D_view(void);
-void				draw_3D_view(void);
+void	draw_2D_view(void);
+void	draw_3D_view(void);
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 void	draw_textured(t_game *game);

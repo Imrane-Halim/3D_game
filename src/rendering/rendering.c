@@ -100,11 +100,14 @@ static inline void	draw_hand(t_game *game)
 
 inline int	render_frame(t_game *game)
 {
-	draw_textured(game);
-	// draw_2D_view();
+# ifdef DEBUG
+	draw_2D_view();
 	// draw_3D_view();
+# else
+	draw_textured(game);
 	draw_minimap(game);
 	draw_hand(game);
+# endif
 	mlx_put_image_to_window(game->window.mlx, game->window.win,
 		game->window.frame.img, 0, 0);
 	return (0);

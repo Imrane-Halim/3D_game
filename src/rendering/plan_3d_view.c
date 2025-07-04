@@ -1,4 +1,5 @@
-/*
+#ifdef DEBUG
+
 #include "cub3d.h"
 
 static void	draw_floor_ceiling()
@@ -67,4 +68,5 @@ inline void	draw_3D_view(void)
 		i++;
 	}
 }
-*/
+
+#endif
