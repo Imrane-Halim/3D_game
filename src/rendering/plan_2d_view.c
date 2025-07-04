@@ -27,7 +27,7 @@ static void	draw_background()
 	i = 0;
 	while (i < HEIGHT)
 	{
-		draw_line((t_xy){0, i}, (t_xy){WIDTH, i}, 0x333333);
+		draw_line(g_game(), (t_xy){0, i}, (t_xy){WIDTH, i}, 0x333333);
 		i += TILESIZE;
 	}
 
@@ -35,7 +35,7 @@ static void	draw_background()
 	i = 0;
 	while (i < WIDTH)
 	{
-		draw_line((t_xy){i, 0}, (t_xy){i, HEIGHT}, 0x333333);
+		draw_line(g_game(), (t_xy){i, 0}, (t_xy){i, HEIGHT}, 0x333333);
 		i += TILESIZE;
 	}
 }
@@ -91,8 +91,8 @@ static void	draw_fov(t_xy offset)
 	while (s_angle < e_angle)
 	{
 		start = applay_offset(g_game()->player.pos, offset);
-		end = applay_offset(cast_ray(s_angle).hit, offset);
-		draw_line(start, end, 0x02cf0c);
+		end = applay_offset(cast_ray(g_game(), s_angle).hit, offset);
+		draw_line(g_game(), start, end, 0x02cf0c);
 		s_angle += step;
 	}
 }
@@ -109,7 +109,7 @@ static void	draw_dir(t_xy offset)
 	end.x = g_game()->player.pos.x + cos(g_game()->player.angle) * line_lenght;
 	end.y = g_game()->player.pos.y + sin(g_game()->player.angle) * line_lenght;
 	end = applay_offset(end, offset);
-	draw_line(start, end, 0xe60b3e);
+	draw_line(g_game(), start, end, 0xe60b3e);
 }
 
 inline void	draw_2D_view(void)

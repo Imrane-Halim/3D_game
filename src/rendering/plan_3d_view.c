@@ -40,7 +40,7 @@ static void	draw_slice(t_ray ray, float ray_angle, int ray_num)
 	else if (ray.dir == WEST)
 		color = 0xffff00;
 	int	shaded_color = shade_color(color, dist);
-	draw_line((t_xy){ray_num, wall_top}, 
+	draw_line(g_game(), (t_xy){ray_num, wall_top}, 
 		(t_xy){ray_num, wall_bottom}, shaded_color);
 }
 
@@ -62,7 +62,7 @@ inline void	draw_3D_view(void)
 	while (i < g_game()->n_rays)
 	{
 		ray_angle = s_angle + i * angle_step;
-		ray = cast_ray(ray_angle);
+		ray = cast_ray(g_game(), ray_angle);
 		draw_slice(ray, ray_angle, i);
 		i++;
 	}

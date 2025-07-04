@@ -101,6 +101,8 @@ static inline void	draw_hand(t_game *game)
 inline int	render_frame(t_game *game)
 {
 	draw_textured(game);
+	// draw_2D_view();
+	// draw_3D_view();
 	draw_minimap(game);
 	draw_hand(game);
 	mlx_put_image_to_window(game->window.mlx, game->window.win,
