@@ -49,6 +49,7 @@ make debug  # Top 2D view of the game
 | `make clean`  | Remove object files                |  
 | `make fclean` | Full clean (objects + executable)  |  
 | `make re`     | Rebuild from scratch               |  
+| `make debug`  | Top 2D view rendering              |  
 
 ---
 
